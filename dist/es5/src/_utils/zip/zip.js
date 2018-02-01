@@ -22,7 +22,6 @@ var Zip = (function () {
                         console.log(err_1);
                         return [2, Promise.reject(err_1)];
                     case 3:
-                        streamAndLength = streamAndLength;
                         b = begin < 0 ? 0 : begin;
                         e = end < 0 ? (streamAndLength.length - 1) : end;
                         stream = new RangeStream_1.RangeStream(b, e, streamAndLength.length);

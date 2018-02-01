@@ -13,7 +13,6 @@ class Zip {
                 console.log(err);
                 return Promise.reject(err);
             }
-            streamAndLength = streamAndLength;
             const b = begin < 0 ? 0 : begin;
             const e = end < 0 ? (streamAndLength.length - 1) : end;
             const stream = new RangeStream_1.RangeStream(b, e, streamAndLength.length);

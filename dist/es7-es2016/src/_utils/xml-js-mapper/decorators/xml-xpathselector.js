@@ -26,7 +26,7 @@ function XmlXPathSelector(selector, namespaces) {
             const items = property.xpathSelector.split("/");
             for (const item of items) {
                 if (!item.length) {
-                    return;
+                    continue;
                 }
                 const subitems = item.split(":");
                 const isAttribute = item[0] === "@";
