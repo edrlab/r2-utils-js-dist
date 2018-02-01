@@ -34,10 +34,14 @@ function deserializeRootObject(objectInstance, objectType, options) {
             }
             if (p.xpathSelectorParsed) {
                 var xpathMatched_1 = [];
-                var currentNodes_1 = [objectInstance];
-                p.xpathSelectorParsed.forEach(function (item, index) {
+                var currentNodes = [objectInstance];
+                var index = -1;
+                for (var _i = 0, _a = p.xpathSelectorParsed; _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    index++;
                     var nextCurrentNodes = [];
-                    currentNodes_1.forEach(function (currentNode) {
+                    for (var _b = 0, currentNodes_1 = currentNodes; _b < currentNodes_1.length; _b++) {
+                        var currentNode = currentNodes_1[_b];
                         if (item.isText) {
                             var textNode = currentNode.firstChild;
                             if (currentNode.childNodes && currentNode.childNodes.length) {
@@ -80,14 +84,14 @@ function deserializeRootObject(objectInstance, objectType, options) {
                                 }
                             }
                         }
-                    });
-                    currentNodes_1 = nextCurrentNodes;
+                    }
+                    currentNodes = nextCurrentNodes;
                     if (index === p.xpathSelectorParsed.length - 1) {
-                        currentNodes_1.forEach(function (node) {
+                        currentNodes.forEach(function (node) {
                             xpathMatched_1.push(node);
                         });
                     }
-                });
+                }
                 if (xpathMatched_1 && xpathMatched_1.length) {
                     if (p.array || p.set) {
                         output[key] = [];

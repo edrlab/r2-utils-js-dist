@@ -34,9 +34,11 @@ function deserializeRootObject(objectInstance, objectType = Object, options) {
             if (p.xpathSelectorParsed) {
                 const xpathMatched = [];
                 let currentNodes = [objectInstance];
-                p.xpathSelectorParsed.forEach((item, index) => {
+                let index = -1;
+                for (const item of p.xpathSelectorParsed) {
+                    index++;
                     const nextCurrentNodes = [];
-                    currentNodes.forEach((currentNode) => {
+                    for (const currentNode of currentNodes) {
                         if (item.isText) {
                             let textNode = currentNode.firstChild;
                             if (currentNode.childNodes && currentNode.childNodes.length) {
@@ -79,14 +81,14 @@ function deserializeRootObject(objectInstance, objectType = Object, options) {
                                 }
                             }
                         }
-                    });
+                    }
                     currentNodes = nextCurrentNodes;
                     if (index === p.xpathSelectorParsed.length - 1) {
                         currentNodes.forEach((node) => {
                             xpathMatched.push(node);
                         });
                     }
-                });
+                }
                 if (xpathMatched && xpathMatched.length) {
                     if (p.array || p.set) {
                         output[key] = [];

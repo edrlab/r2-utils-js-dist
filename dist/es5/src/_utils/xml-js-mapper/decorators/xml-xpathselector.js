@@ -24,7 +24,8 @@ function XmlXPathSelector(selector, namespaces) {
             && property.xpathSelector.indexOf("]") < 0) {
             property.xpathSelectorParsed = [];
             var items = property.xpathSelector.split("/");
-            items.forEach(function (item) {
+            for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+                var item = items_1[_i];
                 if (!item.length) {
                     return;
                 }
@@ -48,7 +49,7 @@ function XmlXPathSelector(selector, namespaces) {
                     namespaceUri: namespaceUri,
                 };
                 property.xpathSelectorParsed.push(xItem);
-            });
+            }
         }
     };
 }
