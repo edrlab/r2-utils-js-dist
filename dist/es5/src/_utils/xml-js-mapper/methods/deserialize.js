@@ -102,7 +102,7 @@ function deserializeRootObject(objectInstance, objectType, options) {
                     output[key] = deserializeObject(xpathMatched_1[0], p, options);
                 }
             }
-            else {
+            else if (p.xpathSelector) {
                 var select = xpath.useNamespaces(p.namespaces || {});
                 var xPathSelected = select(p.xpathSelector, objectInstance);
                 if (xPathSelected && xPathSelected.length) {

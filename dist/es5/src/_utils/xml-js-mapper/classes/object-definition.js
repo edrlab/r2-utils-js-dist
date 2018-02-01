@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var property_definition_1 = require("./property-definition");
 var ObjectDefinition = (function () {
     function ObjectDefinition() {
+        this.discriminatorProperty = undefined;
+        this.discriminatorValue = undefined;
         this.ctr = function () { return undefined; };
         this.beforeDeserialized = function () { return undefined; };
         this.onDeserialized = function () { return undefined; };
@@ -61,6 +63,7 @@ function getTypedInheritanceChain(objectType, objectInstance) {
         if (def && def.hasOwnProperty("discriminatorValue")) {
             if (objectInstance
                 && parentDef
+                && parentDef.discriminatorProperty
                 && def.discriminatorValue === objectInstance[parentDef.discriminatorProperty]) {
                 if (def.hasOwnProperty("discriminatorProperty")) {
                     return getTypedInheritanceChain(objectType2, objectInstance);
