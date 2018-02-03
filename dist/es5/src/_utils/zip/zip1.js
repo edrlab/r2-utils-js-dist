@@ -4,7 +4,7 @@ var tslib_1 = require("tslib");
 var debug_ = require("debug");
 var StreamZip = require("node-stream-zip");
 var zip_1 = require("./zip");
-var debug = debug_("r2:zip1");
+var debug = debug_("r2:utils#zip/zip1");
 var Zip1 = (function (_super) {
     tslib_1.__extends(Zip1, _super);
     function Zip1(filePath, zip) {

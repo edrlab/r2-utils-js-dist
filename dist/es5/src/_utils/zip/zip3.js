@@ -6,7 +6,7 @@ var request = require("request");
 var unzipper = require("unzipper");
 var UrlUtils_1 = require("../http/UrlUtils");
 var zip_1 = require("./zip");
-var debug = debug_("r2:zip3");
+var debug = debug_("r2:utils#zip/zip3");
 var Zip3 = (function (_super) {
     tslib_1.__extends(Zip3, _super);
     function Zip3(filePath, zip) {

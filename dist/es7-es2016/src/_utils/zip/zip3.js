@@ -6,7 +6,7 @@ const request = require("request");
 const unzipper = require("unzipper");
 const UrlUtils_1 = require("../http/UrlUtils");
 const zip_1 = require("./zip");
-const debug = debug_("r2:zip3");
+const debug = debug_("r2:utils#zip/zip3");
 class Zip3 extends zip_1.Zip {
     constructor(filePath, zip) {
         super();

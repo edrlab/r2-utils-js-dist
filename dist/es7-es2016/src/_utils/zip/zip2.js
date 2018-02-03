@@ -9,7 +9,7 @@ const UrlUtils_1 = require("../http/UrlUtils");
 const BufferUtils_1 = require("../stream/BufferUtils");
 const zip_1 = require("./zip");
 const zip2RandomAccessReader_Http_1 = require("./zip2RandomAccessReader_Http");
-const debug = debug_("r2:zip2");
+const debug = debug_("r2:utils#zip/zip2");
 class Zip2 extends zip_1.Zip {
     constructor(filePath, zip) {
         super();

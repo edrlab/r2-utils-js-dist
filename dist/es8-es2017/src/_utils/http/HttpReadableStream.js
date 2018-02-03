@@ -5,7 +5,7 @@ const debug_ = require("debug");
 const request = require("request");
 const requestPromise = require("request-promise-native");
 const BufferUtils_1 = require("../stream/BufferUtils");
-const debug = debug_("r2:httpStream");
+const debug = debug_("r2:utils#http/HttpReadableStream");
 class HttpReadableStream extends stream_1.Readable {
     constructor(url, byteLength, byteStart, byteEnd) {
         super();
@@ -41,7 +41,7 @@ class HttpReadableStream extends stream_1.Readable {
             this.alreadyRead += buffer.length;
             this.push(buffer);
         };
-        console.log(`HTTP GET ${this.url}: ${this.byteStart}-${this.byteEnd} (${this.byteEnd - this.byteStart})`);
+        debug(`HTTP GET ${this.url}: ${this.byteStart}-${this.byteEnd} (${this.byteEnd - this.byteStart})`);
         const lastByteIndex = this.byteEnd - 1;
         const range = `${this.byteStart}-${lastByteIndex}`;
         const needsStreamingResponse = true;

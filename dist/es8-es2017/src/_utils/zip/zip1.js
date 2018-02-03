@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const debug_ = require("debug");
 const StreamZip = require("node-stream-zip");
 const zip_1 = require("./zip");
-const debug = debug_("r2:zip1");
+const debug = debug_("r2:utils#zip/zip1");
 class Zip1 extends zip_1.Zip {
     constructor(filePath, zip) {
         super();

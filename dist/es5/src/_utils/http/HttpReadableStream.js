@@ -6,7 +6,7 @@ var debug_ = require("debug");
 var request = require("request");
 var requestPromise = require("request-promise-native");
 var BufferUtils_1 = require("../stream/BufferUtils");
-var debug = debug_("r2:httpStream");
+var debug = debug_("r2:utils#http/HttpReadableStream");
 var HttpReadableStream = (function (_super) {
     tslib_1.__extends(HttpReadableStream, _super);
     function HttpReadableStream(url, byteLength, byteStart, byteEnd) {
@@ -56,7 +56,7 @@ var HttpReadableStream = (function (_super) {
                 }
             });
         }); };
-        console.log("HTTP GET " + this.url + ": " + this.byteStart + "-" + this.byteEnd + " (" + (this.byteEnd - this.byteStart) + ")");
+        debug("HTTP GET " + this.url + ": " + this.byteStart + "-" + this.byteEnd + " (" + (this.byteEnd - this.byteStart) + ")");
         var lastByteIndex = this.byteEnd - 1;
         var range = this.byteStart + "-" + lastByteIndex;
         var needsStreamingResponse = true;

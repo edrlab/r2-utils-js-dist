@@ -8,7 +8,7 @@ var request = require("request");
 var requestPromise = require("request-promise-native");
 var yauzl = require("yauzl");
 var BufferUtils_1 = require("../stream/BufferUtils");
-var debug = debug_("r2:httpStream");
+var debug = debug_("r2:utils#zip/zip2RandomAccessReader_Http");
 var HttpZipReader = (function () {
     function HttpZipReader(url, byteLength) {
         this.url = url;

@@ -9,7 +9,7 @@ var UrlUtils_1 = require("../http/UrlUtils");
 var BufferUtils_1 = require("../stream/BufferUtils");
 var zip_1 = require("./zip");
 var zip2RandomAccessReader_Http_1 = require("./zip2RandomAccessReader_Http");
-var debug = debug_("r2:zip2");
+var debug = debug_("r2:utils#zip/zip2");
 var Zip2 = (function (_super) {
     tslib_1.__extends(Zip2, _super);
     function Zip2(filePath, zip) {

@@ -4,7 +4,7 @@ const fs = require("fs");
 const debug_ = require("debug");
 const yauzl = require("yauzl");
 const yazl = require("yazl");
-const debug = debug_("r2:zipInjector");
+const debug = debug_("r2:utils#zip/zipInjector");
 var InjectType;
 (function (InjectType) {
     InjectType[InjectType["FILE"] = 0] = "FILE";

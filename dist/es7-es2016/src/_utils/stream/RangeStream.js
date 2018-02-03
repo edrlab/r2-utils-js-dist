@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const debug_ = require("debug");
 const stream_1 = require("stream");
-const debug = debug_("r2:RangeStream");
+const debug = debug_("r2:utils#stream/RangeStream");
 class RangeStream extends stream_1.Transform {
     constructor(streamBegin, streamEnd, streamLength) {
         super();

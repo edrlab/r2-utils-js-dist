@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var debug_ = require("debug");
 var stream_1 = require("stream");
-var debug = debug_("r2:RangeStream");
+var debug = debug_("r2:utils#stream/RangeStream");
 var RangeStream = (function (_super) {
     tslib_1.__extends(RangeStream, _super);
     function RangeStream(streamBegin, streamEnd, streamLength) {
