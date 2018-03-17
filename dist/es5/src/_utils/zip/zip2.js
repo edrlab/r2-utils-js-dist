@@ -283,12 +283,14 @@ var Zip2 = (function (_super) {
     Zip2.prototype.hasEntry = function (entryPath) {
         return this.hasEntries() && this.entries[entryPath];
     };
-    Zip2.prototype.forEachEntry = function (callback) {
-        if (!this.hasEntries()) {
-            return;
-        }
-        Object.keys(this.entries).forEach(function (entryName) {
-            callback(entryName);
+    Zip2.prototype.getEntries = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                if (!this.hasEntries()) {
+                    return [2, Promise.resolve([])];
+                }
+                return [2, Promise.resolve(Object.keys(this.entries))];
+            });
         });
     };
     Zip2.prototype.entryStreamPromise = function (entryPath) {

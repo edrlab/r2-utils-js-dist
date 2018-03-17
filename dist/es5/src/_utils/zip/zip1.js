@@ -56,12 +56,14 @@ var Zip1 = (function (_super) {
         return this.hasEntries()
             && this.zip.entries()[entryPath];
     };
-    Zip1.prototype.forEachEntry = function (callback) {
-        if (!this.hasEntries()) {
-            return;
-        }
-        Object.keys(this.zip.entries()).forEach(function (entryName) {
-            callback(entryName);
+    Zip1.prototype.getEntries = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                if (!this.hasEntries()) {
+                    return [2, Promise.resolve([])];
+                }
+                return [2, Promise.resolve(Object.keys(this.zip.entries()))];
+            });
         });
     };
     Zip1.prototype.entryStreamPromise = function (entryPath) {

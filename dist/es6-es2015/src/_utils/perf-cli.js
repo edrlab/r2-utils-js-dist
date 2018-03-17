@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const fs = require("fs");
 const path = require("path");
+const zip_ex_1 = require("./zip/zip-ex");
 const zip1_1 = require("./zip/zip1");
 const zip2_1 = require("./zip/zip2");
 const zip3_1 = require("./zip/zip3");
+const BufferUtils_1 = require("./stream/BufferUtils");
 console.log("process.cwd():");
 console.log(process.cwd());
 console.log("__dirname:");
@@ -32,9 +34,44 @@ if (!fs.existsSync(filePath)) {
         }
     }
 }
+const stats = fs.lstatSync(filePath);
+if (!stats.isFile() && !stats.isDirectory()) {
+    console.log("FILEPATH MUST BE FILE OR DIRECTORY.");
+    process.exit(1);
+}
 const fileName = path.basename(filePath);
 const ext = path.extname(fileName).toLowerCase();
-if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
+if (stats.isDirectory()) {
+    (() => tslib_1.__awaiter(this, void 0, void 0, function* () {
+        const zipExploded = yield zip_ex_1.ZipExploded.loadPromise(filePath);
+        const entries = yield zipExploded.getEntries();
+        for (const entryName of entries) {
+            console.log("############## " + entryName);
+            let zipStream_;
+            try {
+                zipStream_ = yield zipExploded.entryStreamPromise(entryName);
+            }
+            catch (err) {
+                console.log(err);
+                return;
+            }
+            const zipStream = zipStream_.stream;
+            let zipData;
+            try {
+                zipData = yield BufferUtils_1.streamToBufferPromise(zipStream);
+            }
+            catch (err) {
+                console.log(err);
+                return;
+            }
+            if (entryName.endsWith(".css")) {
+                const str = zipData.toString("utf8");
+                console.log(str);
+            }
+        }
+    }))();
+}
+else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
     (() => tslib_1.__awaiter(this, void 0, void 0, function* () {
         const time3 = process.hrtime();
         const zip3 = yield zip3_1.Zip3.loadPromise(filePath);

@@ -1,8 +1,7 @@
 import { IStreamAndLength, IZip, Zip } from "./zip";
-export declare class Zip1 extends Zip {
-    readonly filePath: string;
-    readonly zip: any;
-    static loadPromise(filePath: string): Promise<IZip>;
+export declare class ZipExploded extends Zip {
+    readonly dirPath: string;
+    static loadPromise(dirPath: string): Promise<IZip>;
     private constructor();
     freeDestroy(): void;
     entriesCount(): number;

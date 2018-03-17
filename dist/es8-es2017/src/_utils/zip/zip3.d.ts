@@ -10,6 +10,6 @@ export declare class Zip3 extends Zip {
     entriesCount(): number;
     hasEntries(): boolean;
     hasEntry(entryPath: string): boolean;
-    forEachEntry(callback: (entryName: string) => void): void;
+    getEntries(): Promise<string[]>;
     entryStreamPromise(entryPath: string): Promise<IStreamAndLength>;
 }

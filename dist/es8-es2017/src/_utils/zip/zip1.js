@@ -49,13 +49,11 @@ class Zip1 extends zip_1.Zip {
         return this.hasEntries()
             && this.zip.entries()[entryPath];
     }
-    forEachEntry(callback) {
+    async getEntries() {
         if (!this.hasEntries()) {
-            return;
+            return Promise.resolve([]);
         }
-        Object.keys(this.zip.entries()).forEach((entryName) => {
-            callback(entryName);
-        });
+        return Promise.resolve(Object.keys(this.zip.entries()));
     }
     async entryStreamPromise(entryPath) {
         if (!this.hasEntries() || !this.hasEntry(entryPath)) {

@@ -4,9 +4,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var fs = require("fs");
 var path = require("path");
+var zip_ex_1 = require("./zip/zip-ex");
 var zip1_1 = require("./zip/zip1");
 var zip2_1 = require("./zip/zip2");
 var zip3_1 = require("./zip/zip3");
+var BufferUtils_1 = require("./stream/BufferUtils");
 console.log("process.cwd():");
 console.log(process.cwd());
 console.log("__dirname:");
@@ -33,9 +35,71 @@ if (!fs.existsSync(filePath)) {
         }
     }
 }
+var stats = fs.lstatSync(filePath);
+if (!stats.isFile() && !stats.isDirectory()) {
+    console.log("FILEPATH MUST BE FILE OR DIRECTORY.");
+    process.exit(1);
+}
 var fileName = path.basename(filePath);
 var ext = path.extname(fileName).toLowerCase();
-if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
+if (stats.isDirectory()) {
+    (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+        var zipExploded, entries, _i, entries_1, entryName, zipStream_, err_1, zipStream, zipData, err_2, str;
+        return tslib_1.__generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, zip_ex_1.ZipExploded.loadPromise(filePath)];
+                case 1:
+                    zipExploded = _a.sent();
+                    return [4, zipExploded.getEntries()];
+                case 2:
+                    entries = _a.sent();
+                    _i = 0, entries_1 = entries;
+                    _a.label = 3;
+                case 3:
+                    if (!(_i < entries_1.length)) return [3, 13];
+                    entryName = entries_1[_i];
+                    console.log("############## " + entryName);
+                    zipStream_ = void 0;
+                    _a.label = 4;
+                case 4:
+                    _a.trys.push([4, 6, , 7]);
+                    return [4, zipExploded.entryStreamPromise(entryName)];
+                case 5:
+                    zipStream_ = _a.sent();
+                    return [3, 7];
+                case 6:
+                    err_1 = _a.sent();
+                    console.log(err_1);
+                    return [2];
+                case 7:
+                    zipStream = zipStream_.stream;
+                    zipData = void 0;
+                    _a.label = 8;
+                case 8:
+                    _a.trys.push([8, 10, , 11]);
+                    return [4, BufferUtils_1.streamToBufferPromise(zipStream)];
+                case 9:
+                    zipData = _a.sent();
+                    return [3, 11];
+                case 10:
+                    err_2 = _a.sent();
+                    console.log(err_2);
+                    return [2];
+                case 11:
+                    if (entryName.endsWith(".css")) {
+                        str = zipData.toString("utf8");
+                        console.log(str);
+                    }
+                    _a.label = 12;
+                case 12:
+                    _i++;
+                    return [3, 3];
+                case 13: return [2];
+            }
+        });
+    }); })();
+}
+else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
     (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
         var time3, zip3, diff3, time2, zip2, diff2, time1, zip1, diff1;
         return tslib_1.__generator(this, function (_a) {
