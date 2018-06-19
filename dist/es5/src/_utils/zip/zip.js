@@ -7,8 +7,8 @@ var Zip = (function () {
     }
     Zip.prototype.entryStreamRangePromise = function (entryPath, begin, end) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var streamAndLength, err_1, b, e, stream, sal;
+            var _this = this;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:

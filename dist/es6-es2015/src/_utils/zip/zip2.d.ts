@@ -3,7 +3,7 @@ export declare class Zip2 extends Zip {
     readonly filePath: string;
     readonly zip: any;
     static loadPromise(filePath: string): Promise<IZip>;
-    private static loadPromiseHTTP(filePath);
+    private static loadPromiseHTTP;
     private entries;
     private constructor();
     freeDestroy(): void;
@@ -12,5 +12,5 @@ export declare class Zip2 extends Zip {
     hasEntry(entryPath: string): boolean;
     getEntries(): Promise<string[]>;
     entryStreamPromise(entryPath: string): Promise<IStreamAndLength>;
-    private addEntry(entry);
+    private addEntry;
 }

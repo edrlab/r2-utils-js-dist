@@ -62,13 +62,13 @@ var Zip2 = (function (_super) {
     };
     Zip2.loadPromiseHTTP = function (filePath) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var needsStreamingResponse;
+            var _this = this;
             return tslib_1.__generator(this, function (_a) {
                 needsStreamingResponse = true;
                 return [2, new Promise(function (resolve, reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                        var _this = this;
                         var failure, success, res, err_1;
+                        var _this = this;
                         return tslib_1.__generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
@@ -77,8 +77,8 @@ var Zip2 = (function (_super) {
                                         reject(err);
                                     };
                                     success = function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                        var _this = this;
                                         var httpZipByteLength, failure_1, success_, ress, err_2, httpZipReader;
+                                        var _this = this;
                                         return tslib_1.__generator(this, function (_a) {
                                             switch (_a.label) {
                                                 case 0:
@@ -295,8 +295,8 @@ var Zip2 = (function (_super) {
     };
     Zip2.prototype.entryStreamPromise = function (entryPath) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var entry;
+            var _this = this;
             return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                     return [2, Promise.reject("no such path in zip: " + entryPath)];

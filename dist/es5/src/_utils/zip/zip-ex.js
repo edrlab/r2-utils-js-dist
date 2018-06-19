@@ -68,8 +68,8 @@ var ZipExploded = (function (_super) {
     };
     ZipExploded.prototype.entryStreamPromise = function (entryPath) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var fullPath, stats, streamAndLength;
+            var _this = this;
             return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                     return [2, Promise.reject("no such path in zip exploded: " + entryPath)];
