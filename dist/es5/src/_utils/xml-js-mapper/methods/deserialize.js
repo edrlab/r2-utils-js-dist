@@ -40,16 +40,65 @@ function deserializeRootObject(objectInstance, objectType, options) {
                     var item = _a[_i];
                     index++;
                     var nextCurrentNodes = [];
-                    for (var _b = 0, currentNodes_1 = currentNodes; _b < currentNodes_1.length; _b++) {
-                        var currentNode = currentNodes_1[_b];
+                    var _loop_1 = function (currentNode) {
                         if (item.isText) {
-                            var textNode = currentNode.firstChild;
+                            var textNode = currentNode.firstChild || currentNode;
                             if (currentNode.childNodes && currentNode.childNodes.length) {
+                                var allTextNodes = [];
+                                var atLeastOneElementChild = false;
                                 for (var i = 0; i < currentNode.childNodes.length; i++) {
                                     var childNode = currentNode.childNodes.item(i);
                                     if (childNode.nodeType === 3) {
-                                        textNode = childNode;
+                                        allTextNodes.push(childNode);
+                                    }
+                                    else if (childNode.nodeType === 1) {
+                                        atLeastOneElementChild = true;
                                         break;
+                                    }
+                                }
+                                if (atLeastOneElementChild) {
+                                    var toStringed = void 0;
+                                    if (currentNode.innerHTML) {
+                                        console.log("innerHTML");
+                                        toStringed = currentNode.innerHTML;
+                                    }
+                                    else if (currentNode.childNodes.toString) {
+                                        toStringed = currentNode.childNodes.toString();
+                                    }
+                                    else {
+                                        console.log("childNodes.items.toString?");
+                                        for (var i = 0; i < currentNode.childNodes.length; i++) {
+                                            var childNode = currentNode.childNodes.item(i);
+                                            if (childNode.toString) {
+                                                if (!toStringed) {
+                                                    toStringed = "";
+                                                }
+                                                toStringed += childNode.toString();
+                                            }
+                                        }
+                                    }
+                                    if (toStringed) {
+                                        console.log(toStringed);
+                                        var obj = { data: toStringed, nodeType: 3 };
+                                        textNode = obj;
+                                    }
+                                }
+                                else if (allTextNodes.length) {
+                                    if (allTextNodes.length === 1) {
+                                        textNode = allTextNodes[0];
+                                    }
+                                    else {
+                                        console.log("###################");
+                                        console.log("###################");
+                                        console.log("###################");
+                                        console.log("XML text nodes: [" + allTextNodes.length + "]");
+                                        var fullTxt_1 = "";
+                                        allTextNodes.forEach(function (allTextNode) {
+                                            fullTxt_1 += allTextNode.data;
+                                        });
+                                        console.log(fullTxt_1);
+                                        var obj = { data: fullTxt_1, nodeType: 3 };
+                                        textNode = obj;
                                     }
                                 }
                             }
@@ -84,6 +133,10 @@ function deserializeRootObject(objectInstance, objectType, options) {
                                 }
                             }
                         }
+                    };
+                    for (var _b = 0, currentNodes_1 = currentNodes; _b < currentNodes_1.length; _b++) {
+                        var currentNode = currentNodes_1[_b];
+                        _loop_1(currentNode);
                     }
                     currentNodes = nextCurrentNodes;
                     if (index === p.xpathSelectorParsed.length - 1) {

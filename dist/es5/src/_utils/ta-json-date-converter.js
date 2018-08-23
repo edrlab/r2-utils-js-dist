@@ -4,10 +4,11 @@ var JsonDateConverter = (function () {
     function JsonDateConverter() {
     }
     JsonDateConverter.prototype.serialize = function (property) {
-        return property.toISOString();
+        return property ? property.toISOString() : "Invalid Date";
     };
     JsonDateConverter.prototype.deserialize = function (value) {
-        return new Date(value);
+        var date = new Date(value);
+        return isNaN(date.getTime()) ? undefined : date;
     };
     JsonDateConverter.prototype.collapseArrayWithSingleItem = function () {
         return false;

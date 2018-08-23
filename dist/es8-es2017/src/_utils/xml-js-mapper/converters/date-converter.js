@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class DateConverter {
     serialize(property) {
-        return property.toISOString();
+        return property ? property.toISOString() : "Invalid Date";
     }
     deserialize(value) {
-        return new Date(value);
+        const date = new Date(value);
+        return isNaN(date.getTime()) ? undefined : date;
     }
     collapseArrayWithSingleItem() {
         return false;

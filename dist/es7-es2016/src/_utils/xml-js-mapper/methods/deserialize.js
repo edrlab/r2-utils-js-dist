@@ -40,13 +40,63 @@ function deserializeRootObject(objectInstance, objectType = Object, options) {
                     const nextCurrentNodes = [];
                     for (const currentNode of currentNodes) {
                         if (item.isText) {
-                            let textNode = currentNode.firstChild;
+                            let textNode = currentNode.firstChild || currentNode;
                             if (currentNode.childNodes && currentNode.childNodes.length) {
+                                const allTextNodes = [];
+                                let atLeastOneElementChild = false;
                                 for (let i = 0; i < currentNode.childNodes.length; i++) {
                                     const childNode = currentNode.childNodes.item(i);
                                     if (childNode.nodeType === 3) {
-                                        textNode = childNode;
+                                        allTextNodes.push(childNode);
+                                    }
+                                    else if (childNode.nodeType === 1) {
+                                        atLeastOneElementChild = true;
                                         break;
+                                    }
+                                }
+                                if (atLeastOneElementChild) {
+                                    let toStringed;
+                                    if (currentNode.innerHTML) {
+                                        console.log("innerHTML");
+                                        toStringed = currentNode.innerHTML;
+                                    }
+                                    else if (currentNode.childNodes.toString) {
+                                        toStringed = currentNode.childNodes.toString();
+                                    }
+                                    else {
+                                        console.log("childNodes.items.toString?");
+                                        for (let i = 0; i < currentNode.childNodes.length; i++) {
+                                            const childNode = currentNode.childNodes.item(i);
+                                            if (childNode.toString) {
+                                                if (!toStringed) {
+                                                    toStringed = "";
+                                                }
+                                                toStringed += childNode.toString();
+                                            }
+                                        }
+                                    }
+                                    if (toStringed) {
+                                        console.log(toStringed);
+                                        const obj = { data: toStringed, nodeType: 3 };
+                                        textNode = obj;
+                                    }
+                                }
+                                else if (allTextNodes.length) {
+                                    if (allTextNodes.length === 1) {
+                                        textNode = allTextNodes[0];
+                                    }
+                                    else {
+                                        console.log("###################");
+                                        console.log("###################");
+                                        console.log("###################");
+                                        console.log("XML text nodes: [" + allTextNodes.length + "]");
+                                        let fullTxt = "";
+                                        allTextNodes.forEach((allTextNode) => {
+                                            fullTxt += allTextNode.data;
+                                        });
+                                        console.log(fullTxt);
+                                        const obj = { data: fullTxt, nodeType: 3 };
+                                        textNode = obj;
                                     }
                                 }
                             }
