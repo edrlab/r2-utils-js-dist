@@ -1,9 +1,9 @@
 {
-  "short": "dee5f92",
-  "long": "dee5f92c0dea58bccd2967b76b9d371c427064bc",
+  "short": "0a07d12",
+  "long": "0a07d1222c2eef704796d601fdf86f3013d767d5",
   "branch": "develop",
-  "date": "2018-08-23T22:19:22.000Z",
+  "date": "2018-08-29T23:16:28.000Z",
   "dirty": true,
-  "urlHistory": "https://github.com/edrlab/r2-utils-js/commits/dee5f92c0dea58bccd2967b76b9d371c427064bc",
-  "urlDiff": "https://github.com/edrlab/r2-utils-js/compare/dee5f92c0dea58bccd2967b76b9d371c427064bc...develop"
+  "urlHistory": "https://github.com/edrlab/r2-utils-js/commits/0a07d1222c2eef704796d601fdf86f3013d767d5",
+  "urlDiff": "https://github.com/edrlab/r2-utils-js/compare/0a07d1222c2eef704796d601fdf86f3013d767d5...develop"
 }
