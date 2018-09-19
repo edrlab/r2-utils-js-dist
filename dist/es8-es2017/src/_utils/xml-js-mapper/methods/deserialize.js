@@ -76,7 +76,6 @@ function deserializeRootObject(objectInstance, objectType = Object, options) {
                                         }
                                     }
                                     if (toStringed) {
-                                        console.log(toStringed);
                                         const obj = { data: toStringed, nodeType: 3 };
                                         textNode = obj;
                                     }
