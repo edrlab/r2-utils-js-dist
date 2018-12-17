@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var querystring = require("querystring");
 function isHTTP(urlOrPath) {
-    return urlOrPath.indexOf("http") === 0;
+    return /^http[s]?:\/\//.test(urlOrPath);
 }
 exports.isHTTP = isHTTP;
 function encodeURIComponent_RFC3986(str) {

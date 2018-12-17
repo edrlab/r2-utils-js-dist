@@ -95,7 +95,7 @@ var Zip2 = (function (_super) {
                                                     httpZipByteLength = parseInt(res.headers["content-length"], 10);
                                                     debug("Content-Length: " + httpZipByteLength);
                                                     if (!(!res.headers["accept-ranges"]
-                                                        || res.headers["accept-ranges"] !== "bytes")) return [3, 8];
+                                                        || res.headers["accept-ranges"].indexOf("bytes") < 0)) return [3, 8];
                                                     if (httpZipByteLength > (2 * 1024 * 1024)) {
                                                         reject("accept-ranges not supported, file too big to download: " + httpZipByteLength);
                                                         return [2];

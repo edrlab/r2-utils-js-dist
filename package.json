@@ -1,6 +1,6 @@
 {
   "name": "r2-utils-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Readium 2 'utils' for NodeJS (TypeScript)",
   "keywords": [
     "readium",
@@ -54,7 +54,7 @@
     "request-promise-native": "^1.0.5",
     "ta-json-x": "^2.5.0",
     "tslib": "^1.9.3",
-    "unzipper": "^0.9.4",
+    "unzipper": "^0.9.6",
     "xpath": "^0.0.27",
     "yauzl": "^2.10.0",
     "yazl": "^2.5.1"
