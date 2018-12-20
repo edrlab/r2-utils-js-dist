@@ -11,8 +11,16 @@ function streamToBufferPromise_READABLE(readStream) {
         return tslib_1.__generator(this, function (_a) {
             return [2, new Promise(function (resolve, reject) {
                     var buffers = [];
-                    readStream.on("error", reject);
-                    readStream.on("readable", function () {
+                    var cleanup = function () {
+                        readStream.removeListener("readable", handleReadable);
+                        readStream.removeListener("error", handleError);
+                    };
+                    var handleError = function () {
+                        cleanup();
+                        reject();
+                    };
+                    readStream.on("error", handleError);
+                    var handleReadable = function () {
                         var chunk;
                         do {
                             chunk = readStream.read();
@@ -20,10 +28,18 @@ function streamToBufferPromise_READABLE(readStream) {
                                 buffers.push(chunk);
                             }
                         } while (chunk);
-                    });
-                    readStream.on("end", function () {
+                        finish();
+                    };
+                    readStream.on("readable", handleReadable);
+                    var finished = false;
+                    var finish = function () {
+                        if (finished) {
+                            return;
+                        }
+                        finished = true;
+                        cleanup();
                         resolve(Buffer.concat(buffers));
-                    });
+                    };
                 })];
         });
     });
@@ -34,13 +50,25 @@ function streamToBufferPromise(readStream) {
         return tslib_1.__generator(this, function (_a) {
             return [2, new Promise(function (resolve, reject) {
                     var buffers = [];
-                    readStream.on("error", reject);
-                    readStream.on("data", function (data) {
+                    var cleanup = function () {
+                        readStream.removeListener("data", handleData);
+                        readStream.removeListener("error", handleError);
+                        readStream.removeListener("end", handleEnd);
+                    };
+                    var handleError = function () {
+                        cleanup();
+                        reject();
+                    };
+                    readStream.on("error", handleError);
+                    var handleData = function (data) {
                         buffers.push(data);
-                    });
-                    readStream.on("end", function () {
+                    };
+                    readStream.on("data", handleData);
+                    var handleEnd = function () {
+                        cleanup();
                         resolve(Buffer.concat(buffers));
-                    });
+                    };
+                    readStream.on("end", handleEnd);
                 })];
         });
     });

@@ -8,8 +8,16 @@ exports.bufferToStream = bufferToStream;
 async function streamToBufferPromise_READABLE(readStream) {
     return new Promise((resolve, reject) => {
         const buffers = [];
-        readStream.on("error", reject);
-        readStream.on("readable", () => {
+        const cleanup = () => {
+            readStream.removeListener("readable", handleReadable);
+            readStream.removeListener("error", handleError);
+        };
+        const handleError = () => {
+            cleanup();
+            reject();
+        };
+        readStream.on("error", handleError);
+        const handleReadable = () => {
             let chunk;
             do {
                 chunk = readStream.read();
@@ -17,23 +25,43 @@ async function streamToBufferPromise_READABLE(readStream) {
                     buffers.push(chunk);
                 }
             } while (chunk);
-        });
-        readStream.on("end", () => {
+            finish();
+        };
+        readStream.on("readable", handleReadable);
+        let finished = false;
+        const finish = () => {
+            if (finished) {
+                return;
+            }
+            finished = true;
+            cleanup();
             resolve(Buffer.concat(buffers));
-        });
+        };
     });
 }
 exports.streamToBufferPromise_READABLE = streamToBufferPromise_READABLE;
 async function streamToBufferPromise(readStream) {
     return new Promise((resolve, reject) => {
         const buffers = [];
-        readStream.on("error", reject);
-        readStream.on("data", (data) => {
+        const cleanup = () => {
+            readStream.removeListener("data", handleData);
+            readStream.removeListener("error", handleError);
+            readStream.removeListener("end", handleEnd);
+        };
+        const handleError = () => {
+            cleanup();
+            reject();
+        };
+        readStream.on("error", handleError);
+        const handleData = (data) => {
             buffers.push(data);
-        });
-        readStream.on("end", () => {
+        };
+        readStream.on("data", handleData);
+        const handleEnd = () => {
+            cleanup();
             resolve(Buffer.concat(buffers));
-        });
+        };
+        readStream.on("end", handleEnd);
     });
 }
 exports.streamToBufferPromise = streamToBufferPromise;
