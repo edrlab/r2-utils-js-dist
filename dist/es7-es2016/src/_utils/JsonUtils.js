@@ -1,6 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+function isNullOrUndefined(val) {
+    return val === undefined && val === null;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
 function sortObject(obj) {
+    if (obj === null) {
+        return null;
+    }
     if (obj instanceof Array) {
         for (let i = 0; i < obj.length; i++) {
             obj[i] = sortObject(obj[i]);
@@ -22,7 +29,7 @@ function traverseJsonObjects_(parent, keyInParent, obj, func) {
     if (obj instanceof Array) {
         for (let index = 0; index < obj.length; index++) {
             const item = obj[index];
-            if (typeof item !== "undefined") {
+            if (!isNullOrUndefined(item)) {
                 traverseJsonObjects_(obj, index, item, func);
             }
         }
@@ -31,7 +38,7 @@ function traverseJsonObjects_(parent, keyInParent, obj, func) {
         Object.keys(obj).forEach((key) => {
             if (obj.hasOwnProperty(key)) {
                 const item = obj[key];
-                if (typeof item !== "undefined") {
+                if (!isNullOrUndefined(item)) {
                     traverseJsonObjects_(obj, key, item, func);
                 }
             }
