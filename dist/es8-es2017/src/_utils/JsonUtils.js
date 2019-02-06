@@ -34,7 +34,7 @@ function traverseJsonObjects_(parent, keyInParent, obj, func) {
             }
         }
     }
-    else if (typeof obj === "object") {
+    else if (typeof obj === "object" && obj !== null) {
         Object.keys(obj).forEach((key) => {
             if (obj.hasOwnProperty(key)) {
                 const item = obj[key];
