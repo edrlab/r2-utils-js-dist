@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var xpath = require("xpath");
 var object_definition_1 = require("../classes/object-definition");
 var converter_1 = require("../converters/converter");
@@ -15,7 +16,7 @@ function deserializeRootObject(objectInstance, objectType, options) {
     }
     var _a = object_definition_1.getTypedInheritanceChain(objectType, objectInstance), objectType2 = _a[0], superTypes = _a.slice(1);
     var output = Object.create(objectType2.prototype);
-    var definitions = superTypes.reverse().concat([objectType2]).map(function (t) { return object_definition_1.objectDefinitions.get(t); })
+    var definitions = tslib_1.__spreadArrays(superTypes.reverse(), [objectType2]).map(function (t) { return object_definition_1.objectDefinitions.get(t); })
         .filter(function (t) { return !!t; });
     definitions.forEach(function (d) {
         if (!d) {

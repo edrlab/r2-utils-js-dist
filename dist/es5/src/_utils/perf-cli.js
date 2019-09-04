@@ -1,5 +1,4 @@
 "use strict";
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var fs = require("fs");
@@ -43,7 +42,7 @@ if (!stats.isFile() && !stats.isDirectory()) {
 var fileName = path.basename(filePath);
 var ext = path.extname(fileName).toLowerCase();
 if (stats.isDirectory()) {
-    (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+    (function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
         var zipExploded, entries, _i, entries_1, entryName, zipStream_, err_1, zipStream, zipData, err_2, str;
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
@@ -100,7 +99,7 @@ if (stats.isDirectory()) {
     }); })();
 }
 else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
-    (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+    (function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
         var time3, zip3, diff3, time2, zip2, diff2, time1, zip1, diff1;
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
