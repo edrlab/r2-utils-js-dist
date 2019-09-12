@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var stream_1 = require("stream");
-var util = require("util");
 var debug_ = require("debug");
 var request = require("request");
 var requestPromise = require("request-promise-native");
+var stream_1 = require("stream");
+var util = require("util");
 var yauzl = require("yauzl");
 var BufferUtils_1 = require("../stream/BufferUtils");
 var debug = debug_("r2:utils#zip/zip2RandomAccessReader_Http");

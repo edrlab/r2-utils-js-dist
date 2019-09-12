@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
-const util = require("util");
 const debug_ = require("debug");
 const ta_json_x_1 = require("ta-json-x");
 const object_definition_1 = require("ta-json-x/dist/cjs/classes/object-definition");
+const util = require("util");
 const debug = debug_("r2:utils#ta-json-x/JsonPropertyEx");
 function inspect(obj) {
     console.log(util.inspect(obj, { showHidden: false, depth: 1000, colors: true, customInspect: true }));

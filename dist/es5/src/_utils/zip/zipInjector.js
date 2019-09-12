@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = require("fs");
 var debug_ = require("debug");
+var fs = require("fs");
 var yauzl = require("yauzl");
 var yazl = require("yazl");
 var debug = debug_("r2:utils#zip/zipInjector");

@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path = require("path");
+const BufferUtils_1 = require("./stream/BufferUtils");
 const zip_ex_1 = require("./zip/zip-ex");
 const zip1_1 = require("./zip/zip1");
 const zip2_1 = require("./zip/zip2");
 const zip3_1 = require("./zip/zip3");
-const BufferUtils_1 = require("./stream/BufferUtils");
 console.log("process.cwd():");
 console.log(process.cwd());
 console.log("__dirname:");

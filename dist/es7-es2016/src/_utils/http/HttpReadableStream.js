@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const stream_1 = require("stream");
 const debug_ = require("debug");
 const request = require("request");
 const requestPromise = require("request-promise-native");
+const stream_1 = require("stream");
 const BufferUtils_1 = require("../stream/BufferUtils");
 const debug = debug_("r2:utils#http/HttpReadableStream");
 class HttpReadableStream extends stream_1.Readable {

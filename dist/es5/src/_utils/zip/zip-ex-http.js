@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var stream_1 = require("stream");
-var url_1 = require("url");
 var debug_ = require("debug");
 var request = require("request");
 var requestPromise = require("request-promise-native");
+var stream_1 = require("stream");
+var url_1 = require("url");
 var zip_1 = require("./zip");
 var debug = debug_("r2:utils#zip/zip-ex-http");
 var ZipExplodedHTTP = (function (_super) {
