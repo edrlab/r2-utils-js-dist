@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isNullOrUndefined(val) {
-    return val === undefined && val === null;
+    return val === undefined || val === null;
 }
 exports.isNullOrUndefined = isNullOrUndefined;
 function sortObject(obj) {
