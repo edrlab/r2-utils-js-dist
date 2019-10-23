@@ -24,7 +24,7 @@ class Zip2 extends zip_1.Zip {
             }
             return new Promise((resolve, reject) => {
                 yauzl.open(filePath, { lazyEntries: true, autoClose: false }, (err, zip) => {
-                    if (err) {
+                    if (err || !zip) {
                         debug("yauzl init ERROR");
                         debug(err);
                         reject(err);
@@ -103,7 +103,7 @@ class Zip2 extends zip_1.Zip {
                                 return;
                             }
                             yauzl.fromBuffer(buffer, { lazyEntries: true }, (err, zip) => {
-                                if (err) {
+                                if (err || !zip) {
                                     debug("yauzl init ERROR");
                                     debug(err);
                                     reject(err);
@@ -162,7 +162,7 @@ class Zip2 extends zip_1.Zip {
                     }
                     const httpZipReader = new zip2RandomAccessReader_Http_1.HttpZipReader(filePath, httpZipByteLength);
                     yauzl.fromRandomAccessReader(httpZipReader, httpZipByteLength, { lazyEntries: true, autoClose: false }, (err, zip) => {
-                        if (err) {
+                        if (err || !zip) {
                             debug("yauzl init ERROR");
                             debug(err);
                             reject(err);

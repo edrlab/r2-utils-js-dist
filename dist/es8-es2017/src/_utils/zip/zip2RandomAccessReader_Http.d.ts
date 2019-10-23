@@ -1,9 +1,7 @@
 /// <reference types="node" />
 import { PassThrough } from "stream";
-export interface RandomAccessReader {
-    _readStreamForRange(start: number, end: number): void;
-}
-export declare class HttpZipReader implements RandomAccessReader {
+import * as yauzl from "yauzl";
+export declare class HttpZipReader extends yauzl.RandomAccessReader {
     readonly url: string;
     readonly byteLength: number;
     private firstBuffer;

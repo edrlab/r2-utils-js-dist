@@ -25,7 +25,7 @@ function injectFileInZip(destPathTMP, destPathFINAL, filePath, zipEntryPath, zip
 exports.injectFileInZip = injectFileInZip;
 function injectObjectInZip(destPathTMP, destPathFINAL, contentsToInject, typeOfContentsToInject, zipEntryPath, zipError, doneCallback) {
     yauzl.open(destPathTMP, { lazyEntries: true, autoClose: false }, function (err, zip) {
-        if (err) {
+        if (err || !zip) {
             debug("yauzl init ERROR");
             zipError(err);
             return;
@@ -43,7 +43,7 @@ function injectObjectInZip(destPathTMP, destPathFINAL, contentsToInject, typeOfC
             }
             else {
                 zip.openReadStream(entry, function (errz, stream) {
-                    if (err) {
+                    if (err || !stream) {
                         debug("yauzl openReadStream ERROR");
                         debug(errz);
                         zipError(errz);

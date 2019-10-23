@@ -27,7 +27,7 @@ var Zip2 = (function (_super) {
                 }
                 return [2, new Promise(function (resolve, reject) {
                         yauzl.open(filePath, { lazyEntries: true, autoClose: false }, function (err, zip) {
-                            if (err) {
+                            if (err || !zip) {
                                 debug("yauzl init ERROR");
                                 debug(err);
                                 reject(err);
@@ -128,7 +128,7 @@ var Zip2 = (function (_super) {
                                                                     return [2];
                                                                 case 4:
                                                                     yauzl.fromBuffer(buffer, { lazyEntries: true }, function (err, zip) {
-                                                                        if (err) {
+                                                                        if (err || !zip) {
                                                                             debug("yauzl init ERROR");
                                                                             debug(err);
                                                                             reject(err);
@@ -196,7 +196,7 @@ var Zip2 = (function (_super) {
                                                 case 8:
                                                     httpZipReader = new zip2RandomAccessReader_Http_1.HttpZipReader(filePath, httpZipByteLength);
                                                     yauzl.fromRandomAccessReader(httpZipReader, httpZipByteLength, { lazyEntries: true, autoClose: false }, function (err, zip) {
-                                                        if (err) {
+                                                        if (err || !zip) {
                                                             debug("yauzl init ERROR");
                                                             debug(err);
                                                             reject(err);

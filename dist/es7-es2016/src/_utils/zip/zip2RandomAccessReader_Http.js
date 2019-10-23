@@ -5,18 +5,17 @@ const debug_ = require("debug");
 const request = require("request");
 const requestPromise = require("request-promise-native");
 const stream_1 = require("stream");
-const util = require("util");
 const yauzl = require("yauzl");
 const BufferUtils_1 = require("../stream/BufferUtils");
 const debug = debug_("r2:utils#zip/zip2RandomAccessReader_Http");
-class HttpZipReader {
+class HttpZipReader extends yauzl.RandomAccessReader {
     constructor(url, byteLength) {
+        super();
         this.url = url;
         this.byteLength = byteLength;
         this.firstBuffer = undefined;
         this.firstBufferStart = 0;
         this.firstBufferEnd = 0;
-        yauzl.RandomAccessReader.call(this);
     }
     _readStreamForRange(start, end) {
         if (this.firstBuffer && start >= this.firstBufferStart && end <= this.firstBufferEnd) {
@@ -48,6 +47,7 @@ class HttpZipReader {
                     stream.end();
                     return;
                 }
+                debug(`streamToBufferPromise: ${buffer.length}`);
                 this.firstBuffer = buffer;
                 this.firstBufferStart = start;
                 this.firstBufferEnd = end;
@@ -87,5 +87,4 @@ class HttpZipReader {
     }
 }
 exports.HttpZipReader = HttpZipReader;
-util.inherits(HttpZipReader, yauzl.RandomAccessReader);
 //# sourceMappingURL=zip2RandomAccessReader_Http.js.map

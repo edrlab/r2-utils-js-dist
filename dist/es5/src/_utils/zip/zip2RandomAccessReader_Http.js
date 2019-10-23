@@ -5,18 +5,19 @@ var debug_ = require("debug");
 var request = require("request");
 var requestPromise = require("request-promise-native");
 var stream_1 = require("stream");
-var util = require("util");
 var yauzl = require("yauzl");
 var BufferUtils_1 = require("../stream/BufferUtils");
 var debug = debug_("r2:utils#zip/zip2RandomAccessReader_Http");
-var HttpZipReader = (function () {
+var HttpZipReader = (function (_super) {
+    tslib_1.__extends(HttpZipReader, _super);
     function HttpZipReader(url, byteLength) {
-        this.url = url;
-        this.byteLength = byteLength;
-        this.firstBuffer = undefined;
-        this.firstBufferStart = 0;
-        this.firstBufferEnd = 0;
-        yauzl.RandomAccessReader.call(this);
+        var _this = _super.call(this) || this;
+        _this.url = url;
+        _this.byteLength = byteLength;
+        _this.firstBuffer = undefined;
+        _this.firstBufferStart = 0;
+        _this.firstBufferEnd = 0;
+        return _this;
     }
     HttpZipReader.prototype._readStreamForRange = function (start, end) {
         var _this = this;
@@ -58,6 +59,7 @@ var HttpZipReader = (function () {
                         stream.end();
                         return [2];
                     case 5:
+                        debug("streamToBufferPromise: " + buffer.length);
                         this.firstBuffer = buffer;
                         this.firstBufferStart = start;
                         this.firstBufferEnd = end;
@@ -109,7 +111,6 @@ var HttpZipReader = (function () {
         return stream;
     };
     return HttpZipReader;
-}());
+}(yauzl.RandomAccessReader));
 exports.HttpZipReader = HttpZipReader;
-util.inherits(HttpZipReader, yauzl.RandomAccessReader);
 //# sourceMappingURL=zip2RandomAccessReader_Http.js.map
