@@ -465,6 +465,9 @@ function processFile(file) {
                     return [3, 2];
                 case 5:
                     zip.CRCs = crcsPreviousIteration;
+                    if (!VERBOSE) {
+                        console.log("\n");
+                    }
                     _d.label = 6;
                 case 6:
                     _i++;

@@ -356,6 +356,9 @@ async function processFile(file) {
             crcsPreviousIteration = crcs;
         }
         zip.CRCs = crcsPreviousIteration;
+        if (!VERBOSE) {
+            console.log(`\n`);
+        }
     }
     let crcsPreviousZip;
     let isDiff = false;

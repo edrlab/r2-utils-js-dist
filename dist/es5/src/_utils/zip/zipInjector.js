@@ -57,6 +57,9 @@ function injectObjectInZip(destPathTMP, destPathFINAL, contentsToInject, typeOfC
         });
         zip.on("end", function () {
             debug("yauzl END");
+            process.nextTick(function () {
+                zip.close();
+            });
             if (typeOfContentsToInject === InjectType.FILE) {
                 zipfile.addFile(contentsToInject, zipEntryPath);
             }
