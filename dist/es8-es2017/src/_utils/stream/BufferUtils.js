@@ -12,9 +12,10 @@ async function streamToBufferPromise_READABLE(readStream) {
             readStream.removeListener("readable", handleReadable);
             readStream.removeListener("error", handleError);
         };
-        const handleError = () => {
+        const handleError = (e) => {
+            console.log(e);
             cleanup();
-            reject();
+            reject(e);
         };
         readStream.on("error", handleError);
         const handleReadable = () => {
@@ -48,9 +49,10 @@ async function streamToBufferPromise(readStream) {
             readStream.removeListener("error", handleError);
             readStream.removeListener("end", handleEnd);
         };
-        const handleError = () => {
+        const handleError = (e) => {
+            console.log(e);
             cleanup();
-            reject();
+            reject(e);
         };
         readStream.on("error", handleError);
         const handleData = (data) => {
