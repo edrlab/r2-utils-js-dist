@@ -1,6 +1,6 @@
 {
   "name": "r2-utils-js",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Readium 2 'utils' for NodeJS (TypeScript)",
   "keywords": [
     "readium",
@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/node": "^12.12.32",
+    "@types/node": "^12.12.35",
     "@types/request": "^2.48.4",
     "@types/request-promise-native": "^1.0.17",
     "@types/yauzl": "^2.9.1",
@@ -72,7 +72,7 @@
     "eclint": "^2.8.1",
     "git-rev-sync": "^2.0.0",
     "json": "^9.0.6",
-    "mkdirp": "^1.0.3",
+    "mkdirp": "^1.0.4",
     "rimraf": "^3.0.2",
     "tslint": "^5.20.1",
     "tslint-language-service": "^0.9.9",
@@ -88,7 +88,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "cson2json": "sed -E \"s/#ECMASCRIPT#/es5/g\" package-scripts-build.cson > tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es6-es2015/g\" package-scripts-build.cson >> tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es7-es2016/g\" package-scripts-build.cson >> tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es8-es2017/g\" package-scripts-build.cson >> tmp-build.cson && json -I -f package.json -e \"this.scripts=$(cat package-scripts.cson tmp-build.cson | node node_modules/cson/bin/cson2json)\" && rimraf tmp-*.cson",
+    "cson2json": "sed -E \"s/#ECMASCRIPT#/es5/g\" package-scripts-build.cson > tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es6-es2015/g\" package-scripts-build.cson >> tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es7-es2016/g\" package-scripts-build.cson >> tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es8-es2017/g\" package-scripts-build.cson >> tmp-build.cson && json -I -f package.json -e \"this.scripts=$(cat package-scripts.cson tmp-build.cson | node node_modules/.bin/cson2json)\" && rimraf tmp-*.cson",
     "copydist": "cpy \"./dist/**/*\" ../r2-opds-js/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir && cpy \"./dist/**/*\" ../r2-lcp-js/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir && cpy \"./dist/**/*\" ../r2-shared-js/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir && cpy \"./dist/**/*\" ../r2-streamer-js/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir && cpy \"./dist/**/*\" ../r2-navigator-js/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir && cpy \"./dist/**/*\" ../r2-testapp-js/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir && cpy \"./dist/**/*\" ../readium-desktop/node_modules/r2-utils-js/ --cwd=./ --parents --no-dir",
     "quick-build-dist": "npm run transpile:typescript:es8-es2017+afterdist && npm run copydist",
     "_pregitdist": "npm run build:all",
@@ -119,9 +119,9 @@
     "transpile:typescript:single": "node tools/typescript_compile_single.js",
     "posttranspile:typescript:single": "npm run afterdist",
     "cli": "node \"./dist/es8-es2017/src/_utils/perf-cli.js\"",
+    "cli-crc": "node \"./dist/es8-es2017/src/_utils/perf-zip-crc-cli.js\"",
     "cli-debug": "cross-env DEBUG=r2:* npm run cli",
     "cli-debug-x": "cross-env DEBUG=* npm run cli",
-    "cli-crc": "node \"./dist/es8-es2017/src/_utils/perf-zip-crc-cli.js\"",
     "prebuild:es5": "npm run lint && npm run clean",
     "build:es5": "npm run transpile:typescript:es5",
     "postbuild:es5": "npm run afterdist",
