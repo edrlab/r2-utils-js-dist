@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BufferConverter = void 0;
 var BufferConverter = (function () {
     function BufferConverter() {
         this.encoding = "utf8";

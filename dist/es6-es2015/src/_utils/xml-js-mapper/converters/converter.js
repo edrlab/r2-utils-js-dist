@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.propertyConverters = void 0;
 const buffer_converter_1 = require("./buffer-converter");
 const date_converter_1 = require("./date-converter");
 exports.propertyConverters = new Map();

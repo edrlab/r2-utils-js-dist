@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.XmlConverter = void 0;
 var object_definition_1 = require("../classes/object-definition");
 function XmlConverter(converter) {
     return function (target, key) {

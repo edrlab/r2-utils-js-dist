@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.XmlObject = void 0;
 var object_definition_1 = require("../classes/object-definition");
 function XmlObject(namespaces) {
     return function (objectType) {

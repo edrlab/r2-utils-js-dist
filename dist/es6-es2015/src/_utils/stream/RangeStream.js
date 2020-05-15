@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RangeStream = void 0;
 const debug_ = require("debug");
 const stream_1 = require("stream");
 const debug = debug_("r2:utils#stream/RangeStream");

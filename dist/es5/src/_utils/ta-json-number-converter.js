@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.JsonNumberConverter = void 0;
 var JsonNumberConverter = (function () {
     function JsonNumberConverter() {
     }

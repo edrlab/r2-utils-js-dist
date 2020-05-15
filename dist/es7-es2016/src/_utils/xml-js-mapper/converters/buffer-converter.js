@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BufferConverter = void 0;
 class BufferConverter {
     constructor() {
         this.encoding = "utf8";

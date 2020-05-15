@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.JsonDateConverter = void 0;
 class JsonDateConverter {
     serialize(property) {
         return property ? property.toISOString() : "Invalid Date";

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.zipLoadPromise = void 0;
 const fs = require("fs");
 const url_1 = require("url");
 const UrlUtils_1 = require("../http/UrlUtils");

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.deserialize = void 0;
 var tslib_1 = require("tslib");
 var xpath = require("xpath");
 var object_definition_1 = require("../classes/object-definition");

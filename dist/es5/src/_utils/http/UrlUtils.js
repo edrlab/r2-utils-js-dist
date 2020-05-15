@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ensureAbsolute = exports.encodeURIComponent_RFC5987 = exports.encodeURIComponent_RFC3986 = exports.isHTTP = void 0;
 var path = require("path");
 var querystring = require("querystring");
 function isHTTP(urlOrPath) {

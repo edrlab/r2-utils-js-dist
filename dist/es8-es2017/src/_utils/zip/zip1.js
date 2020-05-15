@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Zip1 = void 0;
 const debug_ = require("debug");
 const StreamZip = require("node-stream-zip");
 const zip_1 = require("./zip");

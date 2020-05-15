@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.streamToBufferPromise = exports.streamToBufferPromise_READABLE = exports.bufferToStream = void 0;
 var tslib_1 = require("tslib");
 var BufferReadableStream_1 = require("./BufferReadableStream");
 function bufferToStream(buffer) {

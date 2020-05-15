@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.XmlType = void 0;
 const object_definition_1 = require("../classes/object-definition");
 function XmlType(objectType) {
     return (target, key) => {

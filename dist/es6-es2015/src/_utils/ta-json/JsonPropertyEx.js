@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.JsonPropertyEx = void 0;
 require("reflect-metadata");
 const debug_ = require("debug");
 const ta_json_x_1 = require("ta-json-x");

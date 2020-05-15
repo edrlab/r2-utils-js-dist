@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.injectFileInZip = exports.injectBufferInZip = exports.injectStreamInZip = void 0;
 var debug_ = require("debug");
 var fs = require("fs");
 var yauzl = require("yauzl");

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.XML = void 0;
 const deserialize_1 = require("./methods/deserialize");
 class XML {
     static deserialize(objectInstance, objectType, options) {

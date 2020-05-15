@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.combineRanges = exports.parseRangeHeader = void 0;
 function parseRangeHeader(rangeHeader) {
     let ranges = [];
     if (!rangeHeader) {

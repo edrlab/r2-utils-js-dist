@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Zip = void 0;
 const RangeStream_1 = require("../stream/RangeStream");
 class Zip {
     async entryStreamRangePromise(entryPath, begin, end) {

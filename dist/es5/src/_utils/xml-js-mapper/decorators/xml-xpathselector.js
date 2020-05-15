@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.XmlXPathSelector = void 0;
 require("reflect-metadata");
 var object_definition_1 = require("../classes/object-definition");
 function XmlXPathSelector(selector, namespaces) {

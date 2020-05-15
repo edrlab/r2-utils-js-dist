@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.zipLoadPromise = void 0;
 const tslib_1 = require("tslib");
 const fs = require("fs");
 const url_1 = require("url");

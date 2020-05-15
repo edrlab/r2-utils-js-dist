@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.deserialize = void 0;
 const xpath = require("xpath");
 const object_definition_1 = require("../classes/object-definition");
 const converter_1 = require("../converters/converter");

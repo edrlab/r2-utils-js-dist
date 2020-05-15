@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BufferReadableStream = void 0;
 const stream_1 = require("stream");
 class BufferReadableStream extends stream_1.Readable {
     constructor(buffer) {

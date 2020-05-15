@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTypedInheritanceChain = exports.getInheritanceChain = exports.getDefinition = exports.objectDefinitions = exports.ObjectDefinition = void 0;
 var property_definition_1 = require("./property-definition");
 var ObjectDefinition = (function () {
     function ObjectDefinition() {

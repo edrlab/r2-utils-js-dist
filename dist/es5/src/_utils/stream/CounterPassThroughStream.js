@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CounterPassThroughStream = void 0;
 var tslib_1 = require("tslib");
 var stream_1 = require("stream");
 var CounterPassThroughStream = (function (_super) {
