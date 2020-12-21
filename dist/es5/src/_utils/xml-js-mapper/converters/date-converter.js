@@ -11,9 +11,6 @@ var DateConverter = (function () {
         var date = new Date(value);
         return isNaN(date.getTime()) ? undefined : date;
     };
-    DateConverter.prototype.collapseArrayWithSingleItem = function () {
-        return false;
-    };
     return DateConverter;
 }());
 exports.DateConverter = DateConverter;

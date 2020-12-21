@@ -9,9 +9,6 @@ class DateConverter {
         const date = new Date(value);
         return isNaN(date.getTime()) ? undefined : date;
     }
-    collapseArrayWithSingleItem() {
-        return false;
-    }
 }
 exports.DateConverter = DateConverter;
 //# sourceMappingURL=date-converter.js.map
