@@ -117,8 +117,8 @@ var zip1 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                                 }
                                 _loop_1 = function (zipEntry) {
                                     var promize, size;
-                                    return tslib_1.__generator(this, function (_a) {
-                                        switch (_a.label) {
+                                    return tslib_1.__generator(this, function (_b) {
+                                        switch (_b.label) {
                                             case 0:
                                                 if (zipEntry.isDirectory) {
                                                     return [2, "continue"];
@@ -142,7 +142,7 @@ var zip1 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                                                 });
                                                 return [4, promize];
                                             case 1:
-                                                size = _a.sent();
+                                                size = _b.sent();
                                                 if (zipEntry.size !== size) {
                                                     console.log("1 SIZE MISMATCH? " + zipEntry.name + " " + zipEntry.size + " != " + size);
                                                 }
@@ -318,8 +318,8 @@ var zip3 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                             }
                             _loop_2 = function (zipEntry) {
                                 var stream, promize, size, err_2;
-                                return tslib_1.__generator(this, function (_a) {
-                                    switch (_a.label) {
+                                return tslib_1.__generator(this, function (_c) {
+                                    switch (_c.label) {
                                         case 0:
                                             if (zipEntry.type === "Directory") {
                                                 return [2, "continue"];
@@ -342,15 +342,15 @@ var zip3 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                                             });
                                             promize = streamReadAll(stream);
                                             size = void 0;
-                                            _a.label = 1;
+                                            _c.label = 1;
                                         case 1:
-                                            _a.trys.push([1, 3, , 4]);
+                                            _c.trys.push([1, 3, , 4]);
                                             return [4, promize];
                                         case 2:
-                                            size = _a.sent();
+                                            size = _c.sent();
                                             return [3, 4];
                                         case 3:
-                                            err_2 = _a.sent();
+                                            err_2 = _c.sent();
                                             console.log("err2");
                                             console.log(err_2);
                                             reject(err_2);
