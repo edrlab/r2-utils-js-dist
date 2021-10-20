@@ -57,7 +57,7 @@ if (stats.isDirectory()) {
             const zipStream = zipStream_.stream;
             let zipData;
             try {
-                zipData = await BufferUtils_1.streamToBufferPromise(zipStream);
+                zipData = await (0, BufferUtils_1.streamToBufferPromise)(zipStream);
             }
             catch (err) {
                 console.log(err);

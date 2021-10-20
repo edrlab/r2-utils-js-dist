@@ -4,7 +4,7 @@ exports.CounterPassThroughStream = void 0;
 var tslib_1 = require("tslib");
 var stream_1 = require("stream");
 var CounterPassThroughStream = (function (_super) {
-    tslib_1.__extends(CounterPassThroughStream, _super);
+    (0, tslib_1.__extends)(CounterPassThroughStream, _super);
     function CounterPassThroughStream(id) {
         var _this = _super.call(this) || this;
         _this.id = id;

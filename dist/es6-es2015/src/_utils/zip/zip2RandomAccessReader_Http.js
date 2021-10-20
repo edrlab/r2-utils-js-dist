@@ -22,7 +22,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
         if (this.firstBuffer && start >= this.firstBufferStart && end <= this.firstBufferEnd) {
             const begin = start - this.firstBufferStart;
             const stop = end - this.firstBufferStart;
-            return BufferUtils_1.bufferToStream(this.firstBuffer.slice(begin, stop));
+            return (0, BufferUtils_1.bufferToStream)(this.firstBuffer.slice(begin, stop));
         }
         const stream = new stream_1.PassThrough();
         const lastByteIndex = end - 1;
@@ -30,7 +30,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
         const failure = (err) => {
             debug(err);
         };
-        const success = (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+        const success = (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                 failure("HTTP CODE " + res.statusCode);
                 return;
@@ -41,7 +41,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
             else {
                 let buffer;
                 try {
-                    buffer = yield BufferUtils_1.streamToBufferPromise(res);
+                    buffer = yield (0, BufferUtils_1.streamToBufferPromise)(res);
                 }
                 catch (err) {
                     debug(err);
@@ -67,7 +67,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
                 .on("error", failure);
         }
         else {
-            (() => tslib_1.__awaiter(this, void 0, void 0, function* () {
+            (() => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                 let res;
                 try {
                     res = yield requestPromise({

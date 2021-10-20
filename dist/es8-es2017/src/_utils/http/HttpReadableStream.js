@@ -33,7 +33,7 @@ class HttpReadableStream extends stream_1.Readable {
             }
             let buffer;
             try {
-                buffer = await BufferUtils_1.streamToBufferPromise(res);
+                buffer = await (0, BufferUtils_1.streamToBufferPromise)(res);
             }
             catch (err) {
                 failure(err);

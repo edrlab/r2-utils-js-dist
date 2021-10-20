@@ -13,7 +13,7 @@ class Zip1 extends zip_1.Zip {
         this.zip = zip;
     }
     static loadPromise(filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 const zip = new StreamZip({
                     file: filePath,
@@ -54,7 +54,7 @@ class Zip1 extends zip_1.Zip {
             && this.zip.entries()[entryPath];
     }
     getEntries() {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (!this.hasEntries()) {
                 return Promise.resolve([]);
             }
@@ -62,7 +62,7 @@ class Zip1 extends zip_1.Zip {
         });
     }
     entryStreamPromise(entryPath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                 return Promise.reject("no such path in zip: " + entryPath);
             }
@@ -75,7 +75,7 @@ class Zip1 extends zip_1.Zip {
                     const entry = this.zip.entries()[entryPath];
                     const streamAndLength = {
                         length: entry.size,
-                        reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                        reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                             return this.entryStreamPromise(entryPath);
                         }),
                         stream,

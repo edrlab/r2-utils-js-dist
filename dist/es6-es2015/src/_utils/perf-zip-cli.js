@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const fs = require("fs");
 const path = require("path");
-const filehound = require("filehound");
 const StreamZip = require("node-stream-zip");
 const yauzl = require("yauzl");
 const unzipper = require("unzipper");
@@ -45,7 +44,7 @@ const argIterations = args[1] ? args[1].trim() : undefined;
 const N_ITERATIONS = argIterations ? parseInt(argIterations, 10) : 5;
 const argExtra = args[2] ? args[2].trim() : undefined;
 const CHECK_ONLY_ZIP3 = argExtra === "1";
-const zip1 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+const zip1 = (file) => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
         const zip = new StreamZip({
             file,
@@ -63,7 +62,7 @@ const zip1 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
             console.log(entry.name);
             console.log(f);
         });
-        zip.on("ready", () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+        zip.on("ready", () => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
             const zipEntries = Object.values(zip.entries());
             if (VERBOSE) {
                 process.stdout.write("## 1 ##\n");
@@ -73,7 +72,7 @@ const zip1 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
                     continue;
                 }
                 const promize = new Promise((res, rej) => {
-                    zip.stream(zipEntry.name, (err, stream) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+                    zip.stream(zipEntry.name, (err, stream) => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
                         if (err) {
                             console.log(err);
                             rej(err);
@@ -107,7 +106,7 @@ const zip1 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     });
 });
 zip1.zipName = "node-stream-zip";
-const zip2 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+const zip2 = (file) => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
         yauzl.open(file, { lazyEntries: true, autoClose: false }, (error, zip) => {
             if (error || !zip) {
@@ -125,7 +124,7 @@ const zip2 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
                 process.stdout.write("## 2 ##\n");
             }
             zip.readEntry();
-            zip.on("entry", (zipEntry) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+            zip.on("entry", (zipEntry) => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
                 if (zipEntry.fileName[zipEntry.fileName.length - 1] === "/") {
                 }
                 else {
@@ -170,8 +169,8 @@ const zip2 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     });
 });
 zip2.zipName = "yauzl";
-const zip3 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    return new Promise((resolve, reject) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+const zip3 = (file) => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
         let zip;
         try {
             zip = yield unzipper.Open.file(file);
@@ -221,7 +220,7 @@ const zip3 = (file) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
 zip3.zipName = "unzipper";
 const zips = CHECK_ONLY_ZIP3 ? [zip3] : [zip1, zip2, zip3];
 function processFile(file) {
-    return tslib_1.__awaiter(this, void 0, void 0, function* () {
+    return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
         console.log(`=====================================`);
         console.log(`${file}`);
         console.log(`=====================================`);
@@ -261,24 +260,21 @@ function processFile(file) {
     });
 }
 if (stats.isDirectory()) {
-    (() => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-        const files = yield filehound.create()
-            .discard("node_modules")
-            .paths(filePath)
-            .ext([".zip", ".epub", ".cbz"])
-            .find();
+    (() => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
+        const files = fs.readdirSync(filePath, { withFileTypes: true }).
+            filter((f) => f.isFile() && /\.(epub3?)|(zip)|(cbz)$/.test(f.name)).map((f) => path.join(filePath, f.name));
         for (const file of files) {
             yield processFile(file);
         }
     }))();
 }
 else if (/\.(zip|epub|cbz)$/.test(ext)) {
-    (() => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+    (() => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
         yield processFile(filePath);
     }))();
 }
 function streamReadAll(readStream) {
-    return tslib_1.__awaiter(this, void 0, void 0, function* () {
+    return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
             let totalBytes = 0;
             const cleanup = () => {

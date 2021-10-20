@@ -18,7 +18,7 @@ class Zip2 extends zip_1.Zip {
         this.entries = {};
     }
     static async loadPromise(filePath) {
-        if (UrlUtils_1.isHTTP(filePath)) {
+        if ((0, UrlUtils_1.isHTTP)(filePath)) {
             return Zip2.loadPromiseHTTP(filePath);
         }
         return new Promise((resolve, reject) => {
@@ -92,7 +92,7 @@ class Zip2 extends zip_1.Zip {
                         }
                         let buffer;
                         try {
-                            buffer = await BufferUtils_1.streamToBufferPromise(ress);
+                            buffer = await (0, BufferUtils_1.streamToBufferPromise)(ress);
                         }
                         catch (err) {
                             debug(err);

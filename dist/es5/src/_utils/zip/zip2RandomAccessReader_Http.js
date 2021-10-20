@@ -10,7 +10,7 @@ var yauzl = require("yauzl");
 var BufferUtils_1 = require("../stream/BufferUtils");
 var debug = debug_("r2:utils#zip/zip2RandomAccessReader_Http");
 var HttpZipReader = (function (_super) {
-    tslib_1.__extends(HttpZipReader, _super);
+    (0, tslib_1.__extends)(HttpZipReader, _super);
     function HttpZipReader(url, byteLength) {
         var _this = _super.call(this) || this;
         _this.url = url;
@@ -25,7 +25,7 @@ var HttpZipReader = (function (_super) {
         if (this.firstBuffer && start >= this.firstBufferStart && end <= this.firstBufferEnd) {
             var begin = start - this.firstBufferStart;
             var stop_1 = end - this.firstBufferStart;
-            return BufferUtils_1.bufferToStream(this.firstBuffer.slice(begin, stop_1));
+            return (0, BufferUtils_1.bufferToStream)(this.firstBuffer.slice(begin, stop_1));
         }
         var stream = new stream_1.PassThrough();
         var lastByteIndex = end - 1;
@@ -33,9 +33,9 @@ var HttpZipReader = (function (_super) {
         var failure = function (err) {
             debug(err);
         };
-        var success = function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+        var success = function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
             var buffer, err_1;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
@@ -50,7 +50,7 @@ var HttpZipReader = (function (_super) {
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 4, , 5]);
-                        return [4, BufferUtils_1.streamToBufferPromise(res)];
+                        return [4, (0, BufferUtils_1.streamToBufferPromise)(res)];
                     case 3:
                         buffer = _a.sent();
                         return [3, 5];
@@ -82,9 +82,9 @@ var HttpZipReader = (function (_super) {
                 .on("error", failure);
         }
         else {
-            (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+            (function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                 var res, err_2;
-                return tslib_1.__generator(this, function (_a) {
+                return (0, tslib_1.__generator)(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);

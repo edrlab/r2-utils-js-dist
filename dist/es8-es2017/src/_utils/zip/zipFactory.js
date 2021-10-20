@@ -9,7 +9,7 @@ const zip_ex_http_1 = require("./zip-ex-http");
 const zip1_1 = require("./zip1");
 const zip2_1 = require("./zip2");
 async function zipLoadPromise(filePath) {
-    if (UrlUtils_1.isHTTP(filePath)) {
+    if ((0, UrlUtils_1.isHTTP)(filePath)) {
         const url = new url_1.URL(filePath);
         const p = url.pathname;
         if (p.endsWith("/")) {

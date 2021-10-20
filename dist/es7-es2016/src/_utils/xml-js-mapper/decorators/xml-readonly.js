@@ -4,7 +4,7 @@ exports.XmlReadonly = void 0;
 const object_definition_1 = require("../classes/object-definition");
 function XmlReadonly() {
     return (target, key) => {
-        const property = object_definition_1.getDefinition(target.constructor).getProperty(key);
+        const property = (0, object_definition_1.getDefinition)(target.constructor).getProperty(key);
         property.readonly = true;
     };
 }

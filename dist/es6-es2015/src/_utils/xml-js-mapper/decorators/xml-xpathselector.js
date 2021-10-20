@@ -6,7 +6,7 @@ const object_definition_1 = require("../classes/object-definition");
 function XmlXPathSelector(selector, namespaces) {
     return (target, key) => {
         const objectType = Reflect.getMetadata("design:type", target, key);
-        const objDef = object_definition_1.getDefinition(target.constructor);
+        const objDef = (0, object_definition_1.getDefinition)(target.constructor);
         const property = objDef.getProperty(key);
         property.xpathSelector = selector;
         if (namespaces) {

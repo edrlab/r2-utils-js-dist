@@ -4,7 +4,7 @@ exports.BufferReadableStream = void 0;
 var tslib_1 = require("tslib");
 var stream_1 = require("stream");
 var BufferReadableStream = (function (_super) {
-    tslib_1.__extends(BufferReadableStream, _super);
+    (0, tslib_1.__extends)(BufferReadableStream, _super);
     function BufferReadableStream(buffer) {
         var _this = _super.call(this) || this;
         _this.buffer = buffer;

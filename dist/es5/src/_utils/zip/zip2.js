@@ -12,7 +12,7 @@ var zip_1 = require("./zip");
 var zip2RandomAccessReader_Http_1 = require("./zip2RandomAccessReader_Http");
 var debug = debug_("r2:utils#zip/zip2");
 var Zip2 = (function (_super) {
-    tslib_1.__extends(Zip2, _super);
+    (0, tslib_1.__extends)(Zip2, _super);
     function Zip2(filePath, zip) {
         var _this = _super.call(this) || this;
         _this.filePath = filePath;
@@ -21,9 +21,9 @@ var Zip2 = (function (_super) {
         return _this;
     }
     Zip2.loadPromise = function (filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
-                if (UrlUtils_1.isHTTP(filePath)) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
+                if ((0, UrlUtils_1.isHTTP)(filePath)) {
                     return [2, Zip2.loadPromiseHTTP(filePath)];
                 }
                 return [2, new Promise(function (resolve, reject) {
@@ -62,25 +62,25 @@ var Zip2 = (function (_super) {
         });
     };
     Zip2.loadPromiseHTTP = function (filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var needsStreamingResponse;
             var _this = this;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 needsStreamingResponse = true;
-                return [2, new Promise(function (resolve, reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                return [2, new Promise(function (resolve, reject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                         var failure, success, res, err_1;
                         var _this = this;
-                        return tslib_1.__generator(this, function (_a) {
+                        return (0, tslib_1.__generator)(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
                                     failure = function (err) {
                                         debug(err);
                                         reject(err);
                                     };
-                                    success = function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                    success = function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                                         var httpZipByteLength, failure_1, success_, ress, err_2, httpZipReader;
                                         var _this = this;
-                                        return tslib_1.__generator(this, function (_a) {
+                                        return (0, tslib_1.__generator)(this, function (_a) {
                                             switch (_a.label) {
                                                 case 0:
                                                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
@@ -106,9 +106,9 @@ var Zip2 = (function (_super) {
                                                         debug(err);
                                                         reject(err);
                                                     };
-                                                    success_ = function (ress) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                                    success_ = function (ress) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                                                         var buffer, err_3;
-                                                        return tslib_1.__generator(this, function (_a) {
+                                                        return (0, tslib_1.__generator)(this, function (_a) {
                                                             switch (_a.label) {
                                                                 case 0:
                                                                     if (ress.statusCode && (ress.statusCode < 200 || ress.statusCode >= 300)) {
@@ -118,7 +118,7 @@ var Zip2 = (function (_super) {
                                                                     _a.label = 1;
                                                                 case 1:
                                                                     _a.trys.push([1, 3, , 4]);
-                                                                    return [4, BufferUtils_1.streamToBufferPromise(ress)];
+                                                                    return [4, (0, BufferUtils_1.streamToBufferPromise)(ress)];
                                                                 case 2:
                                                                     buffer = _a.sent();
                                                                     return [3, 4];
@@ -285,8 +285,8 @@ var Zip2 = (function (_super) {
         return this.hasEntries() && this.entries[entryPath];
     };
     Zip2.prototype.getEntries = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 if (!this.hasEntries()) {
                     return [2, Promise.resolve([])];
                 }
@@ -295,10 +295,10 @@ var Zip2 = (function (_super) {
         });
     };
     Zip2.prototype.entryStreamPromise = function (entryPath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var entry;
             var _this = this;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                     return [2, Promise.reject("no such path in zip: " + entryPath)];
                 }
@@ -313,8 +313,8 @@ var Zip2 = (function (_super) {
                             }
                             var streamAndLength = {
                                 length: entry.uncompressedSize,
-                                reset: function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                    return tslib_1.__generator(this, function (_a) {
+                                reset: function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                    return (0, tslib_1.__generator)(this, function (_a) {
                                         return [2, this.entryStreamPromise(entryPath)];
                                     });
                                 }); },

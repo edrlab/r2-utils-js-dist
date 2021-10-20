@@ -26,12 +26,12 @@ function JsonPropertyEx(propertyName) {
         debug("target.constructor");
         inspect(target.constructor);
         debug("getDefinition(target.constructor)");
-        const objDef = object_definition_1.getDefinition(target.constructor);
+        const objDef = (0, object_definition_1.getDefinition)(target.constructor);
         inspect(objDef);
         debug("objDef.getProperty(key)");
         const property = objDef.getProperty(key);
         inspect(property);
-        return ta_json_x_1.JsonProperty(propertyName)(target, key);
+        return (0, ta_json_x_1.JsonProperty)(propertyName)(target, key);
     };
 }
 exports.JsonPropertyEx = JsonPropertyEx;

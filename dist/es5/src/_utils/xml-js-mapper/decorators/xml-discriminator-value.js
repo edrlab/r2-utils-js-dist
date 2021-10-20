@@ -4,7 +4,7 @@ exports.XmlDiscriminatorValue = void 0;
 var object_definition_1 = require("../classes/object-definition");
 function XmlDiscriminatorValue(value) {
     return function (objectType) {
-        object_definition_1.getDefinition(objectType).discriminatorValue = value;
+        (0, object_definition_1.getDefinition)(objectType).discriminatorValue = value;
     };
 }
 exports.XmlDiscriminatorValue = XmlDiscriminatorValue;

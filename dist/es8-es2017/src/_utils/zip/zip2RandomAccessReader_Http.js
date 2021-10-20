@@ -21,7 +21,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
         if (this.firstBuffer && start >= this.firstBufferStart && end <= this.firstBufferEnd) {
             const begin = start - this.firstBufferStart;
             const stop = end - this.firstBufferStart;
-            return BufferUtils_1.bufferToStream(this.firstBuffer.slice(begin, stop));
+            return (0, BufferUtils_1.bufferToStream)(this.firstBuffer.slice(begin, stop));
         }
         const stream = new stream_1.PassThrough();
         const lastByteIndex = end - 1;
@@ -40,7 +40,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
             else {
                 let buffer;
                 try {
-                    buffer = await BufferUtils_1.streamToBufferPromise(res);
+                    buffer = await (0, BufferUtils_1.streamToBufferPromise)(res);
                 }
                 catch (err) {
                     debug(err);

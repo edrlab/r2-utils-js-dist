@@ -10,7 +10,7 @@ var url_1 = require("url");
 var zip_1 = require("./zip");
 var debug = debug_("r2:utils#zip/zip-ex-http");
 var ZipExplodedHTTP = (function (_super) {
-    tslib_1.__extends(ZipExplodedHTTP, _super);
+    (0, tslib_1.__extends)(ZipExplodedHTTP, _super);
     function ZipExplodedHTTP(urlStr) {
         var _this = _super.call(this) || this;
         _this.urlStr = urlStr;
@@ -18,8 +18,8 @@ var ZipExplodedHTTP = (function (_super) {
         return _this;
     }
     ZipExplodedHTTP.loadPromise = function (urlStr) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 return [2, Promise.resolve(new ZipExplodedHTTP(urlStr))];
             });
         });
@@ -37,30 +37,30 @@ var ZipExplodedHTTP = (function (_super) {
         return true;
     };
     ZipExplodedHTTP.prototype.hasEntryAsync = function (entryPath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var url, urlStrEntry;
             var _this = this;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 debug("hasEntryAsync: " + entryPath);
                 url = new url_1.URL(this.urlStr);
                 url.pathname += entryPath;
                 urlStrEntry = url.toString();
                 debug("urlStrEntry: ", urlStrEntry);
-                return [2, new Promise(function (topresolve, _topreject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                return [2, new Promise(function (topresolve, _topreject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                         var failure, success, needsStreamingResponse, promise, err_1, response, err_2;
                         var _this = this;
-                        return tslib_1.__generator(this, function (_a) {
+                        return (0, tslib_1.__generator)(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    failure = function (err) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                        return tslib_1.__generator(this, function (_a) {
+                                    failure = function (err) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                        return (0, tslib_1.__generator)(this, function (_a) {
                                             debug(err);
                                             topresolve(false);
                                             return [2];
                                         });
                                     }); };
-                                    success = function (response) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                        return tslib_1.__generator(this, function (_a) {
+                                    success = function (response) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                        return (0, tslib_1.__generator)(this, function (_a) {
                                             if (response.statusCode && (response.statusCode < 200 || response.statusCode >= 300)) {
                                                 topresolve(false);
                                                 return [2];
@@ -77,8 +77,8 @@ var ZipExplodedHTTP = (function (_super) {
                                             method: "HEAD",
                                             uri: urlStrEntry,
                                         })
-                                            .on("response", function (response) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                            return tslib_1.__generator(this, function (_a) {
+                                            .on("response", function (response) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                            return (0, tslib_1.__generator)(this, function (_a) {
                                                 switch (_a.label) {
                                                     case 0: return [4, success(response)];
                                                     case 1:
@@ -88,8 +88,8 @@ var ZipExplodedHTTP = (function (_super) {
                                                 }
                                             });
                                         }); })
-                                            .on("error", function (err) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                            return tslib_1.__generator(this, function (_a) {
+                                            .on("error", function (err) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                            return (0, tslib_1.__generator)(this, function (_a) {
                                                 switch (_a.label) {
                                                     case 0: return [4, failure(err)];
                                                     case 1:
@@ -142,11 +142,11 @@ var ZipExplodedHTTP = (function (_super) {
         });
     };
     ZipExplodedHTTP.prototype.getEntries = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var _this = this;
-            return tslib_1.__generator(this, function (_a) {
-                return [2, new Promise(function (_resolve, reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                        return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
+                return [2, new Promise(function (_resolve, reject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                        return (0, tslib_1.__generator)(this, function (_a) {
                             reject("Not implemented.");
                             return [2];
                         });
@@ -155,32 +155,32 @@ var ZipExplodedHTTP = (function (_super) {
         });
     };
     ZipExplodedHTTP.prototype.entryStreamPromise = function (entryPath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
             var url, urlStrEntry;
             var _this = this;
-            return tslib_1.__generator(this, function (_a) {
+            return (0, tslib_1.__generator)(this, function (_a) {
                 debug("entryStreamPromise: " + entryPath);
                 url = new url_1.URL(this.urlStr);
                 url.pathname += entryPath;
                 urlStrEntry = url.toString();
                 debug("urlStrEntry: ", urlStrEntry);
-                return [2, new Promise(function (topresolve, topreject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                return [2, new Promise(function (topresolve, topreject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                         var failure, success, needsStreamingResponse, promise, err_3, response, err_4;
                         var _this = this;
-                        return tslib_1.__generator(this, function (_a) {
+                        return (0, tslib_1.__generator)(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    failure = function (err) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                        return tslib_1.__generator(this, function (_a) {
+                                    failure = function (err) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                        return (0, tslib_1.__generator)(this, function (_a) {
                                             debug(err);
                                             topreject(err);
                                             return [2];
                                         });
                                     }); };
-                                    success = function (response) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                    success = function (response) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                                         var length, lengthStr, stream, streamAndLength;
                                         var _this = this;
-                                        return tslib_1.__generator(this, function (_a) {
+                                        return (0, tslib_1.__generator)(this, function (_a) {
                                             switch (_a.label) {
                                                 case 0:
                                                     if (!(response.statusCode && (response.statusCode < 200 || response.statusCode >= 300))) return [3, 2];
@@ -198,8 +198,8 @@ var ZipExplodedHTTP = (function (_super) {
                                                     response.pipe(stream);
                                                     streamAndLength = {
                                                         length: length,
-                                                        reset: function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                                            return tslib_1.__generator(this, function (_a) {
+                                                        reset: function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                                            return (0, tslib_1.__generator)(this, function (_a) {
                                                                 return [2, this.entryStreamPromise(entryPath)];
                                                             });
                                                         }); },
@@ -218,8 +218,8 @@ var ZipExplodedHTTP = (function (_super) {
                                             method: "GET",
                                             uri: urlStrEntry,
                                         })
-                                            .on("response", function (response) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                            return tslib_1.__generator(this, function (_a) {
+                                            .on("response", function (response) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                            return (0, tslib_1.__generator)(this, function (_a) {
                                                 switch (_a.label) {
                                                     case 0: return [4, success(response)];
                                                     case 1:
@@ -229,8 +229,8 @@ var ZipExplodedHTTP = (function (_super) {
                                                 }
                                             });
                                         }); })
-                                            .on("error", function (err) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                            return tslib_1.__generator(this, function (_a) {
+                                            .on("error", function (err) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                            return (0, tslib_1.__generator)(this, function (_a) {
                                                 switch (_a.label) {
                                                     case 0: return [4, failure(err)];
                                                     case 1:

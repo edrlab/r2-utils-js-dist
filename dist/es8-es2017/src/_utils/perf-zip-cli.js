@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path = require("path");
-const filehound = require("filehound");
 const StreamZip = require("node-stream-zip");
 const yauzl = require("yauzl");
 const unzipper = require("unzipper");
@@ -259,11 +258,8 @@ async function processFile(file) {
 }
 if (stats.isDirectory()) {
     (async () => {
-        const files = await filehound.create()
-            .discard("node_modules")
-            .paths(filePath)
-            .ext([".zip", ".epub", ".cbz"])
-            .find();
+        const files = fs.readdirSync(filePath, { withFileTypes: true }).
+            filter((f) => f.isFile() && /\.(epub3?)|(zip)|(cbz)$/.test(f.name)).map((f) => path.join(filePath, f.name));
         for (const file of files) {
             await processFile(file);
         }

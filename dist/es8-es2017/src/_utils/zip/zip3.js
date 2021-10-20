@@ -18,7 +18,7 @@ class Zip3 extends zip_1.Zip {
         });
     }
     static async loadPromise(filePath) {
-        if (UrlUtils_1.isHTTP(filePath)) {
+        if ((0, UrlUtils_1.isHTTP)(filePath)) {
             return Zip3.loadPromiseHTTP(filePath);
         }
         return new Promise(async (resolve, reject) => {

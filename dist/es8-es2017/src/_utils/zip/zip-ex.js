@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ZipExploded = void 0;
 const debug_ = require("debug");
-const filehound = require("filehound");
 const fs = require("fs");
 const path = require("path");
 const zip_1 = require("./zip");
@@ -31,9 +30,9 @@ class ZipExploded extends zip_1.Zip {
     async getEntries() {
         return new Promise(async (resolve, _reject) => {
             const dirPathNormalized = fs.realpathSync(this.dirPath);
-            const files = await filehound.create()
-                .paths(this.dirPath)
-                .find();
+            const files = fs.readdirSync(this.dirPath, { withFileTypes: true }).
+                filter((f) => f.isFile() &&
+                /\.(epub3?)|(zip)|(cbz)$/.test(f.name)).map((f) => path.join(this.dirPath, f.name));
             const adjustedFiles = files.map((file) => {
                 const filePathNormalized = fs.realpathSync(file);
                 let relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");

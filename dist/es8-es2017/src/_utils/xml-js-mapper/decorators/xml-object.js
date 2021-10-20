@@ -4,7 +4,7 @@ exports.XmlObject = void 0;
 const object_definition_1 = require("../classes/object-definition");
 function XmlObject(namespaces) {
     return (objectType) => {
-        const def = object_definition_1.getDefinition(objectType);
+        const def = (0, object_definition_1.getDefinition)(objectType);
         if (namespaces) {
             def.namespaces = namespaces;
         }

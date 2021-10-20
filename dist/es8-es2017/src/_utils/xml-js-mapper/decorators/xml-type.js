@@ -4,7 +4,7 @@ exports.XmlType = void 0;
 const object_definition_1 = require("../classes/object-definition");
 function XmlType(objectType) {
     return (target, key) => {
-        const property = object_definition_1.getDefinition(target.constructor).getProperty(key);
+        const property = (0, object_definition_1.getDefinition)(target.constructor).getProperty(key);
         property.objectType = objectType;
     };
 }

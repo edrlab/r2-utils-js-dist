@@ -19,8 +19,8 @@ class Zip2 extends zip_1.Zip {
         this.entries = {};
     }
     static loadPromise(filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            if (UrlUtils_1.isHTTP(filePath)) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            if ((0, UrlUtils_1.isHTTP)(filePath)) {
                 return Zip2.loadPromiseHTTP(filePath);
             }
             return new Promise((resolve, reject) => {
@@ -58,14 +58,14 @@ class Zip2 extends zip_1.Zip {
         });
     }
     static loadPromiseHTTP(filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             const needsStreamingResponse = true;
-            return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                 const failure = (err) => {
                     debug(err);
                     reject(err);
                 };
-                const success = (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                const success = (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         failure("HTTP CODE " + res.statusCode);
                         return;
@@ -89,14 +89,14 @@ class Zip2 extends zip_1.Zip {
                             debug(err);
                             reject(err);
                         };
-                        const success_ = (ress) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                        const success_ = (ress) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                             if (ress.statusCode && (ress.statusCode < 200 || ress.statusCode >= 300)) {
                                 failure_("HTTP CODE " + ress.statusCode);
                                 return;
                             }
                             let buffer;
                             try {
-                                buffer = yield BufferUtils_1.streamToBufferPromise(ress);
+                                buffer = yield (0, BufferUtils_1.streamToBufferPromise)(ress);
                             }
                             catch (err) {
                                 debug(err);
@@ -238,7 +238,7 @@ class Zip2 extends zip_1.Zip {
         return this.hasEntries() && this.entries[entryPath];
     }
     getEntries() {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (!this.hasEntries()) {
                 return Promise.resolve([]);
             }
@@ -246,7 +246,7 @@ class Zip2 extends zip_1.Zip {
         });
     }
     entryStreamPromise(entryPath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                 return Promise.reject("no such path in zip: " + entryPath);
             }
@@ -261,7 +261,7 @@ class Zip2 extends zip_1.Zip {
                     }
                     const streamAndLength = {
                         length: entry.uncompressedSize,
-                        reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                        reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                             return this.entryStreamPromise(entryPath);
                         }),
                         stream,

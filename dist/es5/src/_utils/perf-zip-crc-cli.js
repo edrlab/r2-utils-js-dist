@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var fs = require("fs");
 var path = require("path");
-var filehound = require("filehound");
 var StreamZip = require("node-stream-zip");
 var yauzl = require("yauzl");
 var unzipper = require("unzipper");
@@ -46,8 +45,8 @@ var UNVERBOSE = false;
 var VERBOSE = process.env.DEBUG || false;
 var N_ITERATIONS = (READ_ZIP_STREAMS && VERBOSE) ? 1 : (READ_ZIP_STREAMS ? 5 : 10);
 function streamReadAll(readStream) {
-    return tslib_1.__awaiter(this, void 0, void 0, function () {
-        return tslib_1.__generator(this, function (_a) {
+    return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return (0, tslib_1.__generator)(this, function (_a) {
             return [2, new Promise(function (resolve, reject) {
                     var totalBytes = 0;
                     var cleanup = function () {
@@ -73,8 +72,8 @@ function streamReadAll(readStream) {
         });
     });
 }
-var zip1 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
-    return tslib_1.__generator(this, function (_a) {
+var zip1 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
+    return (0, tslib_1.__generator)(this, function (_a) {
         return [2, new Promise(function (resolve, reject) {
                 var zip = new StreamZip({
                     file: file,
@@ -92,9 +91,9 @@ var zip1 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                     console.log(entry.name);
                     console.log(f);
                 });
-                zip.on("ready", function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+                zip.on("ready", function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
                     var zipEntries, crcs, _loop_1, _i, zipEntries_1, zipEntry;
-                    return tslib_1.__generator(this, function (_a) {
+                    return (0, tslib_1.__generator)(this, function (_a) {
                         switch (_a.label) {
                             case 0:
                                 zipEntries = Object.values(zip.entries());
@@ -117,16 +116,16 @@ var zip1 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                                 }
                                 _loop_1 = function (zipEntry) {
                                     var promize, size;
-                                    return tslib_1.__generator(this, function (_b) {
+                                    return (0, tslib_1.__generator)(this, function (_b) {
                                         switch (_b.label) {
                                             case 0:
                                                 if (zipEntry.isDirectory) {
                                                     return [2, "continue"];
                                                 }
                                                 promize = new Promise(function (res, rej) {
-                                                    zip.stream(zipEntry.name, function (err, stream) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+                                                    zip.stream(zipEntry.name, function (err, stream) { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
                                                         var totalBytes;
-                                                        return tslib_1.__generator(this, function (_a) {
+                                                        return (0, tslib_1.__generator)(this, function (_a) {
                                                             if (err) {
                                                                 console.log(err);
                                                                 rej(err);
@@ -188,8 +187,8 @@ var zip1 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
     });
 }); };
 zip1.zipName = "node-stream-zip";
-var zip2 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
-    return tslib_1.__generator(this, function (_a) {
+var zip2 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
+    return (0, tslib_1.__generator)(this, function (_a) {
         return [2, new Promise(function (resolve, reject) {
                 var crcs;
                 yauzl.open(file, { lazyEntries: true, autoClose: false }, function (error, zip) {
@@ -208,9 +207,9 @@ var zip2 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                         process.stdout.write("## 2 ##\n");
                     }
                     zip.readEntry();
-                    zip.on("entry", function (zipEntry) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+                    zip.on("entry", function (zipEntry) { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
                         var promize, size;
-                        return tslib_1.__generator(this, function (_a) {
+                        return (0, tslib_1.__generator)(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
                                     if (!(zipEntry.fileName[zipEntry.fileName.length - 1] === "/")) return [3, 1];
@@ -281,11 +280,11 @@ var zip2 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
 }); };
 zip2.zipName = "yauzl";
 var streams = {};
-var zip3 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
-    return tslib_1.__generator(this, function (_a) {
-        return [2, new Promise(function (resolve, reject) { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+var zip3 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
+    return (0, tslib_1.__generator)(this, function (_a) {
+        return [2, new Promise(function (resolve, reject) { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
                 var zip, err_1, crcs, _loop_2, _i, _a, zipEntry, state_1;
-                return tslib_1.__generator(this, function (_b) {
+                return (0, tslib_1.__generator)(this, function (_b) {
                     switch (_b.label) {
                         case 0:
                             _b.trys.push([0, 2, , 3]);
@@ -318,7 +317,7 @@ var zip3 = function (file) { return tslib_1.__awaiter(void 0, void 0, void 0, fu
                             }
                             _loop_2 = function (zipEntry) {
                                 var stream, promize, size, err_2;
-                                return tslib_1.__generator(this, function (_c) {
+                                return (0, tslib_1.__generator)(this, function (_c) {
                                     switch (_c.label) {
                                         case 0:
                                             if (zipEntry.type === "Directory") {
@@ -403,9 +402,9 @@ zip3.zipName = "unzipper";
 var zips = READ_ZIP_STREAMS ? [zip1, zip2] :
     [zip1, zip2, zip3];
 function processFile(file) {
-    return tslib_1.__awaiter(this, void 0, void 0, function () {
+    return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
         var winner, minNanoOverall, iZip, _i, zips_1, zip, crcsPreviousIteration, i, time, crcs, diffTime, nanos, crcsPreviousZip, isDiff, _a, zips_2, zip, _b, zips_3, zip, j, zip, nDiffs, k, zip_, _c, zips_4, zip, won;
-        return tslib_1.__generator(this, function (_d) {
+        return (0, tslib_1.__generator)(this, function (_d) {
             switch (_d.label) {
                 case 0:
                     console.log("=====================================");
@@ -533,36 +532,33 @@ function processFile(file) {
     });
 }
 if (stats.isDirectory()) {
-    (function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+    (function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var files, _i, files_1, file;
-        return tslib_1.__generator(this, function (_a) {
+        return (0, tslib_1.__generator)(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, filehound.create()
-                        .paths(filePath)
-                        .ext([".epub", ".epub3", ".cbz", ".zip"])
-                        .find()];
-                case 1:
-                    files = _a.sent();
+                case 0:
+                    files = fs.readdirSync(filePath, { withFileTypes: true }).
+                        filter(function (f) { return f.isFile() && /\.(epub3?)|(zip)|(cbz)$/.test(f.name); }).map(function (f) { return path.join(filePath, f.name); });
                     _i = 0, files_1 = files;
-                    _a.label = 2;
-                case 2:
-                    if (!(_i < files_1.length)) return [3, 5];
+                    _a.label = 1;
+                case 1:
+                    if (!(_i < files_1.length)) return [3, 4];
                     file = files_1[_i];
                     return [4, processFile(file)];
-                case 3:
+                case 2:
                     _a.sent();
-                    _a.label = 4;
-                case 4:
+                    _a.label = 3;
+                case 3:
                     _i++;
-                    return [3, 2];
-                case 5: return [2];
+                    return [3, 1];
+                case 4: return [2];
             }
         });
     }); })();
 }
 else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
-    (function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
-        return tslib_1.__generator(this, function (_a) {
+    (function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
+        return (0, tslib_1.__generator)(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, processFile(filePath)];
                 case 1:

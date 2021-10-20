@@ -7,7 +7,7 @@ class XML {
         if (objectInstance.nodeType === 9) {
             objectInstance = objectInstance.documentElement;
         }
-        return deserialize_1.deserialize(objectInstance, objectType, options);
+        return (0, deserialize_1.deserialize)(objectInstance, objectType, options);
     }
 }
 exports.XML = XML;

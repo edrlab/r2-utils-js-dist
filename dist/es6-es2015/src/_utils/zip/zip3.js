@@ -19,11 +19,11 @@ class Zip3 extends zip_1.Zip {
         });
     }
     static loadPromise(filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            if (UrlUtils_1.isHTTP(filePath)) {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            if ((0, UrlUtils_1.isHTTP)(filePath)) {
                 return Zip3.loadPromiseHTTP(filePath);
             }
-            return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                 let zip;
                 try {
                     zip = yield unzipper.Open.file(filePath);
@@ -39,8 +39,8 @@ class Zip3 extends zip_1.Zip {
         });
     }
     static loadPromiseHTTP(filePath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                 let zip;
                 try {
                     zip = yield unzipper.Open.url(request.get, {
@@ -75,7 +75,7 @@ class Zip3 extends zip_1.Zip {
         return this.hasEntries() && this.entries[entryPath];
     }
     getEntries() {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (!this.hasEntries()) {
                 return Promise.resolve([]);
             }
@@ -83,7 +83,7 @@ class Zip3 extends zip_1.Zip {
         });
     }
     entryStreamPromise(entryPath) {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                 return Promise.reject("no such path in zip: " + entryPath);
             }
@@ -93,7 +93,7 @@ class Zip3 extends zip_1.Zip {
                 const stream = entry.stream();
                 const streamAndLength = {
                     length: entry.size,
-                    reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                    reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                         return this.entryStreamPromise(entryPath);
                     }),
                     stream,

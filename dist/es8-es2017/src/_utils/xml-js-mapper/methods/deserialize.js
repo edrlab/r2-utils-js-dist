@@ -12,7 +12,7 @@ function deserializeRootObject(objectInstance, objectType = Object, options) {
     if (!object_definition_1.objectDefinitions.has(objectType)) {
         return undefined;
     }
-    const [objectType2, ...superTypes] = object_definition_1.getTypedInheritanceChain(objectType, objectInstance);
+    const [objectType2, ...superTypes] = (0, object_definition_1.getTypedInheritanceChain)(objectType, objectInstance);
     const output = Object.create(objectType2.prototype);
     const definitions = [...superTypes.reverse(), objectType2]
         .map((t) => object_definition_1.objectDefinitions.get(t))
@@ -124,7 +124,8 @@ function deserializeRootObject(objectInstance, objectType = Object, options) {
                                     if (childNode.localName !== item.localName) {
                                         continue;
                                     }
-                                    if (item.namespaceUri && item.namespaceUri !== childNode.namespaceURI) {
+                                    if (item.namespaceUri &&
+                                        item.namespaceUri !== childNode.namespaceURI) {
                                         continue;
                                     }
                                     nextCurrentNodes.push(childNode);
