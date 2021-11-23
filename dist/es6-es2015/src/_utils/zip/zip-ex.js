@@ -35,8 +35,7 @@ class ZipExploded extends zip_1.Zip {
             return new Promise((resolve, _reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
                 const dirPathNormalized = fs.realpathSync(this.dirPath);
                 const files = fs.readdirSync(this.dirPath, { withFileTypes: true }).
-                    filter((f) => f.isFile() &&
-                    /\.(epub3?)|(zip)|(cbz)$/.test(f.name)).map((f) => path.join(this.dirPath, f.name));
+                    filter((f) => f.isFile()).map((f) => path.join(this.dirPath, f.name));
                 const adjustedFiles = files.map((file) => {
                     const filePathNormalized = fs.realpathSync(file);
                     let relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");

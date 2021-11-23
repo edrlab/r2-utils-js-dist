@@ -538,7 +538,9 @@ if (stats.isDirectory()) {
             switch (_a.label) {
                 case 0:
                     files = fs.readdirSync(filePath, { withFileTypes: true }).
-                        filter(function (f) { return f.isFile() && /\.(epub3?)|(zip)|(cbz)$/.test(f.name); }).map(function (f) { return path.join(filePath, f.name); });
+                        filter(function (f) { return f.isFile() &&
+                        /(\.epub3?)|(\.zip)|(\.cbz)$/.test(f.name); }).
+                        map(function (f) { return path.join(filePath, f.name); });
                     _i = 0, files_1 = files;
                     _a.label = 1;
                 case 1:

@@ -44,8 +44,7 @@ var ZipExploded = (function (_super) {
                         return (0, tslib_1.__generator)(this, function (_a) {
                             dirPathNormalized = fs.realpathSync(this.dirPath);
                             files = fs.readdirSync(this.dirPath, { withFileTypes: true }).
-                                filter(function (f) { return f.isFile() &&
-                                /\.(epub3?)|(zip)|(cbz)$/.test(f.name); }).map(function (f) { return path.join(_this.dirPath, f.name); });
+                                filter(function (f) { return f.isFile(); }).map(function (f) { return path.join(_this.dirPath, f.name); });
                             adjustedFiles = files.map(function (file) {
                                 var filePathNormalized = fs.realpathSync(file);
                                 var relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");

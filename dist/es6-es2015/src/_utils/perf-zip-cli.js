@@ -262,7 +262,9 @@ function processFile(file) {
 if (stats.isDirectory()) {
     (() => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
         const files = fs.readdirSync(filePath, { withFileTypes: true }).
-            filter((f) => f.isFile() && /\.(epub3?)|(zip)|(cbz)$/.test(f.name)).map((f) => path.join(filePath, f.name));
+            filter((f) => f.isFile() &&
+            /(\.epub3?)|(\.zip)|(\.cbz)$/.test(f.name)).
+            map((f) => path.join(filePath, f.name));
         for (const file of files) {
             yield processFile(file);
         }
