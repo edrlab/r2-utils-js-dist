@@ -4,7 +4,7 @@ exports.ensureAbsolute = exports.encodeURIComponent_RFC5987 = exports.encodeURIC
 var path = require("path");
 var querystring = require("querystring");
 function isHTTP(urlOrPath) {
-    return /^http[s]?:\/\//.test(urlOrPath);
+    return /^https?:\/\//.test(urlOrPath);
 }
 exports.isHTTP = isHTTP;
 function encodeURIComponent_RFC3986(str) {

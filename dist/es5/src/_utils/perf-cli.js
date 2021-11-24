@@ -40,7 +40,7 @@ if (!stats.isFile() && !stats.isDirectory()) {
     process.exit(1);
 }
 var fileName = path.basename(filePath);
-var ext = path.extname(fileName).toLowerCase();
+var ext = path.extname(fileName);
 if (stats.isDirectory()) {
     (function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var zipExploded, entries, _i, entries_1, entryName, zipStream_, err_1, zipStream, zipData, err_2, str;
@@ -85,7 +85,7 @@ if (stats.isDirectory()) {
                     console.log(err_2);
                     return [2];
                 case 11:
-                    if (entryName.endsWith(".css")) {
+                    if (/\.css$/i.test(entryName)) {
                         str = zipData.toString("utf8");
                         console.log(str);
                     }
@@ -98,7 +98,7 @@ if (stats.isDirectory()) {
         });
     }); })();
 }
-else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
+else if (/((\.epub3?)|(\.cbz)|(\.zip))$/i.test(ext)) {
     (function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         var time3, zip3, diff3, time2, zip2, diff2, time1, zip1, diff1;
         return (0, tslib_1.__generator)(this, function (_a) {

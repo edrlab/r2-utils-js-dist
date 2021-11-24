@@ -39,7 +39,7 @@ if (!stats.isFile() && !stats.isDirectory()) {
     process.exit(1);
 }
 const fileName = path.basename(filePath);
-const ext = path.extname(fileName).toLowerCase();
+const ext = path.extname(fileName);
 if (stats.isDirectory()) {
     (async () => {
         const zipExploded = await zip_ex_1.ZipExploded.loadPromise(filePath);
@@ -63,14 +63,14 @@ if (stats.isDirectory()) {
                 console.log(err);
                 return;
             }
-            if (entryName.endsWith(".css")) {
+            if (/\.css$/i.test(entryName)) {
                 const str = zipData.toString("utf8");
                 console.log(str);
             }
         }
     })();
 }
-else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
+else if (/((\.epub3?)|(\.cbz)|(\.zip))$/i.test(ext)) {
     (async () => {
         const time3 = process.hrtime();
         const zip3 = await zip3_1.Zip3.loadPromise(filePath);

@@ -38,7 +38,7 @@ if (!stats.isFile() && !stats.isDirectory()) {
     process.exit(1);
 }
 var fileName = path.basename(filePath);
-var ext = path.extname(fileName).toLowerCase();
+var ext = path.extname(fileName);
 var argExtra = args[1] ? args[1].trim() : undefined;
 var READ_ZIP_STREAMS = argExtra === "1";
 var UNVERBOSE = false;
@@ -539,7 +539,7 @@ if (stats.isDirectory()) {
                 case 0:
                     files = fs.readdirSync(filePath, { withFileTypes: true }).
                         filter(function (f) { return f.isFile() &&
-                        /(\.epub3?)|(\.zip)|(\.cbz)$/.test(f.name); }).
+                        /((\.epub3?)|(\.zip)|(\.cbz))$/i.test(f.name); }).
                         map(function (f) { return path.join(filePath, f.name); });
                     _i = 0, files_1 = files;
                     _a.label = 1;
@@ -558,7 +558,7 @@ if (stats.isDirectory()) {
         });
     }); })();
 }
-else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
+else if (/((\.epub3?)|(\.cbz)|(\.zip))$/i.test(ext)) {
     (function () { return (0, tslib_1.__awaiter)(void 0, void 0, void 0, function () {
         return (0, tslib_1.__generator)(this, function (_a) {
             switch (_a.label) {

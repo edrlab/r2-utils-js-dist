@@ -39,7 +39,6 @@ class ZipExploded extends zip_1.Zip {
                 const adjustedFiles = files.map((file) => {
                     const filePathNormalized = fs.realpathSync(file);
                     let relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");
-                    debug(relativeFilePath);
                     if (relativeFilePath.indexOf("/") === 0) {
                         relativeFilePath = relativeFilePath.substr(1);
                     }

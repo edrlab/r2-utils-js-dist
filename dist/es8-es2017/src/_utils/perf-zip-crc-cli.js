@@ -37,7 +37,7 @@ if (!stats.isFile() && !stats.isDirectory()) {
     process.exit(1);
 }
 const fileName = path.basename(filePath);
-const ext = path.extname(fileName).toLowerCase();
+const ext = path.extname(fileName);
 const argExtra = args[1] ? args[1].trim() : undefined;
 const READ_ZIP_STREAMS = argExtra === "1";
 const UNVERBOSE = false;
@@ -416,14 +416,14 @@ if (stats.isDirectory()) {
     (async () => {
         const files = fs.readdirSync(filePath, { withFileTypes: true }).
             filter((f) => f.isFile() &&
-            /(\.epub3?)|(\.zip)|(\.cbz)$/.test(f.name)).
+            /((\.epub3?)|(\.zip)|(\.cbz))$/i.test(f.name)).
             map((f) => path.join(filePath, f.name));
         for (const file of files) {
             await processFile(file);
         }
     })();
 }
-else if (/\.epub[3]?$/.test(ext) || ext === ".cbz" || ext === ".zip") {
+else if (/((\.epub3?)|(\.cbz)|(\.zip))$/i.test(ext)) {
     (async () => {
         await processFile(filePath);
     })();
