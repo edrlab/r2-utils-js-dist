@@ -109,19 +109,19 @@ else if (/((\.epub3?)|(\.cbz)|(\.zip))$/i.test(ext)) {
                 case 1:
                     zip3 = _a.sent();
                     diff3 = process.hrtime(time3);
-                    console.log("Zip 3 (" + zip3.entriesCount() + "): " + diff3[0] + " seconds + " + diff3[1] + " nanoseconds");
+                    console.log("Zip 3 (".concat(zip3.entriesCount(), "): ").concat(diff3[0], " seconds + ").concat(diff3[1], " nanoseconds"));
                     time2 = process.hrtime();
                     return [4, zip2_1.Zip2.loadPromise(filePath)];
                 case 2:
                     zip2 = _a.sent();
                     diff2 = process.hrtime(time2);
-                    console.log("Zip 2 (" + zip2.entriesCount() + "): " + diff2[0] + " seconds + " + diff2[1] + " nanoseconds");
+                    console.log("Zip 2 (".concat(zip2.entriesCount(), "): ").concat(diff2[0], " seconds + ").concat(diff2[1], " nanoseconds"));
                     time1 = process.hrtime();
                     return [4, zip1_1.Zip1.loadPromise(filePath)];
                 case 3:
                     zip1 = _a.sent();
                     diff1 = process.hrtime(time1);
-                    console.log("Zip 1 (" + zip1.entriesCount() + "): " + diff1[0] + " seconds + " + diff1[1] + " nanoseconds");
+                    console.log("Zip 1 (".concat(zip1.entriesCount(), "): ").concat(diff1[0], " seconds + ").concat(diff1[1], " nanoseconds"));
                     return [2];
             }
         });

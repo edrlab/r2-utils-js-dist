@@ -67,7 +67,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                 try {
                     await promise;
                 }
-                catch (err) {
+                catch (_err) {
                 }
             }
             else {
@@ -144,7 +144,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                 try {
                     await promise;
                 }
-                catch (err) {
+                catch (_err) {
                 }
             }
             else {

@@ -29,7 +29,7 @@ function deserializeRootObject(objectInstance, objectType, options) {
         d.beforeDeserialized.call(output);
         d.properties.forEach(function (p, key) {
             if (!p.objectType) {
-                throw new Error("Cannot deserialize property \"" + key + "\" without type!");
+                throw new Error("Cannot deserialize property \"".concat(key, "\" without type!"));
             }
             if (p.readonly) {
                 return;

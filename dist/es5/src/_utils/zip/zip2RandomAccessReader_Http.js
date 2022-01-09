@@ -29,7 +29,7 @@ var HttpZipReader = (function (_super) {
         }
         var stream = new stream_1.PassThrough();
         var lastByteIndex = end - 1;
-        var range = start + "-" + lastByteIndex;
+        var range = "".concat(start, "-").concat(lastByteIndex);
         var failure = function (err) {
             debug(err);
         };
@@ -60,7 +60,7 @@ var HttpZipReader = (function (_super) {
                         stream.end();
                         return [2];
                     case 5:
-                        debug("streamToBufferPromise: " + buffer.length);
+                        debug("streamToBufferPromise: ".concat(buffer.length));
                         this.firstBuffer = buffer;
                         this.firstBufferStart = start;
                         this.firstBufferEnd = end;
@@ -74,7 +74,7 @@ var HttpZipReader = (function (_super) {
         var needsStreamingResponse = true;
         if (needsStreamingResponse) {
             request.get({
-                headers: { Range: "bytes=" + range },
+                headers: { Range: "bytes=".concat(range) },
                 method: "GET",
                 uri: this.url,
             })
@@ -89,7 +89,7 @@ var HttpZipReader = (function (_super) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
                             return [4, requestPromise({
-                                    headers: { Range: "bytes=" + range },
+                                    headers: { Range: "bytes=".concat(range) },
                                     method: "GET",
                                     resolveWithFullResponse: true,
                                     uri: this.url,

@@ -57,13 +57,13 @@ var HttpReadableStream = (function (_super) {
                 }
             });
         }); };
-        debug("HTTP GET " + this.url + ": " + this.byteStart + "-" + this.byteEnd + " (" + (this.byteEnd - this.byteStart) + ")");
+        debug("HTTP GET ".concat(this.url, ": ").concat(this.byteStart, "-").concat(this.byteEnd, " (").concat(this.byteEnd - this.byteStart, ")"));
         var lastByteIndex = this.byteEnd - 1;
-        var range = this.byteStart + "-" + lastByteIndex;
+        var range = "".concat(this.byteStart, "-").concat(lastByteIndex);
         var needsStreamingResponse = true;
         if (needsStreamingResponse) {
             request.get({
-                headers: { Range: "bytes=" + range },
+                headers: { Range: "bytes=".concat(range) },
                 method: "GET",
                 uri: this.url,
             })
@@ -78,7 +78,7 @@ var HttpReadableStream = (function (_super) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
                             return [4, requestPromise({
-                                    headers: { Range: "bytes=" + range },
+                                    headers: { Range: "bytes=".concat(range) },
                                     method: "GET",
                                     resolveWithFullResponse: true,
                                     uri: this.url,

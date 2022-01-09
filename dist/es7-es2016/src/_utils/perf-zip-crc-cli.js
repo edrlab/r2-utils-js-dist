@@ -315,10 +315,10 @@ const zips = READ_ZIP_STREAMS ? [zip1, zip2] :
     [zip1, zip2, zip3];
 function processFile(file) {
     return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-        console.log(`=====================================`);
+        console.log("=====================================");
         if (!UNVERBOSE) {
             console.log(`${file}`);
-            console.log(`=====================================`);
+            console.log("=====================================");
         }
         let winner = 0;
         let minNanoOverall = Number.MAX_SAFE_INTEGER;
@@ -327,7 +327,7 @@ function processFile(file) {
             iZip++;
             zip.minNano = Number.MAX_SAFE_INTEGER;
             if (VERBOSE) {
-                console.log(`-------------------------------`);
+                console.log("-------------------------------");
             }
             let crcsPreviousIteration;
             for (let i = 0; i < N_ITERATIONS; i++) {
@@ -360,7 +360,7 @@ function processFile(file) {
             }
             zip.CRCs = crcsPreviousIteration;
             if (!VERBOSE) {
-                console.log(`\n`);
+                console.log("\n");
             }
         }
         let crcsPreviousZip;
@@ -375,11 +375,11 @@ function processFile(file) {
             crcsPreviousZip = zip.CRCs;
         }
         if (isDiff) {
-            console.log(`CRC DIFF! ##############################################`);
+            console.log("CRC DIFF! ##############################################");
             iZip = 0;
             for (const zip of zips) {
                 iZip++;
-                console.log(`==========================`);
+                console.log("==========================");
                 console.log(`++++ Zip ${iZip} CRC:`);
                 console.log(`-- ${zip.CRCs.length}:`);
                 console.log(JSON.stringify(zip.CRCs));
@@ -397,17 +397,17 @@ function processFile(file) {
                     }
                 }
                 if (nDiffs === (zips.length - 1)) {
-                    console.log(`####################################`);
-                    console.log(`####################################`);
+                    console.log("####################################");
+                    console.log("####################################");
                     console.log(`SUSPECT ====> Zip ${j + 1} (${zip.zipName})`);
-                    console.log(`####################################`);
-                    console.log(`####################################`);
+                    console.log("####################################");
+                    console.log("####################################");
                 }
             }
             process.exit(1);
         }
         if (VERBOSE) {
-            console.log(`=====================================`);
+            console.log("=====================================");
         }
         iZip = 0;
         for (const zip of zips) {

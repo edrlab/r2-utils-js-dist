@@ -221,16 +221,16 @@ zip3.zipName = "unzipper";
 const zips = CHECK_ONLY_ZIP3 ? [zip3] : [zip1, zip2, zip3];
 function processFile(file) {
     return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-        console.log(`=====================================`);
+        console.log("-------------------------------");
         console.log(`${file}`);
-        console.log(`=====================================`);
+        console.log("-------------------------------");
         let winner = 0;
         let minNanoOverall = Number.MAX_SAFE_INTEGER;
         let iZip = 0;
         for (const zip of zips) {
             iZip++;
             if (VERBOSE) {
-                console.log(`-------------------------------`);
+                console.log("-------------------------------");
             }
             for (let i = 0; i < N_ITERATIONS; i++) {
                 process.stdout.write(`${i + 1}/${N_ITERATIONS} `);
@@ -249,7 +249,7 @@ function processFile(file) {
             }
         }
         if (VERBOSE) {
-            console.log(`=====================================`);
+            console.log("-------------------------------");
         }
         iZip = 0;
         for (const zip of zips) {

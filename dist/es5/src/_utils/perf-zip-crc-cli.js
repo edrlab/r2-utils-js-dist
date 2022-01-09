@@ -103,7 +103,7 @@ var zip1 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 
                                     }
                                     else {
                                         if (!zipEntry.crc && zipEntry.size) {
-                                            console.log("1 CRC zero? " + zipEntry.name + " (" + zipEntry.size + " bytes) => " + zipEntry.crc);
+                                            console.log("1 CRC zero? ".concat(zipEntry.name, " (").concat(zipEntry.size, " bytes) => ").concat(zipEntry.crc));
                                         }
                                         return zipEntry.crc;
                                     }
@@ -143,10 +143,10 @@ var zip1 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 
                                             case 1:
                                                 size = _b.sent();
                                                 if (zipEntry.size !== size) {
-                                                    console.log("1 SIZE MISMATCH? " + zipEntry.name + " " + zipEntry.size + " != " + size);
+                                                    console.log("1 SIZE MISMATCH? ".concat(zipEntry.name, " ").concat(zipEntry.size, " != ").concat(size));
                                                 }
                                                 if (VERBOSE) {
-                                                    process.stdout.write(" " + zipEntry.name + " ");
+                                                    process.stdout.write(" ".concat(zipEntry.name, " "));
                                                 }
                                                 else if (!UNVERBOSE) {
                                                     process.stdout.write(".");
@@ -216,7 +216,7 @@ var zip2 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 
                                     return [3, 3];
                                 case 1:
                                     if (!zipEntry.crc32 && zipEntry.uncompressedSize) {
-                                        console.log("2 CRC zero? " + zipEntry.fileName + " (" + zipEntry.uncompressedSize + " bytes) => " + zipEntry.crc32);
+                                        console.log("2 CRC zero? ".concat(zipEntry.fileName, " (").concat(zipEntry.uncompressedSize, " bytes) => ").concat(zipEntry.crc32));
                                     }
                                     if (!crcs) {
                                         crcs = [];
@@ -240,10 +240,10 @@ var zip2 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 
                                 case 2:
                                     size = _a.sent();
                                     if (zipEntry.uncompressedSize !== size) {
-                                        console.log("2 SIZE MISMATCH? " + zipEntry.fileName + " " + zipEntry.uncompressedSize + " != " + size);
+                                        console.log("2 SIZE MISMATCH? ".concat(zipEntry.fileName, " ").concat(zipEntry.uncompressedSize, " != ").concat(size));
                                     }
                                     if (VERBOSE) {
-                                        process.stdout.write(" " + zipEntry.fileName + " ");
+                                        process.stdout.write(" ".concat(zipEntry.fileName, " "));
                                     }
                                     else if (!UNVERBOSE) {
                                         process.stdout.write(".");
@@ -304,7 +304,7 @@ var zip3 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 
                                 }
                                 else {
                                     if (!zipEntry.crc32 && zipEntry.uncompressedSize) {
-                                        console.log("3 CRC zero? " + zipEntry.path + " (" + zipEntry.uncompressedSize + " bytes) => " + zipEntry.crc32);
+                                        console.log("3 CRC zero? ".concat(zipEntry.path, " (").concat(zipEntry.uncompressedSize, " bytes) => ").concat(zipEntry.crc32));
                                     }
                                     return zipEntry.crc32;
                                 }
@@ -356,10 +356,10 @@ var zip3 = function (file) { return (0, tslib_1.__awaiter)(void 0, void 0, void 
                                             return [2, { value: void 0 }];
                                         case 4:
                                             if (zipEntry.uncompressedSize !== size) {
-                                                console.log("3 SIZE MISMATCH? " + zipEntry.path + " " + zipEntry.uncompressedSize + " != " + size);
+                                                console.log("3 SIZE MISMATCH? ".concat(zipEntry.path, " ").concat(zipEntry.uncompressedSize, " != ").concat(size));
                                             }
                                             if (VERBOSE) {
-                                                process.stdout.write(" " + zipEntry.path + " ");
+                                                process.stdout.write(" ".concat(zipEntry.path, " "));
                                             }
                                             else if (!UNVERBOSE) {
                                                 process.stdout.write(".");
@@ -409,7 +409,7 @@ function processFile(file) {
                 case 0:
                     console.log("=====================================");
                     if (!UNVERBOSE) {
-                        console.log("" + file);
+                        console.log("".concat(file));
                         console.log("=====================================");
                     }
                     winner = 0;
@@ -430,7 +430,7 @@ function processFile(file) {
                     _d.label = 2;
                 case 2:
                     if (!(i < N_ITERATIONS)) return [3, 5];
-                    process.stdout.write(i + 1 + "/" + N_ITERATIONS + " ");
+                    process.stdout.write("".concat(i + 1, "/").concat(N_ITERATIONS, " "));
                     time = process.hrtime();
                     return [4, zip(file)];
                 case 3:
@@ -445,14 +445,14 @@ function processFile(file) {
                         winner = iZip;
                     }
                     if (VERBOSE) {
-                        console.log("Zip " + iZip + " (" + crcs.length + "): " + diffTime[0] + " seconds + " + diffTime[1] + " nanoseconds");
+                        console.log("Zip ".concat(iZip, " (").concat(crcs.length, "): ").concat(diffTime[0], " seconds + ").concat(diffTime[1], " nanoseconds"));
                     }
                     if (crcsPreviousIteration) {
                         if (!sameArrays(crcsPreviousIteration, crcs)) {
-                            console.log("++++ Zip " + iZip + " (ITERATION " + i + ") CRC DIFF!?");
-                            console.log("-- " + crcsPreviousIteration.length + ":");
+                            console.log("++++ Zip ".concat(iZip, " (ITERATION ").concat(i, ") CRC DIFF!?"));
+                            console.log("-- ".concat(crcsPreviousIteration.length, ":"));
                             console.log(JSON.stringify(crcsPreviousIteration, null, 2));
-                            console.log("-- " + crcs.length + ":");
+                            console.log("-- ".concat(crcs.length, ":"));
                             console.log(JSON.stringify(crcs, null, 2));
                             process.exit(1);
                         }
@@ -490,8 +490,8 @@ function processFile(file) {
                             zip = zips_3[_b];
                             iZip++;
                             console.log("==========================");
-                            console.log("++++ Zip " + iZip + " CRC:");
-                            console.log("-- " + zip.CRCs.length + ":");
+                            console.log("++++ Zip ".concat(iZip, " CRC:"));
+                            console.log("-- ".concat(zip.CRCs.length, ":"));
                             console.log(JSON.stringify(zip.CRCs));
                         }
                         for (j = 0; j < zips.length; j++) {
@@ -509,7 +509,7 @@ function processFile(file) {
                             if (nDiffs === (zips.length - 1)) {
                                 console.log("####################################");
                                 console.log("####################################");
-                                console.log("SUSPECT ====> Zip " + (j + 1) + " (" + zip.zipName + ")");
+                                console.log("SUSPECT ====> Zip ".concat(j + 1, " (").concat(zip.zipName, ")"));
                                 console.log("####################################");
                                 console.log("####################################");
                             }
@@ -524,7 +524,7 @@ function processFile(file) {
                         zip = zips_4[_c];
                         iZip++;
                         won = iZip === winner;
-                        console.log((won ? ">>" : "--") + " Zip " + iZip + " (" + zip.zipName + ") => " + zip.minNano.toLocaleString() + " nanoseconds " + (won ? " [ WINNER ]" : "[ +" + (zip.minNano - minNanoOverall).toLocaleString() + " ]"));
+                        console.log("".concat(won ? ">>" : "--", " Zip ").concat(iZip, " (").concat(zip.zipName, ") => ").concat(zip.minNano.toLocaleString(), " nanoseconds ").concat(won ? " [ WINNER ]" : "[ +".concat((zip.minNano - minNanoOverall).toLocaleString(), " ]")));
                     }
                     return [2];
             }

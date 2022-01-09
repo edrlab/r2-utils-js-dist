@@ -14,7 +14,7 @@ var ZipExplodedHTTP = (function (_super) {
     function ZipExplodedHTTP(urlStr) {
         var _this = _super.call(this) || this;
         _this.urlStr = urlStr;
-        debug("ZipExplodedHTTP: " + urlStr);
+        debug("ZipExplodedHTTP: ".concat(urlStr));
         return _this;
     }
     ZipExplodedHTTP.loadPromise = function (urlStr) {
@@ -41,13 +41,13 @@ var ZipExplodedHTTP = (function (_super) {
             var url, urlStrEntry;
             var _this = this;
             return (0, tslib_1.__generator)(this, function (_a) {
-                debug("hasEntryAsync: " + entryPath);
+                debug("hasEntryAsync: ".concat(entryPath));
                 url = new url_1.URL(this.urlStr);
                 url.pathname += entryPath;
                 urlStrEntry = url.toString();
                 debug("urlStrEntry: ", urlStrEntry);
                 return [2, new Promise(function (topresolve, _topreject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
-                        var failure, success, needsStreamingResponse, promise, err_1, response, err_2;
+                        var failure, success, needsStreamingResponse, promise, _err_1, response, err_1;
                         var _this = this;
                         return (0, tslib_1.__generator)(this, function (_a) {
                             switch (_a.label) {
@@ -108,7 +108,7 @@ var ZipExplodedHTTP = (function (_super) {
                                     _a.sent();
                                     return [3, 4];
                                 case 3:
-                                    err_1 = _a.sent();
+                                    _err_1 = _a.sent();
                                     return [3, 4];
                                 case 4: return [3, 11];
                                 case 5:
@@ -129,8 +129,8 @@ var ZipExplodedHTTP = (function (_super) {
                                     _a.sent();
                                     return [3, 11];
                                 case 9:
-                                    err_2 = _a.sent();
-                                    return [4, failure(err_2)];
+                                    err_1 = _a.sent();
+                                    return [4, failure(err_1)];
                                 case 10:
                                     _a.sent();
                                     return [3, 11];
@@ -159,13 +159,13 @@ var ZipExplodedHTTP = (function (_super) {
             var url, urlStrEntry;
             var _this = this;
             return (0, tslib_1.__generator)(this, function (_a) {
-                debug("entryStreamPromise: " + entryPath);
+                debug("entryStreamPromise: ".concat(entryPath));
                 url = new url_1.URL(this.urlStr);
                 url.pathname += entryPath;
                 urlStrEntry = url.toString();
                 debug("urlStrEntry: ", urlStrEntry);
                 return [2, new Promise(function (topresolve, topreject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
-                        var failure, success, needsStreamingResponse, promise, err_3, response, err_4;
+                        var failure, success, needsStreamingResponse, promise, _err_2, response, err_2;
                         var _this = this;
                         return (0, tslib_1.__generator)(this, function (_a) {
                             switch (_a.label) {
@@ -249,7 +249,7 @@ var ZipExplodedHTTP = (function (_super) {
                                     _a.sent();
                                     return [3, 4];
                                 case 3:
-                                    err_3 = _a.sent();
+                                    _err_2 = _a.sent();
                                     return [3, 4];
                                 case 4: return [3, 11];
                                 case 5:
@@ -270,8 +270,8 @@ var ZipExplodedHTTP = (function (_super) {
                                     _a.sent();
                                     return [3, 11];
                                 case 9:
-                                    err_4 = _a.sent();
-                                    return [4, failure(err_4)];
+                                    err_2 = _a.sent();
+                                    return [4, failure(err_2)];
                                 case 10:
                                     _a.sent();
                                     return [3, 11];

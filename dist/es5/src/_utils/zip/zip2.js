@@ -94,7 +94,7 @@ var Zip2 = (function (_super) {
                                                         return [2];
                                                     }
                                                     httpZipByteLength = parseInt(res.headers["content-length"], 10);
-                                                    debug("Content-Length: " + httpZipByteLength);
+                                                    debug("Content-Length: ".concat(httpZipByteLength));
                                                     if (!(!res.headers["accept-ranges"]
                                                         || res.headers["accept-ranges"].indexOf("bytes") < 0)) return [3, 8];
                                                     if (httpZipByteLength > (2 * 1024 * 1024)) {
