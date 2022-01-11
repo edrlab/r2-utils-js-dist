@@ -60,7 +60,13 @@ class ZipExplodedHTTP extends zip_1.Zip {
                             uri: urlStrEntry,
                         })
                             .on("response", (response) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-                            yield success(response);
+                            try {
+                                yield success(response);
+                            }
+                            catch (successError) {
+                                yield failure(successError);
+                                return;
+                            }
                             resolve();
                         }))
                             .on("error", (err) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
@@ -141,7 +147,13 @@ class ZipExplodedHTTP extends zip_1.Zip {
                             uri: urlStrEntry,
                         })
                             .on("response", (response) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-                            yield success(response);
+                            try {
+                                yield success(response);
+                            }
+                            catch (successError) {
+                                yield failure(successError);
+                                return;
+                            }
                             resolve();
                         }))
                             .on("error", (err) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {

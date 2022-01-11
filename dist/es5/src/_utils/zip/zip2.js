@@ -78,7 +78,7 @@ var Zip2 = (function (_super) {
                                         reject(err);
                                     };
                                     success = function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
-                                        var httpZipByteLength, failure_1, success_, ress, err_2, httpZipReader;
+                                        var httpZipByteLength, failure_1, success_1, ress, err_2, httpZipReader;
                                         var _this = this;
                                         return (0, tslib_1.__generator)(this, function (_a) {
                                             switch (_a.label) {
@@ -106,7 +106,7 @@ var Zip2 = (function (_super) {
                                                         debug(err);
                                                         reject(err);
                                                     };
-                                                    success_ = function (ress) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                                    success_1 = function (ress) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
                                                         var buffer, err_3;
                                                         return (0, tslib_1.__generator)(this, function (_a) {
                                                             switch (_a.label) {
@@ -168,7 +168,24 @@ var Zip2 = (function (_super) {
                                                         method: "GET",
                                                         uri: filePath,
                                                     })
-                                                        .on("response", success_)
+                                                        .on("response", function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                                        var successError_1;
+                                                        return (0, tslib_1.__generator)(this, function (_a) {
+                                                            switch (_a.label) {
+                                                                case 0:
+                                                                    _a.trys.push([0, 2, , 3]);
+                                                                    return [4, success_1(res)];
+                                                                case 1:
+                                                                    _a.sent();
+                                                                    return [3, 3];
+                                                                case 2:
+                                                                    successError_1 = _a.sent();
+                                                                    failure_1(successError_1);
+                                                                    return [2];
+                                                                case 3: return [2];
+                                                            }
+                                                        });
+                                                    }); })
                                                         .on("error", failure_1);
                                                     return [3, 7];
                                                 case 1:
@@ -189,7 +206,7 @@ var Zip2 = (function (_super) {
                                                     err_2 = _a.sent();
                                                     failure_1(err_2);
                                                     return [2];
-                                                case 5: return [4, success_(ress)];
+                                                case 5: return [4, success_1(ress)];
                                                 case 6:
                                                     _a.sent();
                                                     _a.label = 7;
@@ -237,7 +254,24 @@ var Zip2 = (function (_super) {
                                         method: "HEAD",
                                         uri: filePath,
                                     })
-                                        .on("response", success)
+                                        .on("response", function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                        var successError_2;
+                                        return (0, tslib_1.__generator)(this, function (_a) {
+                                            switch (_a.label) {
+                                                case 0:
+                                                    _a.trys.push([0, 2, , 3]);
+                                                    return [4, success(res)];
+                                                case 1:
+                                                    _a.sent();
+                                                    return [3, 3];
+                                                case 2:
+                                                    successError_2 = _a.sent();
+                                                    failure(successError_2);
+                                                    return [2];
+                                                case 3: return [2];
+                                            }
+                                        });
+                                    }); })
                                         .on("error", failure);
                                     return [3, 7];
                                 case 1:

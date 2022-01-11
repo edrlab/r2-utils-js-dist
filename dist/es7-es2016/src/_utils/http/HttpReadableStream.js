@@ -53,7 +53,15 @@ class HttpReadableStream extends stream_1.Readable {
                 method: "GET",
                 uri: this.url,
             })
-                .on("response", success)
+                .on("response", (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                try {
+                    yield success(res);
+                }
+                catch (successError) {
+                    failure(successError);
+                    return;
+                }
+            }))
                 .on("error", failure);
         }
         else {

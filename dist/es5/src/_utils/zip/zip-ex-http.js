@@ -78,11 +78,22 @@ var ZipExplodedHTTP = (function (_super) {
                                             uri: urlStrEntry,
                                         })
                                             .on("response", function (response) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                            var successError_1;
                                             return (0, tslib_1.__generator)(this, function (_a) {
                                                 switch (_a.label) {
-                                                    case 0: return [4, success(response)];
+                                                    case 0:
+                                                        _a.trys.push([0, 2, , 4]);
+                                                        return [4, success(response)];
                                                     case 1:
                                                         _a.sent();
+                                                        return [3, 4];
+                                                    case 2:
+                                                        successError_1 = _a.sent();
+                                                        return [4, failure(successError_1)];
+                                                    case 3:
+                                                        _a.sent();
+                                                        return [2];
+                                                    case 4:
                                                         resolve();
                                                         return [2];
                                                 }
@@ -219,11 +230,22 @@ var ZipExplodedHTTP = (function (_super) {
                                             uri: urlStrEntry,
                                         })
                                             .on("response", function (response) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                                            var successError_2;
                                             return (0, tslib_1.__generator)(this, function (_a) {
                                                 switch (_a.label) {
-                                                    case 0: return [4, success(response)];
+                                                    case 0:
+                                                        _a.trys.push([0, 2, , 4]);
+                                                        return [4, success(response)];
                                                     case 1:
                                                         _a.sent();
+                                                        return [3, 4];
+                                                    case 2:
+                                                        successError_2 = _a.sent();
+                                                        return [4, failure(successError_2)];
+                                                    case 3:
+                                                        _a.sent();
+                                                        return [2];
+                                                    case 4:
                                                         resolve();
                                                         return [2];
                                                 }

@@ -140,7 +140,15 @@ class Zip2 extends zip_1.Zip {
                                 method: "GET",
                                 uri: filePath,
                             })
-                                .on("response", success_)
+                                .on("response", (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                                try {
+                                    yield success_(res);
+                                }
+                                catch (successError) {
+                                    failure_(successError);
+                                    return;
+                                }
+                            }))
                                 .on("error", failure_);
                         }
                         else {
@@ -200,7 +208,15 @@ class Zip2 extends zip_1.Zip {
                         method: "HEAD",
                         uri: filePath,
                     })
-                        .on("response", success)
+                        .on("response", (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                        try {
+                            yield success(res);
+                        }
+                        catch (successError) {
+                            failure(successError);
+                            return;
+                        }
+                    }))
                         .on("error", failure);
                 }
                 else {

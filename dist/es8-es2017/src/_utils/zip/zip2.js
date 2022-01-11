@@ -136,7 +136,15 @@ class Zip2 extends zip_1.Zip {
                             method: "GET",
                             uri: filePath,
                         })
-                            .on("response", success_)
+                            .on("response", async (res) => {
+                            try {
+                                await success_(res);
+                            }
+                            catch (successError) {
+                                failure_(successError);
+                                return;
+                            }
+                        })
                             .on("error", failure_);
                     }
                     else {
@@ -196,7 +204,15 @@ class Zip2 extends zip_1.Zip {
                     method: "HEAD",
                     uri: filePath,
                 })
-                    .on("response", success)
+                    .on("response", async (res) => {
+                    try {
+                        await success(res);
+                    }
+                    catch (successError) {
+                        failure(successError);
+                        return;
+                    }
+                })
                     .on("error", failure);
             }
             else {

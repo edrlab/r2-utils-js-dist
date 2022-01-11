@@ -56,7 +56,13 @@ class ZipExplodedHTTP extends zip_1.Zip {
                         uri: urlStrEntry,
                     })
                         .on("response", async (response) => {
-                        await success(response);
+                        try {
+                            await success(response);
+                        }
+                        catch (successError) {
+                            await failure(successError);
+                            return;
+                        }
                         resolve();
                     })
                         .on("error", async (err) => {
@@ -133,7 +139,13 @@ class ZipExplodedHTTP extends zip_1.Zip {
                         uri: urlStrEntry,
                     })
                         .on("response", async (response) => {
-                        await success(response);
+                        try {
+                            await success(response);
+                        }
+                        catch (successError) {
+                            await failure(successError);
+                            return;
+                        }
                         resolve();
                     })
                         .on("error", async (err) => {
