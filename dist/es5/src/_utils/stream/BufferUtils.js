@@ -8,8 +8,8 @@ function bufferToStream(buffer) {
 }
 exports.bufferToStream = bufferToStream;
 function streamToBufferPromise_READABLE(readStream) {
-    return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
-        return (0, tslib_1.__generator)(this, function (_a) {
+    return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return tslib_1.__generator(this, function (_a) {
             return [2, new Promise(function (resolve, reject) {
                     var buffers = [];
                     var cleanup = function () {
@@ -48,8 +48,8 @@ function streamToBufferPromise_READABLE(readStream) {
 }
 exports.streamToBufferPromise_READABLE = streamToBufferPromise_READABLE;
 function streamToBufferPromise(readStream) {
-    return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
-        return (0, tslib_1.__generator)(this, function (_a) {
+    return tslib_1.__awaiter(this, void 0, void 0, function () {
+        return tslib_1.__generator(this, function (_a) {
             return [2, new Promise(function (resolve, reject) {
                     var buffers = [];
                     var cleanup = function () {

@@ -16,7 +16,7 @@ export interface IDynamicObject {
 export interface IParseOptions {
     runConstructor?: boolean;
 }
-export declare type FunctionType = any;
+export type FunctionType = any;
 export interface IXmlNamespaces {
     [ns: string]: string;
 }

@@ -8,14 +8,14 @@ const path = require("path");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip-ex");
 class ZipExploded extends zip_1.Zip {
+    static loadPromise(dirPath) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return Promise.resolve(new ZipExploded(dirPath));
+        });
+    }
     constructor(dirPath) {
         super();
         this.dirPath = dirPath;
-    }
-    static loadPromise(dirPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-            return Promise.resolve(new ZipExploded(dirPath));
-        });
     }
     freeDestroy() {
         debug("freeDestroy: ZipExploded -- " + this.dirPath);
@@ -31,8 +31,8 @@ class ZipExploded extends zip_1.Zip {
             && fs.existsSync(path.join(this.dirPath, entryPath));
     }
     getEntries() {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-            return new Promise((resolve, _reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, _reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 const dirPathNormalized = fs.realpathSync(this.dirPath);
                 const files = fs.readdirSync(this.dirPath, { withFileTypes: true }).
                     filter((f) => f.isFile()).map((f) => path.join(this.dirPath, f.name));
@@ -49,7 +49,7 @@ class ZipExploded extends zip_1.Zip {
         });
     }
     entryStreamPromise(entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                 return Promise.reject("no such path in zip exploded: " + entryPath);
             }
@@ -57,7 +57,7 @@ class ZipExploded extends zip_1.Zip {
             const stats = fs.lstatSync(fullPath);
             const streamAndLength = {
                 length: stats.size,
-                reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     return this.entryStreamPromise(entryPath);
                 }),
                 stream: fs.createReadStream(fullPath, { autoClose: false }),

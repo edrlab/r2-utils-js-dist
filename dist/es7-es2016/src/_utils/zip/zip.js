@@ -5,7 +5,7 @@ const tslib_1 = require("tslib");
 const RangeStream_1 = require("../stream/RangeStream");
 class Zip {
     entryStreamRangePromise(entryPath, begin, end) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             let streamAndLength;
             try {
                 streamAndLength = yield this.entryStreamPromise(entryPath);
@@ -20,7 +20,7 @@ class Zip {
             streamAndLength.stream.pipe(stream);
             const sal = {
                 length: streamAndLength.length,
-                reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     return this.entryStreamRangePromise(entryPath, begin, end);
                 }),
                 stream,

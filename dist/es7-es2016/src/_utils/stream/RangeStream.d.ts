@@ -1,4 +1,5 @@
 /// <reference types="node" />
+/// <reference types="node" />
 import { Transform } from "stream";
 export declare class RangeStream extends Transform {
     readonly streamBegin: number;

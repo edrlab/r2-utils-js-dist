@@ -6,11 +6,6 @@ const StreamZip = require("node-stream-zip");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip1");
 class Zip1 extends zip_1.Zip {
-    constructor(filePath, zip) {
-        super();
-        this.filePath = filePath;
-        this.zip = zip;
-    }
     static async loadPromise(filePath) {
         return new Promise((resolve, reject) => {
             const zip = new StreamZip({
@@ -33,6 +28,11 @@ class Zip1 extends zip_1.Zip {
                 resolve(new Zip1(filePath, zip));
             });
         });
+    }
+    constructor(filePath, zip) {
+        super();
+        this.filePath = filePath;
+        this.zip = zip;
     }
     freeDestroy() {
         debug("freeDestroy: Zip1 -- " + this.filePath);

@@ -8,15 +8,15 @@ var path = require("path");
 var zip_1 = require("./zip");
 var debug = debug_("r2:utils#zip/zip-ex");
 var ZipExploded = (function (_super) {
-    (0, tslib_1.__extends)(ZipExploded, _super);
+    tslib_1.__extends(ZipExploded, _super);
     function ZipExploded(dirPath) {
         var _this = _super.call(this) || this;
         _this.dirPath = dirPath;
         return _this;
     }
     ZipExploded.loadPromise = function (dirPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
-            return (0, tslib_1.__generator)(this, function (_a) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
                 return [2, Promise.resolve(new ZipExploded(dirPath))];
             });
         });
@@ -35,13 +35,13 @@ var ZipExploded = (function (_super) {
             && fs.existsSync(path.join(this.dirPath, entryPath));
     };
     ZipExploded.prototype.getEntries = function () {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var _this = this;
-            return (0, tslib_1.__generator)(this, function (_a) {
-                return [2, new Promise(function (resolve, _reject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2, new Promise(function (resolve, _reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
                         var dirPathNormalized, files, adjustedFiles;
                         var _this = this;
-                        return (0, tslib_1.__generator)(this, function (_a) {
+                        return tslib_1.__generator(this, function (_a) {
                             dirPathNormalized = fs.realpathSync(this.dirPath);
                             files = fs.readdirSync(this.dirPath, { withFileTypes: true }).
                                 filter(function (f) { return f.isFile(); }).map(function (f) { return path.join(_this.dirPath, f.name); });
@@ -61,10 +61,10 @@ var ZipExploded = (function (_super) {
         });
     };
     ZipExploded.prototype.entryStreamPromise = function (entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var fullPath, stats, streamAndLength;
             var _this = this;
-            return (0, tslib_1.__generator)(this, function (_a) {
+            return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                     return [2, Promise.reject("no such path in zip exploded: " + entryPath)];
                 }
@@ -72,8 +72,8 @@ var ZipExploded = (function (_super) {
                 stats = fs.lstatSync(fullPath);
                 streamAndLength = {
                     length: stats.size,
-                    reset: function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
-                        return (0, tslib_1.__generator)(this, function (_a) {
+                    reset: function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                        return tslib_1.__generator(this, function (_a) {
                             return [2, this.entryStreamPromise(entryPath)];
                         });
                     }); },

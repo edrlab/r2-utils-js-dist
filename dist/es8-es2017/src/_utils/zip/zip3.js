@@ -8,15 +8,6 @@ const UrlUtils_1 = require("../http/UrlUtils");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip3");
 class Zip3 extends zip_1.Zip {
-    constructor(filePath, zip) {
-        super();
-        this.filePath = filePath;
-        this.zip = zip;
-        this.entries = {};
-        this.zip.files.forEach((file) => {
-            this.entries[file.path] = file;
-        });
-    }
     static async loadPromise(filePath) {
         if ((0, UrlUtils_1.isHTTP)(filePath)) {
             return Zip3.loadPromiseHTTP(filePath);
@@ -53,6 +44,15 @@ class Zip3 extends zip_1.Zip {
             }
             debug(zip);
             resolve(new Zip3(filePath, zip));
+        });
+    }
+    constructor(filePath, zip) {
+        super();
+        this.filePath = filePath;
+        this.zip = zip;
+        this.entries = {};
+        this.zip.files.forEach((file) => {
+            this.entries[file.path] = file;
         });
     }
     freeDestroy() {

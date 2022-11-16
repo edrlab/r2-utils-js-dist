@@ -42,7 +42,7 @@ if (!stats.isFile() && !stats.isDirectory()) {
 const fileName = path.basename(filePath);
 const ext = path.extname(fileName);
 if (stats.isDirectory()) {
-    (() => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
+    (() => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         const zipExploded = yield zip_ex_1.ZipExploded.loadPromise(filePath);
         const entries = yield zipExploded.getEntries();
         for (const entryName of entries) {
@@ -72,7 +72,7 @@ if (stats.isDirectory()) {
     }))();
 }
 else if (/((\.epub3?)|(\.cbz)|(\.zip))$/i.test(ext)) {
-    (() => (0, tslib_1.__awaiter)(void 0, void 0, void 0, function* () {
+    (() => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         const time3 = process.hrtime();
         const zip3 = yield zip3_1.Zip3.loadPromise(filePath);
         const diff3 = process.hrtime(time3);

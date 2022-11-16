@@ -11,12 +11,6 @@ const zip_1 = require("./zip");
 const zip2RandomAccessReader_Http_1 = require("./zip2RandomAccessReader_Http");
 const debug = debug_("r2:utils#zip/zip2");
 class Zip2 extends zip_1.Zip {
-    constructor(filePath, zip) {
-        super();
-        this.filePath = filePath;
-        this.zip = zip;
-        this.entries = {};
-    }
     static async loadPromise(filePath) {
         if ((0, UrlUtils_1.isHTTP)(filePath)) {
             return Zip2.loadPromiseHTTP(filePath);
@@ -232,6 +226,12 @@ class Zip2 extends zip_1.Zip {
                 await success(res);
             }
         });
+    }
+    constructor(filePath, zip) {
+        super();
+        this.filePath = filePath;
+        this.zip = zip;
+        this.entries = {};
     }
     freeDestroy() {
         debug("freeDestroy: Zip2 -- " + this.filePath);

@@ -9,7 +9,7 @@ var stream_1 = require("stream");
 var BufferUtils_1 = require("../stream/BufferUtils");
 var debug = debug_("r2:utils#http/HttpReadableStream");
 var HttpReadableStream = (function (_super) {
-    (0, tslib_1.__extends)(HttpReadableStream, _super);
+    tslib_1.__extends(HttpReadableStream, _super);
     function HttpReadableStream(url, byteLength, byteStart, byteEnd) {
         var _this = _super.call(this) || this;
         _this.url = url;
@@ -30,9 +30,9 @@ var HttpReadableStream = (function (_super) {
             debug(err);
             _this.push(null);
         };
-        var success = function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+        var success = function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
             var buffer, err_1;
-            return (0, tslib_1.__generator)(this, function (_a) {
+            return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
@@ -67,9 +67,9 @@ var HttpReadableStream = (function (_super) {
                 method: "GET",
                 uri: this.url,
             })
-                .on("response", function (res) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                .on("response", function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
                 var successError_1;
-                return (0, tslib_1.__generator)(this, function (_a) {
+                return tslib_1.__generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
@@ -88,9 +88,9 @@ var HttpReadableStream = (function (_super) {
                 .on("error", failure);
         }
         else {
-            (function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+            (function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
                 var res, err_2;
-                return (0, tslib_1.__generator)(this, function (_a) {
+                return tslib_1.__generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);

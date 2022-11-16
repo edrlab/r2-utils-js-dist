@@ -6,7 +6,7 @@ var debug_ = require("debug");
 var stream_1 = require("stream");
 var debug = debug_("r2:utils#stream/RangeStream");
 var RangeStream = (function (_super) {
-    (0, tslib_1.__extends)(RangeStream, _super);
+    tslib_1.__extends(RangeStream, _super);
     function RangeStream(streamBegin, streamEnd, streamLength) {
         var _this = _super.call(this) || this;
         _this.streamBegin = streamBegin;

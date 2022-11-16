@@ -7,12 +7,12 @@ const path = require("path");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip-ex");
 class ZipExploded extends zip_1.Zip {
+    static async loadPromise(dirPath) {
+        return Promise.resolve(new ZipExploded(dirPath));
+    }
     constructor(dirPath) {
         super();
         this.dirPath = dirPath;
-    }
-    static async loadPromise(dirPath) {
-        return Promise.resolve(new ZipExploded(dirPath));
     }
     freeDestroy() {
         debug("freeDestroy: ZipExploded -- " + this.dirPath);

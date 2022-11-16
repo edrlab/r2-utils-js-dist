@@ -9,7 +9,7 @@ var UrlUtils_1 = require("../http/UrlUtils");
 var zip_1 = require("./zip");
 var debug = debug_("r2:utils#zip/zip3");
 var Zip3 = (function (_super) {
-    (0, tslib_1.__extends)(Zip3, _super);
+    tslib_1.__extends(Zip3, _super);
     function Zip3(filePath, zip) {
         var _this = _super.call(this) || this;
         _this.filePath = filePath;
@@ -21,15 +21,15 @@ var Zip3 = (function (_super) {
         return _this;
     }
     Zip3.loadPromise = function (filePath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var _this = this;
-            return (0, tslib_1.__generator)(this, function (_a) {
+            return tslib_1.__generator(this, function (_a) {
                 if ((0, UrlUtils_1.isHTTP)(filePath)) {
                     return [2, Zip3.loadPromiseHTTP(filePath)];
                 }
-                return [2, new Promise(function (resolve, reject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+                return [2, new Promise(function (resolve, reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
                         var zip, err_1;
-                        return (0, tslib_1.__generator)(this, function (_a) {
+                        return tslib_1.__generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
                                     _a.trys.push([0, 2, , 3]);
@@ -53,12 +53,12 @@ var Zip3 = (function (_super) {
         });
     };
     Zip3.loadPromiseHTTP = function (filePath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var _this = this;
-            return (0, tslib_1.__generator)(this, function (_a) {
-                return [2, new Promise(function (resolve, reject) { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2, new Promise(function (resolve, reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
                         var zip, err_2;
-                        return (0, tslib_1.__generator)(this, function (_a) {
+                        return tslib_1.__generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
                                     _a.trys.push([0, 2, , 3]);
@@ -101,8 +101,8 @@ var Zip3 = (function (_super) {
         return this.hasEntries() && this.entries[entryPath];
     };
     Zip3.prototype.getEntries = function () {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
-            return (0, tslib_1.__generator)(this, function (_a) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries()) {
                     return [2, Promise.resolve([])];
                 }
@@ -111,9 +111,9 @@ var Zip3 = (function (_super) {
         });
     };
     Zip3.prototype.entryStreamPromise = function (entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var _this = this;
-            return (0, tslib_1.__generator)(this, function (_a) {
+            return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                     return [2, Promise.reject("no such path in zip: " + entryPath)];
                 }
@@ -123,8 +123,8 @@ var Zip3 = (function (_super) {
                         var stream = entry.stream();
                         var streamAndLength = {
                             length: entry.size,
-                            reset: function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
-                                return (0, tslib_1.__generator)(this, function (_a) {
+                            reset: function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                return tslib_1.__generator(this, function (_a) {
                                     return [2, this.entryStreamPromise(entryPath)];
                                 });
                             }); },

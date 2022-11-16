@@ -9,21 +9,12 @@ const UrlUtils_1 = require("../http/UrlUtils");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip3");
 class Zip3 extends zip_1.Zip {
-    constructor(filePath, zip) {
-        super();
-        this.filePath = filePath;
-        this.zip = zip;
-        this.entries = {};
-        this.zip.files.forEach((file) => {
-            this.entries[file.path] = file;
-        });
-    }
     static loadPromise(filePath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             if ((0, UrlUtils_1.isHTTP)(filePath)) {
                 return Zip3.loadPromiseHTTP(filePath);
             }
-            return new Promise((resolve, reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 let zip;
                 try {
                     zip = yield unzipper.Open.file(filePath);
@@ -39,8 +30,8 @@ class Zip3 extends zip_1.Zip {
         });
     }
     static loadPromiseHTTP(filePath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-            return new Promise((resolve, reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 let zip;
                 try {
                     zip = yield unzipper.Open.url(request.get, {
@@ -60,6 +51,15 @@ class Zip3 extends zip_1.Zip {
             }));
         });
     }
+    constructor(filePath, zip) {
+        super();
+        this.filePath = filePath;
+        this.zip = zip;
+        this.entries = {};
+        this.zip.files.forEach((file) => {
+            this.entries[file.path] = file;
+        });
+    }
     freeDestroy() {
         debug("freeDestroy: Zip3 -- " + this.filePath);
         if (this.zip) {
@@ -75,7 +75,7 @@ class Zip3 extends zip_1.Zip {
         return this.hasEntries() && this.entries[entryPath];
     }
     getEntries() {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!this.hasEntries()) {
                 return Promise.resolve([]);
             }
@@ -83,7 +83,7 @@ class Zip3 extends zip_1.Zip {
         });
     }
     entryStreamPromise(entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                 return Promise.reject("no such path in zip: " + entryPath);
             }
@@ -93,7 +93,7 @@ class Zip3 extends zip_1.Zip {
                 const stream = entry.stream();
                 const streamAndLength = {
                     length: entry.size,
-                    reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                    reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
                         return this.entryStreamPromise(entryPath);
                     }),
                     stream,

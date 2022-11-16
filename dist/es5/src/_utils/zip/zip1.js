@@ -7,7 +7,7 @@ var StreamZip = require("node-stream-zip");
 var zip_1 = require("./zip");
 var debug = debug_("r2:utils#zip/zip1");
 var Zip1 = (function (_super) {
-    (0, tslib_1.__extends)(Zip1, _super);
+    tslib_1.__extends(Zip1, _super);
     function Zip1(filePath, zip) {
         var _this = _super.call(this) || this;
         _this.filePath = filePath;
@@ -15,8 +15,8 @@ var Zip1 = (function (_super) {
         return _this;
     }
     Zip1.loadPromise = function (filePath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
-            return (0, tslib_1.__generator)(this, function (_a) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
                 return [2, new Promise(function (resolve, reject) {
                         var zip = new StreamZip({
                             file: filePath,
@@ -58,8 +58,8 @@ var Zip1 = (function (_super) {
             && this.zip.entries()[entryPath];
     };
     Zip1.prototype.getEntries = function () {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
-            return (0, tslib_1.__generator)(this, function (_a) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries()) {
                     return [2, Promise.resolve([])];
                 }
@@ -68,9 +68,9 @@ var Zip1 = (function (_super) {
         });
     };
     Zip1.prototype.entryStreamPromise = function (entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var _this = this;
-            return (0, tslib_1.__generator)(this, function (_a) {
+            return tslib_1.__generator(this, function (_a) {
                 if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                     return [2, Promise.reject("no such path in zip: " + entryPath)];
                 }
@@ -83,8 +83,8 @@ var Zip1 = (function (_super) {
                             var entry = _this.zip.entries()[entryPath];
                             var streamAndLength = {
                                 length: entry.size,
-                                reset: function () { return (0, tslib_1.__awaiter)(_this, void 0, void 0, function () {
-                                    return (0, tslib_1.__generator)(this, function (_a) {
+                                reset: function () { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                    return tslib_1.__generator(this, function (_a) {
                                         return [2, this.entryStreamPromise(entryPath)];
                                     });
                                 }); },

@@ -30,7 +30,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
         const failure = (err) => {
             debug(err);
         };
-        const success = (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        const success = (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                 failure("HTTP CODE " + res.statusCode);
                 return;
@@ -63,7 +63,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
                 method: "GET",
                 uri: this.url,
             })
-                .on("response", (res) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                .on("response", (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 try {
                     yield success(res);
                 }
@@ -75,7 +75,7 @@ class HttpZipReader extends yauzl.RandomAccessReader {
                 .on("error", failure);
         }
         else {
-            (() => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            (() => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 let res;
                 try {
                     res = yield requestPromise({

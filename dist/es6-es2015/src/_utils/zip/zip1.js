@@ -7,13 +7,8 @@ const StreamZip = require("node-stream-zip");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip1");
 class Zip1 extends zip_1.Zip {
-    constructor(filePath, zip) {
-        super();
-        this.filePath = filePath;
-        this.zip = zip;
-    }
     static loadPromise(filePath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 const zip = new StreamZip({
                     file: filePath,
@@ -37,6 +32,11 @@ class Zip1 extends zip_1.Zip {
             });
         });
     }
+    constructor(filePath, zip) {
+        super();
+        this.filePath = filePath;
+        this.zip = zip;
+    }
     freeDestroy() {
         debug("freeDestroy: Zip1 -- " + this.filePath);
         if (this.zip) {
@@ -54,7 +54,7 @@ class Zip1 extends zip_1.Zip {
             && this.zip.entries()[entryPath];
     }
     getEntries() {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!this.hasEntries()) {
                 return Promise.resolve([]);
             }
@@ -62,7 +62,7 @@ class Zip1 extends zip_1.Zip {
         });
     }
     entryStreamPromise(entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!this.hasEntries() || !this.hasEntry(entryPath)) {
                 return Promise.reject("no such path in zip: " + entryPath);
             }
@@ -75,7 +75,7 @@ class Zip1 extends zip_1.Zip {
                     const entry = this.zip.entries()[entryPath];
                     const streamAndLength = {
                         length: entry.size,
-                        reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                        reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             return this.entryStreamPromise(entryPath);
                         }),
                         stream,

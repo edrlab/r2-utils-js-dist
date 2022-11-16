@@ -9,13 +9,13 @@ const url_1 = require("url");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip-ex-http");
 class ZipExplodedHTTP extends zip_1.Zip {
+    static async loadPromise(urlStr) {
+        return Promise.resolve(new ZipExplodedHTTP(urlStr));
+    }
     constructor(urlStr) {
         super();
         this.urlStr = urlStr;
         debug(`ZipExplodedHTTP: ${urlStr}`);
-    }
-    static async loadPromise(urlStr) {
-        return Promise.resolve(new ZipExplodedHTTP(urlStr));
     }
     freeDestroy() {
         debug("freeDestroy: ZipExplodedHTTP -- " + this.urlStr);

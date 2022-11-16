@@ -10,15 +10,15 @@ const url_1 = require("url");
 const zip_1 = require("./zip");
 const debug = debug_("r2:utils#zip/zip-ex-http");
 class ZipExplodedHTTP extends zip_1.Zip {
+    static loadPromise(urlStr) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return Promise.resolve(new ZipExplodedHTTP(urlStr));
+        });
+    }
     constructor(urlStr) {
         super();
         this.urlStr = urlStr;
         debug(`ZipExplodedHTTP: ${urlStr}`);
-    }
-    static loadPromise(urlStr) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-            return Promise.resolve(new ZipExplodedHTTP(urlStr));
-        });
     }
     freeDestroy() {
         debug("freeDestroy: ZipExplodedHTTP -- " + this.urlStr);
@@ -33,18 +33,18 @@ class ZipExplodedHTTP extends zip_1.Zip {
         return true;
     }
     hasEntryAsync(entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             debug(`hasEntryAsync: ${entryPath}`);
             const url = new url_1.URL(this.urlStr);
             url.pathname += entryPath;
             const urlStrEntry = url.toString();
             debug("urlStrEntry: ", urlStrEntry);
-            return new Promise((topresolve, _topreject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-                const failure = (err) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            return new Promise((topresolve, _topreject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                const failure = (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     debug(err);
                     topresolve(false);
                 });
-                const success = (response) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                const success = (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     if (response.statusCode && (response.statusCode < 200 || response.statusCode >= 300)) {
                         topresolve(false);
                         return;
@@ -59,7 +59,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                             method: "HEAD",
                             uri: urlStrEntry,
                         })
-                            .on("response", (response) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                            .on("response", (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             try {
                                 yield success(response);
                             }
@@ -69,7 +69,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                             }
                             resolve();
                         }))
-                            .on("error", (err) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                            .on("error", (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             yield failure(err);
                             reject();
                         }));
@@ -99,25 +99,25 @@ class ZipExplodedHTTP extends zip_1.Zip {
         });
     }
     getEntries() {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-            return new Promise((_resolve, reject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            return new Promise((_resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 reject("Not implemented.");
             }));
         });
     }
     entryStreamPromise(entryPath) {
-        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             debug(`entryStreamPromise: ${entryPath}`);
             const url = new url_1.URL(this.urlStr);
             url.pathname += entryPath;
             const urlStrEntry = url.toString();
             debug("urlStrEntry: ", urlStrEntry);
-            return new Promise((topresolve, topreject) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-                const failure = (err) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            return new Promise((topresolve, topreject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                const failure = (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     debug(err);
                     topreject(err);
                 });
-                const success = (response) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                const success = (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     if (response.statusCode && (response.statusCode < 200 || response.statusCode >= 300)) {
                         yield failure("HTTP CODE " + response.statusCode);
                         return;
@@ -131,7 +131,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                     response.pipe(stream);
                     const streamAndLength = {
                         length,
-                        reset: () => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                        reset: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             return this.entryStreamPromise(entryPath);
                         }),
                         stream,
@@ -146,7 +146,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                             method: "GET",
                             uri: urlStrEntry,
                         })
-                            .on("response", (response) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                            .on("response", (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             try {
                                 yield success(response);
                             }
@@ -156,7 +156,7 @@ class ZipExplodedHTTP extends zip_1.Zip {
                             }
                             resolve();
                         }))
-                            .on("error", (err) => (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+                            .on("error", (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             yield failure(err);
                             reject();
                         }));
