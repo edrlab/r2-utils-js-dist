@@ -14,7 +14,7 @@ var RangeStream = (function (_super) {
         _this.streamLength = streamLength;
         _this.bytesReceived = 0;
         _this.finished = false;
-        _this.closed = false;
+        _this.isClosed = false;
         _this.on("end", function () {
         });
         _this.on("finish", function () {
@@ -27,9 +27,9 @@ var RangeStream = (function (_super) {
     RangeStream.prototype._transform = function (chunk, _encoding, callback) {
         this.bytesReceived += chunk.length;
         if (this.finished) {
-            if (!this.closed) {
+            if (!this.isClosed) {
                 debug("???? CLOSING...");
-                this.closed = true;
+                this.isClosed = true;
                 this.push(null);
             }
             else {
@@ -51,7 +51,7 @@ var RangeStream = (function (_super) {
                 }
                 this.push(chunk.slice(chunkBegin, chunkEnd + 1));
                 if (this.finished) {
-                    this.closed = true;
+                    this.isClosed = true;
                     this.push(null);
                     this.end();
                 }

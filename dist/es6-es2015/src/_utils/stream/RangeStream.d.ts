@@ -7,7 +7,7 @@ export declare class RangeStream extends Transform {
     readonly streamLength: number;
     private bytesReceived;
     private finished;
-    private closed;
+    private isClosed;
     constructor(streamBegin: number, streamEnd: number, streamLength: number);
     _flush(callback: () => void): void;
     _transform(chunk: Buffer, _encoding: string, callback: () => void): void;

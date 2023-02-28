@@ -12,7 +12,7 @@ class RangeStream extends stream_1.Transform {
         this.streamLength = streamLength;
         this.bytesReceived = 0;
         this.finished = false;
-        this.closed = false;
+        this.isClosed = false;
         this.on("end", () => {
         });
         this.on("finish", () => {
@@ -24,9 +24,9 @@ class RangeStream extends stream_1.Transform {
     _transform(chunk, _encoding, callback) {
         this.bytesReceived += chunk.length;
         if (this.finished) {
-            if (!this.closed) {
+            if (!this.isClosed) {
                 debug("???? CLOSING...");
-                this.closed = true;
+                this.isClosed = true;
                 this.push(null);
             }
             else {
@@ -48,7 +48,7 @@ class RangeStream extends stream_1.Transform {
                 }
                 this.push(chunk.slice(chunkBegin, chunkEnd + 1));
                 if (this.finished) {
-                    this.closed = true;
+                    this.isClosed = true;
                     this.push(null);
                     this.end();
                 }
