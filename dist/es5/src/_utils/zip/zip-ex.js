@@ -48,7 +48,7 @@ var ZipExploded = (function (_super) {
                             adjustedFiles = files.map(function (file) {
                                 var filePathNormalized = fs.realpathSync(file);
                                 var relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");
-                                if (relativeFilePath.indexOf("/") === 0) {
+                                if (relativeFilePath.indexOf("/") === 0 || relativeFilePath.indexOf("\\") === 0) {
                                     relativeFilePath = relativeFilePath.substr(1);
                                 }
                                 return relativeFilePath;
