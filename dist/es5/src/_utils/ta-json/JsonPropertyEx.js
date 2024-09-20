@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JsonPropertyEx = void 0;
+exports.JsonPropertyEx = JsonPropertyEx;
 require("reflect-metadata");
 var debug_ = require("debug");
 var ta_json_x_1 = require("ta-json-x");
@@ -34,5 +34,4 @@ function JsonPropertyEx(propertyName) {
         return (0, ta_json_x_1.JsonProperty)(propertyName)(target, key);
     };
 }
-exports.JsonPropertyEx = JsonPropertyEx;
 //# sourceMappingURL=JsonPropertyEx.js.map

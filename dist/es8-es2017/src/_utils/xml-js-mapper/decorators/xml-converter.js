@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.XmlConverter = void 0;
+exports.XmlConverter = XmlConverter;
 const object_definition_1 = require("../classes/object-definition");
 function XmlConverter(converter) {
     return (target, key) => {
@@ -13,5 +13,4 @@ function XmlConverter(converter) {
         }
     };
 }
-exports.XmlConverter = XmlConverter;
 //# sourceMappingURL=xml-converter.js.map

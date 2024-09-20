@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.XmlWriteonly = void 0;
+exports.XmlWriteonly = XmlWriteonly;
 var object_definition_1 = require("../classes/object-definition");
 function XmlWriteonly() {
     return function (target, key) {
@@ -8,5 +8,4 @@ function XmlWriteonly() {
         property.writeonly = true;
     };
 }
-exports.XmlWriteonly = XmlWriteonly;
 //# sourceMappingURL=xml-writeonly.js.map

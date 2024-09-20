@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.zipLoadPromise = void 0;
+exports.zipLoadPromise = zipLoadPromise;
 const fs = require("fs");
 const url_1 = require("url");
 const UrlUtils_1 = require("../http/UrlUtils");
@@ -23,5 +23,4 @@ async function zipLoadPromise(filePath) {
     }
     return zip1_1.Zip1.loadPromise(filePath);
 }
-exports.zipLoadPromise = zipLoadPromise;
 //# sourceMappingURL=zipFactory.js.map

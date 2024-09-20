@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ZipExplodedHTTP = void 0;
 const debug_ = require("debug");
 const request = require("request");
-const requestPromise = require("request-promise-native");
 const stream_1 = require("stream");
 const url_1 = require("url");
 const zip_1 = require("./zip");
@@ -47,49 +46,31 @@ class ZipExplodedHTTP extends zip_1.Zip {
                 }
                 topresolve(true);
             };
-            const needsStreamingResponse = true;
-            if (needsStreamingResponse) {
-                const promise = new Promise((resolve, reject) => {
-                    request.get({
-                        headers: {},
-                        method: "HEAD",
-                        uri: urlStrEntry,
-                    })
-                        .on("response", async (response) => {
-                        try {
-                            await success(response);
-                        }
-                        catch (successError) {
-                            await failure(successError);
-                            return;
-                        }
-                        resolve();
-                    })
-                        .on("error", async (err) => {
-                        await failure(err);
-                        reject();
-                    });
-                });
-                try {
-                    await promise;
-                }
-                catch (_err) {
-                }
-            }
-            else {
-                let response;
-                try {
-                    response = await requestPromise({
-                        headers: {},
-                        method: "HEAD",
-                        resolveWithFullResponse: true,
-                        uri: urlStrEntry,
-                    });
-                    await success(response);
-                }
-                catch (err) {
+            const promise = new Promise((resolve, reject) => {
+                request.get({
+                    headers: {},
+                    method: "HEAD",
+                    uri: urlStrEntry,
+                })
+                    .on("response", async (response) => {
+                    try {
+                        await success(response);
+                    }
+                    catch (successError) {
+                        await failure(successError);
+                        return;
+                    }
+                    resolve();
+                })
+                    .on("error", async (err) => {
                     await failure(err);
-                }
+                    reject();
+                });
+            });
+            try {
+                await promise;
+            }
+            catch (_err) {
             }
         });
     }
@@ -130,49 +111,31 @@ class ZipExplodedHTTP extends zip_1.Zip {
                 };
                 topresolve(streamAndLength);
             };
-            const needsStreamingResponse = true;
-            if (needsStreamingResponse) {
-                const promise = new Promise((resolve, reject) => {
-                    request.get({
-                        headers: {},
-                        method: "GET",
-                        uri: urlStrEntry,
-                    })
-                        .on("response", async (response) => {
-                        try {
-                            await success(response);
-                        }
-                        catch (successError) {
-                            await failure(successError);
-                            return;
-                        }
-                        resolve();
-                    })
-                        .on("error", async (err) => {
-                        await failure(err);
-                        reject();
-                    });
-                });
-                try {
-                    await promise;
-                }
-                catch (_err) {
-                }
-            }
-            else {
-                let response;
-                try {
-                    response = await requestPromise({
-                        headers: {},
-                        method: "GET",
-                        resolveWithFullResponse: true,
-                        uri: urlStrEntry,
-                    });
-                    await success(response);
-                }
-                catch (err) {
+            const promise = new Promise((resolve, reject) => {
+                request.get({
+                    headers: {},
+                    method: "GET",
+                    uri: urlStrEntry,
+                })
+                    .on("response", async (response) => {
+                    try {
+                        await success(response);
+                    }
+                    catch (successError) {
+                        await failure(successError);
+                        return;
+                    }
+                    resolve();
+                })
+                    .on("error", async (err) => {
                     await failure(err);
-                }
+                    reject();
+                });
+            });
+            try {
+                await promise;
+            }
+            catch (_err) {
             }
         });
     }

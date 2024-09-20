@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.XmlObject = void 0;
+exports.XmlObject = XmlObject;
 var object_definition_1 = require("../classes/object-definition");
 function XmlObject(namespaces) {
     return function (objectType) {
@@ -35,5 +35,4 @@ function XmlObject(namespaces) {
         }
     };
 }
-exports.XmlObject = XmlObject;
 //# sourceMappingURL=xml-object.js.map

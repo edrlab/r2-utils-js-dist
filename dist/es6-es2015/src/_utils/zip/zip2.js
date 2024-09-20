@@ -4,7 +4,6 @@ exports.Zip2 = void 0;
 const tslib_1 = require("tslib");
 const debug_ = require("debug");
 const request = require("request");
-const requestPromise = require("request-promise-native");
 const yauzl = require("yauzl");
 const UrlUtils_1 = require("../http/UrlUtils");
 const BufferUtils_1 = require("../stream/BufferUtils");
@@ -53,7 +52,6 @@ class Zip2 extends zip_1.Zip {
     }
     static loadPromiseHTTP(filePath) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const needsStreamingResponse = true;
             return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 const failure = (err) => {
                     debug(err);
@@ -128,39 +126,21 @@ class Zip2 extends zip_1.Zip {
                                 });
                             });
                         });
-                        if (needsStreamingResponse) {
-                            request.get({
-                                headers: {},
-                                method: "GET",
-                                uri: filePath,
-                            })
-                                .on("response", (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-                                try {
-                                    yield success_(res);
-                                }
-                                catch (successError) {
-                                    failure_(successError);
-                                    return;
-                                }
-                            }))
-                                .on("error", failure_);
-                        }
-                        else {
-                            let ress;
+                        request.get({
+                            headers: {},
+                            method: "GET",
+                            uri: filePath,
+                        })
+                            .on("response", (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                             try {
-                                ress = yield requestPromise({
-                                    headers: {},
-                                    method: "GET",
-                                    resolveWithFullResponse: true,
-                                    uri: filePath,
-                                });
+                                yield success_(res);
                             }
-                            catch (err) {
-                                failure_(err);
+                            catch (successError) {
+                                failure_(successError);
                                 return;
                             }
-                            yield success_(ress);
-                        }
+                        }))
+                            .on("error", failure_);
                         return;
                     }
                     const httpZipReader = new zip2RandomAccessReader_Http_1.HttpZipReader(filePath, httpZipByteLength);
@@ -196,39 +176,21 @@ class Zip2 extends zip_1.Zip {
                         });
                     });
                 });
-                if (needsStreamingResponse) {
-                    request.get({
-                        headers: {},
-                        method: "HEAD",
-                        uri: filePath,
-                    })
-                        .on("response", (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-                        try {
-                            yield success(res);
-                        }
-                        catch (successError) {
-                            failure(successError);
-                            return;
-                        }
-                    }))
-                        .on("error", failure);
-                }
-                else {
-                    let res;
+                request.get({
+                    headers: {},
+                    method: "HEAD",
+                    uri: filePath,
+                })
+                    .on("response", (res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                     try {
-                        res = yield requestPromise({
-                            headers: {},
-                            method: "HEAD",
-                            resolveWithFullResponse: true,
-                            uri: filePath,
-                        });
+                        yield success(res);
                     }
-                    catch (err) {
-                        failure(err);
+                    catch (successError) {
+                        failure(successError);
                         return;
                     }
-                    yield success(res);
-                }
+                }))
+                    .on("error", failure);
             }));
         });
     }

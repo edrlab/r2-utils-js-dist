@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.traverseJsonObjects = exports.sortObject = exports.isNullOrUndefined = void 0;
+exports.isNullOrUndefined = isNullOrUndefined;
+exports.sortObject = sortObject;
+exports.traverseJsonObjects = traverseJsonObjects;
 function isNullOrUndefined(val) {
     return val === undefined || val === null;
 }
-exports.isNullOrUndefined = isNullOrUndefined;
 function sortObject(obj) {
     if (obj === null) {
         return null;
@@ -24,7 +25,6 @@ function sortObject(obj) {
     });
     return newObj;
 }
-exports.sortObject = sortObject;
 function traverseJsonObjects_(parent, keyInParent, obj, func) {
     func(obj, parent, keyInParent);
     if (obj instanceof Array) {
@@ -49,5 +49,4 @@ function traverseJsonObjects_(parent, keyInParent, obj, func) {
 function traverseJsonObjects(obj, func) {
     traverseJsonObjects_(undefined, undefined, obj, func);
 }
-exports.traverseJsonObjects = traverseJsonObjects;
 //# sourceMappingURL=JsonUtils.js.map

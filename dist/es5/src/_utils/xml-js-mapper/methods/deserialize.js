@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deserialize = void 0;
+exports.deserialize = deserialize;
 var tslib_1 = require("tslib");
 var xpath = require("xpath");
 var object_definition_1 = require("../classes/object-definition");
@@ -9,7 +9,6 @@ function deserialize(objectInstance, objectType, options) {
     if (options === void 0) { options = { runConstructor: false }; }
     return deserializeRootObject(objectInstance, objectType, options);
 }
-exports.deserialize = deserialize;
 function deserializeRootObject(objectInstance, objectType, options) {
     if (objectType === void 0) { objectType = Object; }
     if (!object_definition_1.objectDefinitions.has(objectType)) {

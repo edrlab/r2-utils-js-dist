@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export interface IStreamAndLength {
     stream: NodeJS.ReadableStream;
     length: number;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.XmlConstructor = void 0;
+exports.XmlConstructor = XmlConstructor;
 const object_definition_1 = require("../classes/object-definition");
 function XmlConstructor() {
     return (target, key) => {
@@ -8,5 +8,4 @@ function XmlConstructor() {
         definition.ctr = target[key];
     };
 }
-exports.XmlConstructor = XmlConstructor;
 //# sourceMappingURL=xml-constructor.js.map

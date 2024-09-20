@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.injectFileInZip = exports.injectBufferInZip = exports.injectStreamInZip = void 0;
+exports.injectStreamInZip = injectStreamInZip;
+exports.injectBufferInZip = injectBufferInZip;
+exports.injectFileInZip = injectFileInZip;
 var debug_ = require("debug");
 var fs = require("fs");
 var yauzl = require("yauzl");
@@ -15,15 +17,12 @@ var InjectType;
 function injectStreamInZip(destPathTMP, destPathFINAL, stream, zipEntryPath, zipError, doneCallback) {
     injectObjectInZip(destPathTMP, destPathFINAL, stream, InjectType.STREAM, zipEntryPath, zipError, doneCallback);
 }
-exports.injectStreamInZip = injectStreamInZip;
 function injectBufferInZip(destPathTMP, destPathFINAL, buffer, zipEntryPath, zipError, doneCallback) {
     injectObjectInZip(destPathTMP, destPathFINAL, buffer, InjectType.BUFFER, zipEntryPath, zipError, doneCallback);
 }
-exports.injectBufferInZip = injectBufferInZip;
 function injectFileInZip(destPathTMP, destPathFINAL, filePath, zipEntryPath, zipError, doneCallback) {
     injectObjectInZip(destPathTMP, destPathFINAL, filePath, InjectType.FILE, zipEntryPath, zipError, doneCallback);
 }
-exports.injectFileInZip = injectFileInZip;
 function injectObjectInZip(destPathTMP, destPathFINAL, contentsToInject, typeOfContentsToInject, zipEntryPath, zipError, doneCallback) {
     yauzl.open(destPathTMP, { lazyEntries: true, autoClose: false }, function (err, zip) {
         if (err || !zip) {

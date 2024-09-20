@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTypedInheritanceChain = exports.getInheritanceChain = exports.getDefinition = exports.objectDefinitions = exports.ObjectDefinition = void 0;
+exports.objectDefinitions = exports.ObjectDefinition = void 0;
+exports.getDefinition = getDefinition;
+exports.getInheritanceChain = getInheritanceChain;
+exports.getTypedInheritanceChain = getTypedInheritanceChain;
 var property_definition_1 = require("./property-definition");
 var ObjectDefinition = (function () {
     function ObjectDefinition() {
@@ -31,7 +34,6 @@ function getDefinition(objectType) {
     }
     return definition;
 }
-exports.getDefinition = getDefinition;
 function getInheritanceChain(objectType) {
     if (!objectType) {
         return [];
@@ -39,7 +41,6 @@ function getInheritanceChain(objectType) {
     var parent = Object.getPrototypeOf(objectType);
     return [objectType.constructor].concat(getInheritanceChain(parent));
 }
-exports.getInheritanceChain = getInheritanceChain;
 function getChildObjectTypeDefinitions(parentObjectType) {
     var childDefs = [];
     exports.objectDefinitions.forEach(function (def, objectType) {
@@ -82,5 +83,4 @@ function getTypedInheritanceChain(objectType, objectInstance) {
     var inheritanceChain = new Set(getInheritanceChain(Object.create(actualObjectType.prototype)));
     return Array.from(inheritanceChain).filter(function (t) { return exports.objectDefinitions.has(t); });
 }
-exports.getTypedInheritanceChain = getTypedInheritanceChain;
 //# sourceMappingURL=object-definition.js.map

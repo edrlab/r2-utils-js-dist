@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.streamToBufferPromise = exports.streamToBufferPromise_READABLE = exports.bufferToStream = void 0;
+exports.bufferToStream = bufferToStream;
+exports.streamToBufferPromise_READABLE = streamToBufferPromise_READABLE;
+exports.streamToBufferPromise = streamToBufferPromise;
 const BufferReadableStream_1 = require("./BufferReadableStream");
 function bufferToStream(buffer) {
     return new BufferReadableStream_1.BufferReadableStream(buffer);
 }
-exports.bufferToStream = bufferToStream;
 async function streamToBufferPromise_READABLE(readStream) {
     return new Promise((resolve, reject) => {
         const buffers = [];
@@ -41,7 +42,6 @@ async function streamToBufferPromise_READABLE(readStream) {
         };
     });
 }
-exports.streamToBufferPromise_READABLE = streamToBufferPromise_READABLE;
 async function streamToBufferPromise(readStream) {
     return new Promise((resolve, reject) => {
         const buffers = [];
@@ -67,5 +67,4 @@ async function streamToBufferPromise(readStream) {
         readStream.on("end", handleEnd);
     });
 }
-exports.streamToBufferPromise = streamToBufferPromise;
 //# sourceMappingURL=BufferUtils.js.map

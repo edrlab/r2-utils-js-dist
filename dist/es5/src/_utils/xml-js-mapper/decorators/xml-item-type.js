@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.XmlItemType = void 0;
+exports.XmlItemType = XmlItemType;
 var object_definition_1 = require("../classes/object-definition");
 function XmlItemType(objectType) {
     return function (target, key) {
@@ -8,5 +8,4 @@ function XmlItemType(objectType) {
         property.objectType = objectType;
     };
 }
-exports.XmlItemType = XmlItemType;
 //# sourceMappingURL=xml-item-type.js.map

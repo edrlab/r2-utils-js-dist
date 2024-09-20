@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
 import { Transform } from "stream";
 export declare class CounterPassThroughStream extends Transform {
     bytesReceived: number;

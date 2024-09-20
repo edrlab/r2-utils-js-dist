@@ -4,7 +4,6 @@ exports.Zip2 = void 0;
 var tslib_1 = require("tslib");
 var debug_ = require("debug");
 var request = require("request");
-var requestPromise = require("request-promise-native");
 var yauzl = require("yauzl");
 var UrlUtils_1 = require("../http/UrlUtils");
 var BufferUtils_1 = require("../stream/BufferUtils");
@@ -63,241 +62,185 @@ var Zip2 = (function (_super) {
     };
     Zip2.loadPromiseHTTP = function (filePath) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var needsStreamingResponse;
             var _this = this;
             return tslib_1.__generator(this, function (_a) {
-                needsStreamingResponse = true;
                 return [2, new Promise(function (resolve, reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                        var failure, success, res, err_1;
+                        var failure, success;
                         var _this = this;
                         return tslib_1.__generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    failure = function (err) {
-                                        debug(err);
-                                        reject(err);
-                                    };
-                                    success = function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                        var httpZipByteLength, failure_1, success_1, ress, err_2, httpZipReader;
-                                        var _this = this;
-                                        return tslib_1.__generator(this, function (_a) {
-                                            switch (_a.label) {
-                                                case 0:
-                                                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
-                                                        failure("HTTP CODE " + res.statusCode);
-                                                        return [2];
-                                                    }
-                                                    debug(filePath);
-                                                    debug(res.headers);
-                                                    if (!res.headers["content-length"]) {
-                                                        reject("content-length not supported!");
-                                                        return [2];
-                                                    }
-                                                    httpZipByteLength = parseInt(res.headers["content-length"], 10);
-                                                    debug("Content-Length: ".concat(httpZipByteLength));
-                                                    if (!(!res.headers["accept-ranges"]
-                                                        || res.headers["accept-ranges"].indexOf("bytes") < 0)) return [3, 8];
-                                                    if (httpZipByteLength > (2 * 1024 * 1024)) {
-                                                        reject("accept-ranges not supported, file too big to download: " + httpZipByteLength);
-                                                        return [2];
-                                                    }
-                                                    debug("Downloading: " + filePath);
-                                                    failure_1 = function (err) {
-                                                        debug(err);
-                                                        reject(err);
-                                                    };
-                                                    success_1 = function (ress) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                                        var buffer, err_3;
-                                                        return tslib_1.__generator(this, function (_a) {
-                                                            switch (_a.label) {
-                                                                case 0:
-                                                                    if (ress.statusCode && (ress.statusCode < 200 || ress.statusCode >= 300)) {
-                                                                        failure_1("HTTP CODE " + ress.statusCode);
-                                                                        return [2];
-                                                                    }
-                                                                    _a.label = 1;
-                                                                case 1:
-                                                                    _a.trys.push([1, 3, , 4]);
-                                                                    return [4, (0, BufferUtils_1.streamToBufferPromise)(ress)];
-                                                                case 2:
-                                                                    buffer = _a.sent();
-                                                                    return [3, 4];
-                                                                case 3:
-                                                                    err_3 = _a.sent();
-                                                                    debug(err_3);
-                                                                    reject(err_3);
-                                                                    return [2];
-                                                                case 4:
-                                                                    yauzl.fromBuffer(buffer, { lazyEntries: true }, function (err, zip) {
-                                                                        if (err || !zip) {
-                                                                            debug("yauzl init ERROR");
-                                                                            debug(err);
-                                                                            reject(err);
-                                                                            return;
-                                                                        }
-                                                                        var zip2 = new Zip2(filePath, zip);
-                                                                        zip.on("error", function (erro) {
-                                                                            debug("yauzl ERROR");
-                                                                            debug(erro);
-                                                                            reject(erro);
-                                                                        });
-                                                                        zip.readEntry();
-                                                                        zip.on("entry", function (entry) {
-                                                                            if (entry.fileName[entry.fileName.length - 1] === "/") {
-                                                                            }
-                                                                            else {
-                                                                                zip2.addEntry(entry);
-                                                                            }
-                                                                            zip.readEntry();
-                                                                        });
-                                                                        zip.on("end", function () {
-                                                                            debug("yauzl END");
-                                                                            resolve(zip2);
-                                                                        });
-                                                                        zip.on("close", function () {
-                                                                            debug("yauzl CLOSE");
-                                                                        });
-                                                                    });
-                                                                    return [2];
-                                                            }
-                                                        });
-                                                    }); };
-                                                    if (!needsStreamingResponse) return [3, 1];
-                                                    request.get({
-                                                        headers: {},
-                                                        method: "GET",
-                                                        uri: filePath,
-                                                    })
-                                                        .on("response", function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                                        var successError_1;
-                                                        return tslib_1.__generator(this, function (_a) {
-                                                            switch (_a.label) {
-                                                                case 0:
-                                                                    _a.trys.push([0, 2, , 3]);
-                                                                    return [4, success_1(res)];
-                                                                case 1:
-                                                                    _a.sent();
-                                                                    return [3, 3];
-                                                                case 2:
-                                                                    successError_1 = _a.sent();
-                                                                    failure_1(successError_1);
-                                                                    return [2];
-                                                                case 3: return [2];
-                                                            }
-                                                        });
-                                                    }); })
-                                                        .on("error", failure_1);
-                                                    return [3, 7];
-                                                case 1:
-                                                    ress = void 0;
-                                                    _a.label = 2;
-                                                case 2:
-                                                    _a.trys.push([2, 4, , 5]);
-                                                    return [4, requestPromise({
-                                                            headers: {},
-                                                            method: "GET",
-                                                            resolveWithFullResponse: true,
-                                                            uri: filePath,
-                                                        })];
-                                                case 3:
-                                                    ress = _a.sent();
-                                                    return [3, 5];
-                                                case 4:
-                                                    err_2 = _a.sent();
-                                                    failure_1(err_2);
-                                                    return [2];
-                                                case 5: return [4, success_1(ress)];
-                                                case 6:
-                                                    _a.sent();
-                                                    _a.label = 7;
-                                                case 7: return [2];
-                                                case 8:
-                                                    httpZipReader = new zip2RandomAccessReader_Http_1.HttpZipReader(filePath, httpZipByteLength);
-                                                    yauzl.fromRandomAccessReader(httpZipReader, httpZipByteLength, { lazyEntries: true, autoClose: false }, function (err, zip) {
-                                                        if (err || !zip) {
-                                                            debug("yauzl init ERROR");
-                                                            debug(err);
-                                                            reject(err);
-                                                            return;
+                            failure = function (err) {
+                                debug(err);
+                                reject(err);
+                            };
+                            success = function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                var httpZipByteLength, failure_1, success_1, httpZipReader;
+                                var _this = this;
+                                return tslib_1.__generator(this, function (_a) {
+                                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
+                                        failure("HTTP CODE " + res.statusCode);
+                                        return [2];
+                                    }
+                                    debug(filePath);
+                                    debug(res.headers);
+                                    if (!res.headers["content-length"]) {
+                                        reject("content-length not supported!");
+                                        return [2];
+                                    }
+                                    httpZipByteLength = parseInt(res.headers["content-length"], 10);
+                                    debug("Content-Length: ".concat(httpZipByteLength));
+                                    if (!res.headers["accept-ranges"]
+                                        || res.headers["accept-ranges"].indexOf("bytes") < 0) {
+                                        if (httpZipByteLength > (2 * 1024 * 1024)) {
+                                            reject("accept-ranges not supported, file too big to download: " + httpZipByteLength);
+                                            return [2];
+                                        }
+                                        debug("Downloading: " + filePath);
+                                        failure_1 = function (err) {
+                                            debug(err);
+                                            reject(err);
+                                        };
+                                        success_1 = function (ress) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                            var buffer, err_1;
+                                            return tslib_1.__generator(this, function (_a) {
+                                                switch (_a.label) {
+                                                    case 0:
+                                                        if (ress.statusCode && (ress.statusCode < 200 || ress.statusCode >= 300)) {
+                                                            failure_1("HTTP CODE " + ress.statusCode);
+                                                            return [2];
                                                         }
-                                                        zip.httpZipReader = httpZipReader;
-                                                        var zip2 = new Zip2(filePath, zip);
-                                                        zip.on("error", function (erro) {
-                                                            debug("yauzl ERROR");
-                                                            debug(erro);
-                                                            reject(erro);
-                                                        });
-                                                        zip.readEntry();
-                                                        zip.on("entry", function (entry) {
-                                                            if (entry.fileName[entry.fileName.length - 1] === "/") {
+                                                        _a.label = 1;
+                                                    case 1:
+                                                        _a.trys.push([1, 3, , 4]);
+                                                        return [4, (0, BufferUtils_1.streamToBufferPromise)(ress)];
+                                                    case 2:
+                                                        buffer = _a.sent();
+                                                        return [3, 4];
+                                                    case 3:
+                                                        err_1 = _a.sent();
+                                                        debug(err_1);
+                                                        reject(err_1);
+                                                        return [2];
+                                                    case 4:
+                                                        yauzl.fromBuffer(buffer, { lazyEntries: true }, function (err, zip) {
+                                                            if (err || !zip) {
+                                                                debug("yauzl init ERROR");
+                                                                debug(err);
+                                                                reject(err);
+                                                                return;
                                                             }
-                                                            else {
-                                                                zip2.addEntry(entry);
-                                                            }
+                                                            var zip2 = new Zip2(filePath, zip);
+                                                            zip.on("error", function (erro) {
+                                                                debug("yauzl ERROR");
+                                                                debug(erro);
+                                                                reject(erro);
+                                                            });
                                                             zip.readEntry();
+                                                            zip.on("entry", function (entry) {
+                                                                if (entry.fileName[entry.fileName.length - 1] === "/") {
+                                                                }
+                                                                else {
+                                                                    zip2.addEntry(entry);
+                                                                }
+                                                                zip.readEntry();
+                                                            });
+                                                            zip.on("end", function () {
+                                                                debug("yauzl END");
+                                                                resolve(zip2);
+                                                            });
+                                                            zip.on("close", function () {
+                                                                debug("yauzl CLOSE");
+                                                            });
                                                         });
-                                                        zip.on("end", function () {
-                                                            debug("yauzl END");
-                                                            resolve(zip2);
-                                                        });
-                                                        zip.on("close", function () {
-                                                            debug("yauzl CLOSE");
-                                                        });
-                                                    });
-                                                    return [2];
-                                            }
-                                        });
-                                    }); };
-                                    if (!needsStreamingResponse) return [3, 1];
-                                    request.get({
-                                        headers: {},
-                                        method: "HEAD",
-                                        uri: filePath,
-                                    })
-                                        .on("response", function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                                        var successError_2;
-                                        return tslib_1.__generator(this, function (_a) {
-                                            switch (_a.label) {
-                                                case 0:
-                                                    _a.trys.push([0, 2, , 3]);
-                                                    return [4, success(res)];
-                                                case 1:
-                                                    _a.sent();
-                                                    return [3, 3];
-                                                case 2:
-                                                    successError_2 = _a.sent();
-                                                    failure(successError_2);
-                                                    return [2];
-                                                case 3: return [2];
-                                            }
-                                        });
-                                    }); })
-                                        .on("error", failure);
-                                    return [3, 7];
-                                case 1:
-                                    res = void 0;
-                                    _a.label = 2;
-                                case 2:
-                                    _a.trys.push([2, 4, , 5]);
-                                    return [4, requestPromise({
+                                                        return [2];
+                                                }
+                                            });
+                                        }); };
+                                        request.get({
                                             headers: {},
-                                            method: "HEAD",
-                                            resolveWithFullResponse: true,
+                                            method: "GET",
                                             uri: filePath,
-                                        })];
-                                case 3:
-                                    res = _a.sent();
-                                    return [3, 5];
-                                case 4:
-                                    err_1 = _a.sent();
-                                    failure(err_1);
+                                        })
+                                            .on("response", function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                            var successError_1;
+                                            return tslib_1.__generator(this, function (_a) {
+                                                switch (_a.label) {
+                                                    case 0:
+                                                        _a.trys.push([0, 2, , 3]);
+                                                        return [4, success_1(res)];
+                                                    case 1:
+                                                        _a.sent();
+                                                        return [3, 3];
+                                                    case 2:
+                                                        successError_1 = _a.sent();
+                                                        failure_1(successError_1);
+                                                        return [2];
+                                                    case 3: return [2];
+                                                }
+                                            });
+                                        }); })
+                                            .on("error", failure_1);
+                                        return [2];
+                                    }
+                                    httpZipReader = new zip2RandomAccessReader_Http_1.HttpZipReader(filePath, httpZipByteLength);
+                                    yauzl.fromRandomAccessReader(httpZipReader, httpZipByteLength, { lazyEntries: true, autoClose: false }, function (err, zip) {
+                                        if (err || !zip) {
+                                            debug("yauzl init ERROR");
+                                            debug(err);
+                                            reject(err);
+                                            return;
+                                        }
+                                        zip.httpZipReader = httpZipReader;
+                                        var zip2 = new Zip2(filePath, zip);
+                                        zip.on("error", function (erro) {
+                                            debug("yauzl ERROR");
+                                            debug(erro);
+                                            reject(erro);
+                                        });
+                                        zip.readEntry();
+                                        zip.on("entry", function (entry) {
+                                            if (entry.fileName[entry.fileName.length - 1] === "/") {
+                                            }
+                                            else {
+                                                zip2.addEntry(entry);
+                                            }
+                                            zip.readEntry();
+                                        });
+                                        zip.on("end", function () {
+                                            debug("yauzl END");
+                                            resolve(zip2);
+                                        });
+                                        zip.on("close", function () {
+                                            debug("yauzl CLOSE");
+                                        });
+                                    });
                                     return [2];
-                                case 5: return [4, success(res)];
-                                case 6:
-                                    _a.sent();
-                                    _a.label = 7;
-                                case 7: return [2];
-                            }
+                                });
+                            }); };
+                            request.get({
+                                headers: {},
+                                method: "HEAD",
+                                uri: filePath,
+                            })
+                                .on("response", function (res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+                                var successError_2;
+                                return tslib_1.__generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            _a.trys.push([0, 2, , 3]);
+                                            return [4, success(res)];
+                                        case 1:
+                                            _a.sent();
+                                            return [3, 3];
+                                        case 2:
+                                            successError_2 = _a.sent();
+                                            failure(successError_2);
+                                            return [2];
+                                        case 3: return [2];
+                                    }
+                                });
+                            }); })
+                                .on("error", failure);
+                            return [2];
                         });
                     }); })];
             });

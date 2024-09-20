@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.streamToBufferPromise = exports.streamToBufferPromise_READABLE = exports.bufferToStream = void 0;
+exports.bufferToStream = bufferToStream;
+exports.streamToBufferPromise_READABLE = streamToBufferPromise_READABLE;
+exports.streamToBufferPromise = streamToBufferPromise;
 var tslib_1 = require("tslib");
 var BufferReadableStream_1 = require("./BufferReadableStream");
 function bufferToStream(buffer) {
     return new BufferReadableStream_1.BufferReadableStream(buffer);
 }
-exports.bufferToStream = bufferToStream;
 function streamToBufferPromise_READABLE(readStream) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         return tslib_1.__generator(this, function (_a) {
@@ -46,7 +47,6 @@ function streamToBufferPromise_READABLE(readStream) {
         });
     });
 }
-exports.streamToBufferPromise_READABLE = streamToBufferPromise_READABLE;
 function streamToBufferPromise(readStream) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         return tslib_1.__generator(this, function (_a) {
@@ -76,5 +76,4 @@ function streamToBufferPromise(readStream) {
         });
     });
 }
-exports.streamToBufferPromise = streamToBufferPromise;
 //# sourceMappingURL=BufferUtils.js.map

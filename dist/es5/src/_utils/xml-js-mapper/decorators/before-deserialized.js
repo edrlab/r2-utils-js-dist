@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BeforeDeserialized = void 0;
+exports.BeforeDeserialized = BeforeDeserialized;
 var object_definition_1 = require("../classes/object-definition");
 function BeforeDeserialized() {
     return function (target, key) {
@@ -8,5 +8,4 @@ function BeforeDeserialized() {
         definition.beforeDeserialized = target[key];
     };
 }
-exports.BeforeDeserialized = BeforeDeserialized;
 //# sourceMappingURL=before-deserialized.js.map

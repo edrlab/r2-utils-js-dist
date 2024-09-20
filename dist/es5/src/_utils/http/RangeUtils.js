@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.combineRanges = exports.parseRangeHeader = void 0;
+exports.parseRangeHeader = parseRangeHeader;
+exports.combineRanges = combineRanges;
 function parseRangeHeader(rangeHeader) {
     var ranges = [];
     if (!rangeHeader) {
@@ -19,7 +20,6 @@ function parseRangeHeader(rangeHeader) {
     });
     return ranges;
 }
-exports.parseRangeHeader = parseRangeHeader;
 function parseRangeHeader_(rangeHeader) {
     var ranges = [];
     var iEqual = rangeHeader.indexOf("=");
@@ -82,5 +82,4 @@ function combineRanges(ranges) {
         };
     });
 }
-exports.combineRanges = combineRanges;
 //# sourceMappingURL=RangeUtils.js.map

@@ -4,7 +4,6 @@ exports.ZipExplodedHTTP = void 0;
 const tslib_1 = require("tslib");
 const debug_ = require("debug");
 const request = require("request");
-const requestPromise = require("request-promise-native");
 const stream_1 = require("stream");
 const url_1 = require("url");
 const zip_1 = require("./zip");
@@ -51,49 +50,31 @@ class ZipExplodedHTTP extends zip_1.Zip {
                     }
                     topresolve(true);
                 });
-                const needsStreamingResponse = true;
-                if (needsStreamingResponse) {
-                    const promise = new Promise((resolve, reject) => {
-                        request.get({
-                            headers: {},
-                            method: "HEAD",
-                            uri: urlStrEntry,
-                        })
-                            .on("response", (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-                            try {
-                                yield success(response);
-                            }
-                            catch (successError) {
-                                yield failure(successError);
-                                return;
-                            }
-                            resolve();
-                        }))
-                            .on("error", (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-                            yield failure(err);
-                            reject();
-                        }));
-                    });
-                    try {
-                        yield promise;
-                    }
-                    catch (_err) {
-                    }
-                }
-                else {
-                    let response;
-                    try {
-                        response = yield requestPromise({
-                            headers: {},
-                            method: "HEAD",
-                            resolveWithFullResponse: true,
-                            uri: urlStrEntry,
-                        });
-                        yield success(response);
-                    }
-                    catch (err) {
+                const promise = new Promise((resolve, reject) => {
+                    request.get({
+                        headers: {},
+                        method: "HEAD",
+                        uri: urlStrEntry,
+                    })
+                        .on("response", (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                        try {
+                            yield success(response);
+                        }
+                        catch (successError) {
+                            yield failure(successError);
+                            return;
+                        }
+                        resolve();
+                    }))
+                        .on("error", (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                         yield failure(err);
-                    }
+                        reject();
+                    }));
+                });
+                try {
+                    yield promise;
+                }
+                catch (_err) {
                 }
             }));
         });
@@ -138,49 +119,31 @@ class ZipExplodedHTTP extends zip_1.Zip {
                     };
                     topresolve(streamAndLength);
                 });
-                const needsStreamingResponse = true;
-                if (needsStreamingResponse) {
-                    const promise = new Promise((resolve, reject) => {
-                        request.get({
-                            headers: {},
-                            method: "GET",
-                            uri: urlStrEntry,
-                        })
-                            .on("response", (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-                            try {
-                                yield success(response);
-                            }
-                            catch (successError) {
-                                yield failure(successError);
-                                return;
-                            }
-                            resolve();
-                        }))
-                            .on("error", (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-                            yield failure(err);
-                            reject();
-                        }));
-                    });
-                    try {
-                        yield promise;
-                    }
-                    catch (_err) {
-                    }
-                }
-                else {
-                    let response;
-                    try {
-                        response = yield requestPromise({
-                            headers: {},
-                            method: "GET",
-                            resolveWithFullResponse: true,
-                            uri: urlStrEntry,
-                        });
-                        yield success(response);
-                    }
-                    catch (err) {
+                const promise = new Promise((resolve, reject) => {
+                    request.get({
+                        headers: {},
+                        method: "GET",
+                        uri: urlStrEntry,
+                    })
+                        .on("response", (response) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                        try {
+                            yield success(response);
+                        }
+                        catch (successError) {
+                            yield failure(successError);
+                            return;
+                        }
+                        resolve();
+                    }))
+                        .on("error", (err) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                         yield failure(err);
-                    }
+                        reject();
+                    }));
+                });
+                try {
+                    yield promise;
+                }
+                catch (_err) {
                 }
             }));
         });

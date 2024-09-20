@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deserialize = void 0;
+exports.deserialize = deserialize;
 const xpath = require("xpath");
 const object_definition_1 = require("../classes/object-definition");
 const converter_1 = require("../converters/converter");
 function deserialize(objectInstance, objectType, options = { runConstructor: false }) {
     return deserializeRootObject(objectInstance, objectType, options);
 }
-exports.deserialize = deserialize;
 function deserializeRootObject(objectInstance, objectType = Object, options) {
     if (!object_definition_1.objectDefinitions.has(objectType)) {
         return undefined;

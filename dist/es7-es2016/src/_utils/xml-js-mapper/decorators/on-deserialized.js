@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OnDeserialized = void 0;
+exports.OnDeserialized = OnDeserialized;
 const object_definition_1 = require("../classes/object-definition");
 function OnDeserialized() {
     return (target, key) => {
@@ -8,5 +8,4 @@ function OnDeserialized() {
         definition.onDeserialized = target[key];
     };
 }
-exports.OnDeserialized = OnDeserialized;
 //# sourceMappingURL=on-deserialized.js.map

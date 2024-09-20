@@ -1,26 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ensureAbsolute = exports.encodeURIComponent_RFC5987 = exports.encodeURIComponent_RFC3986 = exports.isHTTP = void 0;
+exports.isHTTP = isHTTP;
+exports.encodeURIComponent_RFC3986 = encodeURIComponent_RFC3986;
+exports.encodeURIComponent_RFC5987 = encodeURIComponent_RFC5987;
+exports.ensureAbsolute = ensureAbsolute;
 const path = require("path");
 const querystring = require("querystring");
 function isHTTP(urlOrPath) {
     return /^https?:\/\//.test(urlOrPath);
 }
-exports.isHTTP = isHTTP;
 function encodeURIComponent_RFC3986(str) {
     return encodeURIComponent(str)
         .replace(/[!'()*]/g, (c) => {
         return "%" + c.charCodeAt(0).toString(16);
     });
 }
-exports.encodeURIComponent_RFC3986 = encodeURIComponent_RFC3986;
 function encodeURIComponent_RFC5987(str) {
     return encodeURIComponent(str).
         replace(/['()]/g, querystring.escape).
         replace(/\*/g, "%2A").
         replace(/%(?:7C|60|5E)/g, querystring.unescape);
 }
-exports.encodeURIComponent_RFC5987 = encodeURIComponent_RFC5987;
 function ensureAbsolute(rootUrl, linkHref) {
     let url = linkHref;
     if (!isHTTP(url) && url.indexOf("data:") !== 0) {
@@ -55,5 +55,4 @@ function ensureAbsolute(rootUrl, linkHref) {
     }
     return url;
 }
-exports.ensureAbsolute = ensureAbsolute;
 //# sourceMappingURL=UrlUtils.js.map

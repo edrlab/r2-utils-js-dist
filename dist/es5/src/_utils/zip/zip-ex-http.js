@@ -4,7 +4,6 @@ exports.ZipExplodedHTTP = void 0;
 var tslib_1 = require("tslib");
 var debug_ = require("debug");
 var request = require("request");
-var requestPromise = require("request-promise-native");
 var stream_1 = require("stream");
 var url_1 = require("url");
 var zip_1 = require("./zip");
@@ -47,7 +46,7 @@ var ZipExplodedHTTP = (function (_super) {
                 urlStrEntry = url.toString();
                 debug("urlStrEntry: ", urlStrEntry);
                 return [2, new Promise(function (topresolve, _topreject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                        var failure, success, needsStreamingResponse, promise, _err_1, response, err_1;
+                        var failure, success, promise, _err_1;
                         var _this = this;
                         return tslib_1.__generator(this, function (_a) {
                             switch (_a.label) {
@@ -69,8 +68,6 @@ var ZipExplodedHTTP = (function (_super) {
                                             return [2];
                                         });
                                     }); };
-                                    needsStreamingResponse = true;
-                                    if (!needsStreamingResponse) return [3, 5];
                                     promise = new Promise(function (resolve, reject) {
                                         request.get({
                                             headers: {},
@@ -121,31 +118,7 @@ var ZipExplodedHTTP = (function (_super) {
                                 case 3:
                                     _err_1 = _a.sent();
                                     return [3, 4];
-                                case 4: return [3, 11];
-                                case 5:
-                                    response = void 0;
-                                    _a.label = 6;
-                                case 6:
-                                    _a.trys.push([6, 9, , 11]);
-                                    return [4, requestPromise({
-                                            headers: {},
-                                            method: "HEAD",
-                                            resolveWithFullResponse: true,
-                                            uri: urlStrEntry,
-                                        })];
-                                case 7:
-                                    response = _a.sent();
-                                    return [4, success(response)];
-                                case 8:
-                                    _a.sent();
-                                    return [3, 11];
-                                case 9:
-                                    err_1 = _a.sent();
-                                    return [4, failure(err_1)];
-                                case 10:
-                                    _a.sent();
-                                    return [3, 11];
-                                case 11: return [2];
+                                case 4: return [2];
                             }
                         });
                     }); })];
@@ -176,7 +149,7 @@ var ZipExplodedHTTP = (function (_super) {
                 urlStrEntry = url.toString();
                 debug("urlStrEntry: ", urlStrEntry);
                 return [2, new Promise(function (topresolve, topreject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                        var failure, success, needsStreamingResponse, promise, _err_2, response, err_2;
+                        var failure, success, promise, _err_2;
                         var _this = this;
                         return tslib_1.__generator(this, function (_a) {
                             switch (_a.label) {
@@ -221,8 +194,6 @@ var ZipExplodedHTTP = (function (_super) {
                                             }
                                         });
                                     }); };
-                                    needsStreamingResponse = true;
-                                    if (!needsStreamingResponse) return [3, 5];
                                     promise = new Promise(function (resolve, reject) {
                                         request.get({
                                             headers: {},
@@ -273,31 +244,7 @@ var ZipExplodedHTTP = (function (_super) {
                                 case 3:
                                     _err_2 = _a.sent();
                                     return [3, 4];
-                                case 4: return [3, 11];
-                                case 5:
-                                    response = void 0;
-                                    _a.label = 6;
-                                case 6:
-                                    _a.trys.push([6, 9, , 11]);
-                                    return [4, requestPromise({
-                                            headers: {},
-                                            method: "GET",
-                                            resolveWithFullResponse: true,
-                                            uri: urlStrEntry,
-                                        })];
-                                case 7:
-                                    response = _a.sent();
-                                    return [4, success(response)];
-                                case 8:
-                                    _a.sent();
-                                    return [3, 11];
-                                case 9:
-                                    err_2 = _a.sent();
-                                    return [4, failure(err_2)];
-                                case 10:
-                                    _a.sent();
-                                    return [3, 11];
-                                case 11: return [2];
+                                case 4: return [2];
                             }
                         });
                     }); })];

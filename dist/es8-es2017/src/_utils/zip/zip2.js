@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Zip2 = void 0;
 const debug_ = require("debug");
 const request = require("request");
-const requestPromise = require("request-promise-native");
 const yauzl = require("yauzl");
 const UrlUtils_1 = require("../http/UrlUtils");
 const BufferUtils_1 = require("../stream/BufferUtils");
@@ -49,7 +48,6 @@ class Zip2 extends zip_1.Zip {
         });
     }
     static async loadPromiseHTTP(filePath) {
-        const needsStreamingResponse = true;
         return new Promise(async (resolve, reject) => {
             const failure = (err) => {
                 debug(err);
@@ -124,39 +122,21 @@ class Zip2 extends zip_1.Zip {
                             });
                         });
                     };
-                    if (needsStreamingResponse) {
-                        request.get({
-                            headers: {},
-                            method: "GET",
-                            uri: filePath,
-                        })
-                            .on("response", async (res) => {
-                            try {
-                                await success_(res);
-                            }
-                            catch (successError) {
-                                failure_(successError);
-                                return;
-                            }
-                        })
-                            .on("error", failure_);
-                    }
-                    else {
-                        let ress;
+                    request.get({
+                        headers: {},
+                        method: "GET",
+                        uri: filePath,
+                    })
+                        .on("response", async (res) => {
                         try {
-                            ress = await requestPromise({
-                                headers: {},
-                                method: "GET",
-                                resolveWithFullResponse: true,
-                                uri: filePath,
-                            });
+                            await success_(res);
                         }
-                        catch (err) {
-                            failure_(err);
+                        catch (successError) {
+                            failure_(successError);
                             return;
                         }
-                        await success_(ress);
-                    }
+                    })
+                        .on("error", failure_);
                     return;
                 }
                 const httpZipReader = new zip2RandomAccessReader_Http_1.HttpZipReader(filePath, httpZipByteLength);
@@ -192,39 +172,21 @@ class Zip2 extends zip_1.Zip {
                     });
                 });
             };
-            if (needsStreamingResponse) {
-                request.get({
-                    headers: {},
-                    method: "HEAD",
-                    uri: filePath,
-                })
-                    .on("response", async (res) => {
-                    try {
-                        await success(res);
-                    }
-                    catch (successError) {
-                        failure(successError);
-                        return;
-                    }
-                })
-                    .on("error", failure);
-            }
-            else {
-                let res;
+            request.get({
+                headers: {},
+                method: "HEAD",
+                uri: filePath,
+            })
+                .on("response", async (res) => {
                 try {
-                    res = await requestPromise({
-                        headers: {},
-                        method: "HEAD",
-                        resolveWithFullResponse: true,
-                        uri: filePath,
-                    });
+                    await success(res);
                 }
-                catch (err) {
-                    failure(err);
+                catch (successError) {
+                    failure(successError);
                     return;
                 }
-                await success(res);
-            }
+            })
+                .on("error", failure);
         });
     }
     constructor(filePath, zip) {

@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
 import { PassThrough } from "stream";
 import * as yauzl from "yauzl";
 export declare class HttpZipReader extends yauzl.RandomAccessReader {

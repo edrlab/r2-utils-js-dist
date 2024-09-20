@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.zipLoadPromise = void 0;
+exports.zipLoadPromise = zipLoadPromise;
 var tslib_1 = require("tslib");
 var fs = require("fs");
 var url_1 = require("url");
@@ -29,5 +29,4 @@ function zipLoadPromise(filePath) {
         });
     });
 }
-exports.zipLoadPromise = zipLoadPromise;
 //# sourceMappingURL=zipFactory.js.map
