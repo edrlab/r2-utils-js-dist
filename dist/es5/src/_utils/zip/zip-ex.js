@@ -7,6 +7,27 @@ var fs = require("fs");
 var path = require("path");
 var zip_1 = require("./zip");
 var debug = debug_("r2:utils#zip/zip-ex");
+var scanDir = function (rootDir, subRootDir) {
+    var dirPathNormalized = fs.realpathSync(rootDir);
+    var files = fs.readdirSync(subRootDir, { withFileTypes: true }).
+        filter(function (f) { return f.isFile(); }).map(function (f) { return path.join(subRootDir, f.name); });
+    var adjustedFiles = files.map(function (file) {
+        var filePathNormalized = fs.realpathSync(file);
+        var relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");
+        if (relativeFilePath.indexOf("/") === 0 || relativeFilePath.indexOf("\\") === 0) {
+            relativeFilePath = relativeFilePath.substr(1);
+        }
+        return relativeFilePath;
+    });
+    var folders = fs.readdirSync(subRootDir, { withFileTypes: true }).
+        filter(function (f) { return f.isDirectory(); }).map(function (f) { return path.join(subRootDir, f.name); });
+    for (var _i = 0, folders_1 = folders; _i < folders_1.length; _i++) {
+        var folder = folders_1[_i];
+        var subFiles = scanDir(rootDir, folder);
+        adjustedFiles = adjustedFiles.concat(subFiles);
+    }
+    return adjustedFiles;
+};
 var ZipExploded = (function (_super) {
     tslib_1.__extends(ZipExploded, _super);
     function ZipExploded(dirPath) {
@@ -39,21 +60,10 @@ var ZipExploded = (function (_super) {
             var _this = this;
             return tslib_1.__generator(this, function (_a) {
                 return [2, new Promise(function (resolve, _reject) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                        var dirPathNormalized, files, adjustedFiles;
-                        var _this = this;
+                        var deepFiles;
                         return tslib_1.__generator(this, function (_a) {
-                            dirPathNormalized = fs.realpathSync(this.dirPath);
-                            files = fs.readdirSync(this.dirPath, { withFileTypes: true }).
-                                filter(function (f) { return f.isFile(); }).map(function (f) { return path.join(_this.dirPath, f.name); });
-                            adjustedFiles = files.map(function (file) {
-                                var filePathNormalized = fs.realpathSync(file);
-                                var relativeFilePath = filePathNormalized.replace(dirPathNormalized, "");
-                                if (relativeFilePath.indexOf("/") === 0 || relativeFilePath.indexOf("\\") === 0) {
-                                    relativeFilePath = relativeFilePath.substr(1);
-                                }
-                                return relativeFilePath;
-                            });
-                            resolve(adjustedFiles);
+                            deepFiles = scanDir(this.dirPath, this.dirPath);
+                            resolve(deepFiles);
                             return [2];
                         });
                     }); })];
